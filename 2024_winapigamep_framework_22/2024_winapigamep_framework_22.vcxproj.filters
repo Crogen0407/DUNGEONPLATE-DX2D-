@@ -74,6 +74,9 @@
     <Filter Include="Engine\03. Object\Enemy\EnemyPattern">
       <UniqueIdentifier>{4b5354fb-a495-4ae1-a108-a0f025b94b41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\09.Skill\Item">
+      <UniqueIdentifier>{28f3e670-71d7-4e8b-ae1f-2e501ac19a28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2024_winapigamep_framework_22.h">
@@ -433,14 +436,26 @@
     <ClInclude Include="SkillSlot.h">
       <Filter>Engine\08.UI</Filter>
     </ClInclude>
-    <ClInclude Include="BombPattern.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="EnemyBomb.h" />
-    <ClInclude Include="HealEffect.h" />
-    <ClInclude Include="HealItem.h" />
-    <ClInclude Include="Item.h" />
     <ClInclude Include="PauseCanvas.h">
       <Filter>Engine\08.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Engine\09.Skill\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="HealItem.h">
+      <Filter>Engine\09.Skill\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="BombPattern.h">
+      <Filter>Engine\03. Object\Enemy\EnemyPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBomb.h">
+      <Filter>Engine\03. Object\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="HealEffect.h">
+      <Filter>Engine\03. Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Engine\02. Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -790,18 +805,26 @@
     <ClCompile Include="SkillSlot.cpp">
       <Filter>Engine\08.UI</Filter>
     </ClCompile>
-    <ClCompile Include="BombPattern.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="EnemyBomb.cpp" />
-    <ClCompile Include="HealEffect.cpp" />
-    <ClCompile Include="HealItem.cpp" />
-    <ClCompile Include="Item.cpp" />
     <ClCompile Include="PauseCanvas.cpp">
       <Filter>Engine\08.UI</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram11.cd" />
+    <ClCompile Include="Item.cpp">
+      <Filter>Engine\09.Skill\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="HealItem.cpp">
+      <Filter>Engine\09.Skill\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="BombPattern.cpp">
+      <Filter>Engine\03. Object\Enemy\EnemyPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBomb.cpp">
+      <Filter>Engine\03. Object\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="HealEffect.cpp">
+      <Filter>Engine\03. Object\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Engine\02. Manager</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
