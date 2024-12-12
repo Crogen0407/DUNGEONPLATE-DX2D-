@@ -10,7 +10,9 @@
 #include "Scene.h"
 #include "PoolManager.h"
 
-Projectile::Projectile() : _dir(1.f, 1.f)
+Projectile::Projectile() : 
+	_dir(1.f, 1.f),
+	_owner(nullptr)
 {
 
 }
@@ -43,9 +45,8 @@ void Projectile::ExitCollision(Collider* _other)
 {
 }
 
-void Projectile::Parry(Vec2 pos)
+void Projectile::Parry(Vec2 dir)
 {
-	Vec2 dir = (pos *-1) + GetPos();
 	dir.Normalize();
 
 	SetSpeed(_speed * 3.f);

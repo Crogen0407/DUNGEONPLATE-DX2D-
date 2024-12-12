@@ -6,8 +6,8 @@
 #include "GameManager.h"
 
 PlayerHealthCompo::PlayerHealthCompo() :
-	subHp(100),
-	maxSubHp(100)
+	subHp(50),
+	maxSubHp(50)
 {
 	SetOffsetY(40);
 	hpBarActive = true;

@@ -130,9 +130,6 @@
     <ClInclude Include="GameScene.h">
       <Filter>Engine\04. Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Engine\03. Object</Filter>
-    </ClInclude>
     <ClInclude Include="ResourceBase.h">
       <Filter>Engine\05. Resource</Filter>
     </ClInclude>
@@ -457,6 +454,9 @@
     <ClInclude Include="Camera.h">
       <Filter>Engine\02. Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Engine\03. Object\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="2024_winapigamep_framework_22.rc">
@@ -507,9 +507,6 @@
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
       <Filter>Engine\04. Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Engine\03. Object</Filter>
     </ClCompile>
     <ClCompile Include="ResourceBase.cpp">
       <Filter>Engine\05. Resource</Filter>
@@ -825,6 +822,9 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Engine\02. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Engine\03. Object\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

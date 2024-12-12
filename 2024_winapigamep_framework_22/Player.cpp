@@ -114,7 +114,6 @@ void Player::Update()
 	}
 	else
 	{
-		cout << lastPos.x << " " << lastPos.y << '\n';
 		DashSkill* dashSkill = dynamic_cast<DashSkill*>(GET_SINGLE(SkillManager)->GetSkill(ESkillType::DashSkill));
 		dashSkill->StopDash();
 		SetPos(lastPos);
@@ -183,12 +182,15 @@ void Player::Parrying()
 		attackDir.Normalize();
 		dist.Normalize();
 
+		//반격 로직(총알이 어떻게 튕기는지)
 		float rotation = acos(attackDir.Dot(dist)) * Rad2Deg;
 		if (abs(rotation) < 45)
 		{
 			Projectile* proj = dynamic_cast<Projectile*>(projObj);
 			if (proj == nullptr) continue;
-			proj->Parry(GetPos());
+			Vec2 dir = proj->GetOwner()->GetPos();
+			dir -= proj->GetPos();
+			proj->Parry(dir);
 			parried = true;
 		}
 	}
@@ -201,8 +203,6 @@ void Player::Parrying()
 
 void Player::EnterCollision(Collider* _other)
 {
-	//if()
-	//healthCompo->ApplyDamage(10);
 }
 
 void Player::StayCollision(Collider* _other)

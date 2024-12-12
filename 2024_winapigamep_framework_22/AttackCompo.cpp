@@ -24,16 +24,18 @@ void AttackCompo::TryFireBullet(Vec2 dir, float speed)
 {
 	EnemyBullet* projectile 
 		= dynamic_cast<EnemyBullet*>(POP(L"EnemyBullet", GetOwner()->GetPos()));
+	projectile->SetOwner(GetOwner());
 	projectile->SetDir(dir);
 	projectile->SetSpeed(speed);
 }
 
 void AttackCompo::TryFireBounceBullet(Vec2 dir)
 {
-	EnemyBounceBullet* bounceBullet 
+	EnemyBounceBullet* projectile
 		= dynamic_cast<EnemyBounceBullet*>(POP(L"EnemyBounceBullet", GetOwner()->GetPos()));
-	bounceBullet->SetDir(dir);
-	bounceBullet->SetSpeed(700);
+	projectile->SetOwner(GetOwner());
+	projectile->SetDir(dir);
+	projectile->SetSpeed(700);
 }
 
 void AttackCompo::TryFireRazer(float lifeTime)
@@ -47,9 +49,10 @@ void AttackCompo::TryFireRazer(float lifeTime)
 
 void AttackCompo::TryFireMissile(Vec2 dir)
 {
-	GuidedMissile* missile
+	GuidedMissile* projectile
 		= dynamic_cast<GuidedMissile*>(POP(L"GuidedMissile", GetOwner()->GetPos()));
-	missile->SetDir(dir);
+	projectile->SetOwner(GetOwner());
+	projectile->SetDir(dir);
 }
 
 void AttackCompo::LateUpdate()

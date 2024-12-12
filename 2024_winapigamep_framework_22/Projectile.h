@@ -24,10 +24,12 @@ public:
 	virtual void ExitCollision(Collider* _other);
 public:
 	void SetSpeed(float speed) { _speed = speed; }
+	void SetOwner(Object* owner) { _owner = owner; }
+	const Object* GetOwner() const { return _owner; }
 	virtual void Parry(Vec2 dir);
 	bool _hitEnemy = false;
 protected:
-	//float m_dir;
+	Object* _owner;
 	wstring _poolName;
 	Vec2 _dir;
 	Texture* _texture;
