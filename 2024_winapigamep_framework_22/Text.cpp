@@ -21,16 +21,19 @@ void Text::LateUpdate()
 void Text::Render(HDC _hdc)
 {
 	if (_owner == nullptr) return;
-	Vec2 pos = GetPos() + _owner->GetPos();
+	XMVECTOR pos = GetPos() + _owner->GetPos();
 	if (_parent != nullptr)
 		pos += _parent->GetPos();
 
-	Vec2 size = GetSize();
+	XMVECTOR size = GetSize();
 	::SetTextColor(_hdc, color);
 	HFONT oldFont = static_cast<HFONT>(SelectObject(_hdc, pfont));
 
 	::SetBkMode(_hdc, 1);
-	RECT rect = { pos.x - size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y + size.y / 2 };  // 출력할 영역
+	RECT rect = { XMVectorGetX(pos) - XMVectorGetX(size) / 2, 
+		XMVectorGetY(pos) - XMVectorGetY(size) / 2, 
+		XMVectorGetX(pos) + XMVectorGetX(size) / 2, 
+		XMVectorGetY(pos) + XMVectorGetY(size) / 2 };  // 출력할 영역
 
 	::DrawText(_hdc, text.c_str(), -1, &rect, iPitchAndFamily);
 

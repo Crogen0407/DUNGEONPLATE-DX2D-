@@ -11,7 +11,6 @@
 #include "PoolManager.h"
 
 Projectile::Projectile() : 
-	_dir(1.f, 1.f),
 	_owner(nullptr)
 {
 
@@ -45,9 +44,9 @@ void Projectile::ExitCollision(Collider* _other)
 {
 }
 
-void Projectile::Parry(Vec2 dir)
+void Projectile::Parry(XMVECTOR dir)
 {
-	dir.Normalize();
+	dir = XMVector3Normalize(dir);
 
 	SetSpeed(_speed * 3.f);
 	SetDir(dir);

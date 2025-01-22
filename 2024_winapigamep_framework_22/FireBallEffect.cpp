@@ -36,7 +36,7 @@ void FireBallEffect::Update()
 	_curTime += fDT;
 	if (_curTime > _lifeTime)
 		PUSH(L"FireBallEffect", this);
-	Vec2 moveDir = _moveDir * _speed * fDT;
+	XMVECTOR moveDir = _moveDir * _speed * fDT;
 	AddPos(moveDir);
 }
 
@@ -64,7 +64,7 @@ void FireBallEffect::EnterCollision(Collider* _other)
 	}
 }
 
-void FireBallEffect::SetDir(const Vec2& dir)
+void FireBallEffect::SetDir(const XMVECTOR& dir)
 {
 	_moveDir = dir;
 	SpriteRenderer* spriteRenderer = GetComponent<SpriteRenderer>();

@@ -44,25 +44,25 @@ void Animation::Update()
 void Animation::Render(HDC _hdc)
 {
 	Object* pObj = m_pAnimator->GetOwner();
-	Vec2 vPos = pObj->GetPos();
-	Vec2 vSize = pObj->GetSize();
+	XMVECTOR vPos = pObj->GetPos();
+	XMVECTOR vSize = pObj->GetSize();
 
 	// 오프셋 적용
 	vPos = vPos + m_vecAnimFrame[m_CurFrame].vOffset;
 	TransparentBlt(_hdc
-		, (int)(vPos.x - vSize.x / 2.f)
-		, (int)(vPos.y - vSize.y / 2.f)
-		, vSize.x//(int)(m_vecAnimFrame[m_CurFrame].vSlice.x)
-		, vSize.y//(int)(m_vecAnimFrame[m_CurFrame].vSlice.y)
+		, (int)(pObj->GetPosX() - pObj->GetSizeX() / 2.f)
+		, (int)(pObj->GetPosY() - pObj->GetSizeY() / 2.f)
+		, pObj->GetSizeX() //(int)(m_vecAnimFrame[m_CurFrame].vSlice.x)
+		, pObj->GetSizeY() //(int)(m_vecAnimFrame[m_CurFrame].vSlice.y)
 		, m_pTex->GetTexDC()
-		, (int)(m_vecAnimFrame[m_CurFrame].vLT.x)
-		, (int)(m_vecAnimFrame[m_CurFrame].vLT.y)
-		, (int)(m_vecAnimFrame[m_CurFrame].vSlice.x)
-		, (int)(m_vecAnimFrame[m_CurFrame].vSlice.y)
+		, (int)(XMVectorGetX(m_vecAnimFrame[m_CurFrame].vLT))
+		, (int)(XMVectorGetY(m_vecAnimFrame[m_CurFrame].vLT))
+		, (int)(XMVectorGetX(m_vecAnimFrame[m_CurFrame].vSlice))
+		, (int)(XMVectorGetY(m_vecAnimFrame[m_CurFrame].vSlice))
 		, RGB(255, 0, 255));
 }
 
-void Animation::Create(Texture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, int _framecount, float _fDuration, bool _isRotate)
+void Animation::Create(Texture* _pTex, XMVECTOR _vLT, XMVECTOR _vSliceSize, XMVECTOR _vStep, int _framecount, float _fDuration, bool _isRotate)
 {
 	m_pTex = _pTex;
 	m_IsRotate = _isRotate;

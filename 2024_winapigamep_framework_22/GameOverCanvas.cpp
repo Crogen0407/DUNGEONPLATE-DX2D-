@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "GameOverCanvas.h"
-#include "Image.h"
+#include "Picture.h"
 #include "Text.h"
 #include "Button.h"
 #include "Slider.h"
@@ -13,16 +13,16 @@ GameOverCanvas::GameOverCanvas()
 {
 	//BackGround
 	{
-		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
-		Vec2 pos = { size.x * 0.5f, size.y * 0.5f };
-		Image* background = CreateUI<Image>(pos, size);
+		XMVECTOR size = { SCREEN_WIDTH, SCREEN_HEIGHT };
+		XMVECTOR pos = { XMVectorGetX(size) * 0.5f, XMVectorGetY(size) * 0.5f };
+		Picture* background = CreateUI<Picture>(pos, size);
 		background->texture = LOADTEXTURE(L"GameOver", L"Texture\\GameOver.bmp");
 	}
 
 	//TitleText
 	{
-		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
-		Vec2 pos = { size.x*0.5f, size.y * 0.3f };
+		XMVECTOR size = { SCREEN_WIDTH, SCREEN_HEIGHT };
+		XMVECTOR pos = { XMVectorGetX(size) * 0.5f,XMVectorGetY(size)* 0.3f };
 		titleText = CreateUI<Text>(pos, size);
 		titleText->SetText(L"FAIL...");
 		titleText->LoadFont(L"PF스타더스트 Bold", 60, 72);
@@ -32,8 +32,8 @@ GameOverCanvas::GameOverCanvas()
 
 	//MentText
 	{
-		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
-		Vec2 pos = { size.x * 0.5f, size.y * 0.4f };
+		XMVECTOR size = { SCREEN_WIDTH, SCREEN_HEIGHT };
+		XMVECTOR pos = { XMVectorGetX(size) * 0.5f, XMVectorGetY(size) * 0.4f };
 		mentText = CreateUI<Text>(pos, size);
 		mentText->SetText(L"가끔은 실패할 수도 있는 겁니다");
 		mentText->LoadFont(L"PF스타더스트", 20, 25);
@@ -43,8 +43,8 @@ GameOverCanvas::GameOverCanvas()
 
 	//RetryButton
 	{
-		Vec2 size = { 400, 50 };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f };
+		XMVECTOR size = { 400, 50 };
+		XMVECTOR pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f };
 		retryButton = CreateUI<Button>(pos, size);
 		retryButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.bmp");
 		retryButton->onlyOneCountClick = true;
@@ -65,8 +65,8 @@ GameOverCanvas::GameOverCanvas()
 
 	//GotoTitleSceneButton
 	{
-		Vec2 size = { 400, 50 };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.57f };
+		XMVECTOR size = { 400, 50 };
+		XMVECTOR pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.57f };
 		gotoTitleSceneButton = CreateUI<Button>(pos, size);
 		gotoTitleSceneButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.bmp");
 		gotoTitleSceneButton->onlyOneCountClick = true;

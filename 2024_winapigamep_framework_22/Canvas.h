@@ -28,7 +28,7 @@ public:
     }
     
     template<typename T>
-    T* CreateUI(const Vec2& pos, const Vec2& size) {
+    T* CreateUI(const XMVECTOR& pos, const XMVECTOR& size) {
         T* newInstance = CreateUI<T>();
         newInstance->SetPosAndSize(pos, size);
 

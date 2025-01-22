@@ -1,7 +1,7 @@
 #include "pch.h"
 #include <format>
 #include "GameCanvas.h"
-#include "Image.h"
+#include "Picture.h"
 #include "Text.h"
 #include "Button.h"
 #include "Slider.h"
@@ -31,17 +31,17 @@ GameCanvas::GameCanvas() :
 
 	//BottomHeathContainer
 	{
-		Vec2 size = { 400.f - offset/2, 125.f - offset };
-		Vec2 pos = { (size.x / 2) + offset / 2, (SCREEN_HEIGHT - size.y / 2) - offset/2 };
+		XMVECTOR size = { 400.f - offset/2, 125.f - offset };
+		XMVECTOR pos = { (XMVectorGetX(size) / 2) + offset / 2, (SCREEN_HEIGHT - XMVectorGetY(size) / 2) - offset/2 };
 
-		Image* BottomHeathContainer = CreateUI<Image>(pos, size);
+		Picture* BottomHeathContainer = CreateUI<Picture>(pos, size);
 		BottomHeathContainer->texture = LOADTEXTURE(L"UISprite4X1", L"Texture\\UISprite4X1.bmp");
 
 		//HealthBar
 		{
 			//HealthText
 			{
-				healthText = CreateUI<Text>({ pos.x, pos.y - offset / 2 }, { (int)size.x - offset, 45});
+				healthText = CreateUI<Text>({ XMVectorGetX(pos), XMVectorGetY(pos) - offset / 2 }, { XMVectorGetX(size) - offset, 45 });
 
 				healthText->LoadFont(L"PF스타더스트", 12, 15);
 				healthText->SetText(L"HP : 100%");
@@ -56,7 +56,7 @@ GameCanvas::GameCanvas() :
 					};
 			}
 
-			healthBar = CreateUI<Slider>(healthText->GetPos(), { size.x - offset, 45.f- offset });
+			healthBar = CreateUI<Slider>(healthText->GetPos(), { XMVectorGetX(size) - offset, 45.f - offset });
 
 			player->GetComponent<HealthCompo>()->ChangeHpEvent += 
 				[ct = healthBar](float value) 
@@ -69,7 +69,7 @@ GameCanvas::GameCanvas() :
 		{
 			//ShieldText
 			{
-				shieldText = CreateUI<Text>({ pos.x, pos.y + offset*0.9f }, { (int)size.x - offset, 45 });
+				shieldText = CreateUI<Text>({ XMVectorGetX(pos), XMVectorGetY(pos) + offset * 0.9f }, { XMVectorGetX(size) - offset, 45 });
 
 				shieldText->LoadFont(L"PF스타더스트", 12, 15);
 				shieldText->SetText(L"SHIELD : 100%");
@@ -84,7 +84,7 @@ GameCanvas::GameCanvas() :
 					};
 			}
 
-			shieldBar = CreateUI<Slider>(shieldText->GetPos(), { size.x - offset, 45.f- offset });
+			shieldBar = CreateUI<Slider>(shieldText->GetPos(), { XMVectorGetX(size) - offset, 45.f - offset });
 
 			player->GetComponent<PlayerHealthCompo>()->ChangeSubHpEvent +=
 				[ct = shieldBar](float value)
@@ -96,15 +96,15 @@ GameCanvas::GameCanvas() :
 
 	//BottomAttackCountContainer
 	{
-		Vec2 size = { 62.5f - offset / 2, 125.f - offset };
-		Vec2 pos = { 400 + offset, (int)(SCREEN_HEIGHT - size.y / 2 - offset/2) };
+		XMVECTOR size = { 62.5f - offset / 2, 125.f - offset };
+		XMVECTOR pos = { 400 + offset, (int)(SCREEN_HEIGHT - XMVectorGetY(size) / 2 - offset/2) };
 
-		Image* BottomHeathContainer = CreateUI<Image>(pos, size);
+		Picture* BottomHeathContainer = CreateUI<Picture>(pos, size);
 		BottomHeathContainer->texture = LOADTEXTURE(L"UISprite1X2", L"Texture\\UISprite1X2.bmp");
 
 		//AttackCountBar
 		{
-			attackCountBar = CreateUI<Slider>(pos, { size.x-offset, size.y-offset });
+			attackCountBar = CreateUI<Slider>(pos, { XMVectorGetX(size)-offset, XMVectorGetY(size)-offset });
 
 			attackCountBar->isVertical = true;
 			attackCountBar->flip = true;
@@ -119,16 +119,16 @@ GameCanvas::GameCanvas() :
 
 	//BottomDashCoolTimeContainer
 	{
-		Vec2 size = { 62.5f - offset / 2, 125.f - offset };
-		Vec2 pos = { 400 + offset + (int)size.x + offset / 4, (int)(SCREEN_HEIGHT - size.y / 2 - offset / 2) };
+		XMVECTOR size = { 62.5f - offset / 2, 125.f - offset };
+		XMVECTOR pos = { 400 + offset + (int)XMVectorGetX(size) + offset / 4, (int)(SCREEN_HEIGHT - XMVectorGetY(size) / 2 - offset / 2) };
 
-		bottomDashCoolTimeContainer = CreateUI<Image>(pos, size);
+		bottomDashCoolTimeContainer = CreateUI<Picture>(pos, size);
 		bottomDashCoolTimeContainer->texture = LOADTEXTURE(L"UISprite1X2", L"Texture\\UISprite1X2.bmp");
 
 
 		//DashCoolTimeBar
 		{
-			dashCoolTimeBar = CreateUI<Slider>( pos, { size.x - offset, size.y - offset });
+			dashCoolTimeBar = CreateUI<Slider>(pos, { XMVectorGetX(size) - offset, XMVectorGetY(size) - offset });
 
 			dashCoolTimeBar->isVertical = true;
 			dashCoolTimeBar->flip = true;
@@ -148,14 +148,14 @@ GameCanvas::GameCanvas() :
 	//floorText
 	{
 		{
-			Vec2 size = { 70, 70 };
-			Vec2 pos = { SCREEN_WIDTH / 2, (int)size.y / 2 + 15 };
-			Image* floorText = CreateUI<Image>(pos, size);
+			XMVECTOR size = { 70, 70 };
+			XMVECTOR pos = { SCREEN_WIDTH / 2, (int)XMVectorGetY(size) / 2 + 15 };
+			Picture* floorText = CreateUI<Picture>(pos, size);
 			floorText->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.bmp");
 		}
 
-		Vec2 size = { 50, 60 };
-		Vec2 pos = { SCREEN_WIDTH / 2, (int)size.y/2+ 25 };
+		XMVECTOR size = { 50, 60 };
+		XMVECTOR pos = { SCREEN_WIDTH / 2, (int)XMVectorGetY(size)/2 + 25 };
 
 		floorText = CreateUI<Text>(pos, size);
 		floorText->LoadFont(L"PF스타더스트 Bold", 40, 55);
@@ -176,8 +176,8 @@ GameCanvas::GameCanvas() :
 
 	//TimeText
 	{
-		Vec2 size = { 80, 30 };
-		Vec2 pos = { SCREEN_WIDTH - (int)size.x/2,  offset };
+		XMVECTOR size = { 80, 30 };
+		XMVECTOR pos = { SCREEN_WIDTH - (int)XMVectorGetX(size)/2,  offset };
 		timeText = CreateUI<Text>(pos, size);
 
 		timeText->LoadFont(L"PF스타더스트", 18, 24);
@@ -188,8 +188,8 @@ GameCanvas::GameCanvas() :
 
 	//XPBar
 	{
-		Vec2 size = {SCREEN_WIDTH, 10};
-		Vec2 pos = { SCREEN_WIDTH / 2.f, SCREEN_HEIGHT - size.y / 2 };
+		XMVECTOR size = {SCREEN_WIDTH, 10};
+		XMVECTOR pos = { SCREEN_WIDTH / 2.f, SCREEN_HEIGHT - XMVectorGetY(size) / 2 };
 		xpBar = CreateUI<Slider>(pos, size);
 		xpBar->offsetX = 0;
 		xpBar->offsetY = 0;
@@ -213,22 +213,22 @@ void GameCanvas::Update()
 		int speed = 400;
 		if (_isMoveToUp)
 		{
-			Vec2 delta = { 0.f,-fUNSCALEDDT * speed };
+			XMVECTOR delta = { 0.f,-fUNSCALEDDT * speed };
 			AddPos(delta);
-			if (GetPos().y <= _minOffset)
+			if (GetPosY() <= _minOffset)
 			{
 				_isMoveToUp = false;
 			}
 		}
 		else
 		{
-			Vec2 delta = { 0.f,fUNSCALEDDT * speed };
+			XMVECTOR delta = { 0.f,fUNSCALEDDT * speed };
 			AddPos(delta);
-			if (GetPos().y >= 0)
+			if (GetPosY() >= 0)
 			{
 				_isMoveToUp = true;
 				isMoveToNextStage = false;
-				Vec2 origin = { 0, 0 };
+				XMVECTOR origin = { 0, 0 };
 				SetPos(origin);
 			}
 		}

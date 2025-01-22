@@ -9,12 +9,12 @@ public:
 	void Update() abstract;
 	void Render(HDC _hdc) abstract;
 public:
-	virtual void SetDir(Vec2 dir)
+	virtual void SetDir(XMVECTOR dir)
 	{
 		_dir = dir;
-		_dir.Normalize();
+		_dir = XMVector2Normalize(_dir);
 	}
-	Vec2 GetDir()
+	const XMVECTOR& GetDir() const
 	{
 		return _dir;
 	}
@@ -26,12 +26,12 @@ public:
 	void SetSpeed(float speed) { _speed = speed; }
 	void SetOwner(Object* owner) { _owner = owner; }
 	const Object* GetOwner() const { return _owner; }
-	virtual void Parry(Vec2 dir);
+	virtual void Parry(XMVECTOR dir);
 	bool _hitEnemy = false;
 protected:
 	Object* _owner;
 	wstring _poolName;
-	Vec2 _dir;
+	XMVECTOR _dir = { 1.f, 1.f };
 	Texture* _texture;
 	float _speed = 500.f;
 	int _damage;

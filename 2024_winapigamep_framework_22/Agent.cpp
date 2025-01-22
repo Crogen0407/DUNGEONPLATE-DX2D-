@@ -12,9 +12,9 @@ Agent::~Agent()
 {
 }
 
-void Agent::Move(Vec2 dir)
+void Agent::Move(XMVECTOR dir)
 {
-	Vec2 position = GetPos();
+	XMVECTOR position = GetPos();
 	position += dir;
 
 	SetPos(position);

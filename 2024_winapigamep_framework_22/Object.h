@@ -4,6 +4,7 @@ class Component;
 class Object
 {
 public:
+
 	Object();
 	virtual ~Object();
 public:
@@ -12,11 +13,15 @@ public:
 	virtual void Render(HDC _hdc) abstract;
 	void ComponentRender(HDC _hdc);
 public:
-	void SetPos(Vec2 _vPos) { m_vPos = _vPos; }
-	void AddPos(Vec2 pos) { m_vPos += pos; }
-	void SetSize(Vec2 _vSize) { m_vSize = _vSize; }
-	const Vec2& GetPos() const { return m_vPos; }
-	const Vec2& GetSize() const { return m_vSize; }
+	void SetPos(XMVECTOR _vPos) { m_vPos = _vPos; }
+	void AddPos(XMVECTOR pos) { m_vPos += pos; }
+	void SetSize(XMVECTOR _vSize) { m_vSize = _vSize; }
+	const XMVECTOR& GetPos() const { return m_vPos; }
+	const float& GetPosX() const { return XMVectorGetX(m_vPos); }
+	const float& GetPosY() const { return XMVectorGetY(m_vPos); }
+	const XMVECTOR& GetSize() const { return m_vSize; }
+	const float& GetSizeX() const { return XMVectorGetX(m_vSize); }
+	const float& GetSizeY() const { return XMVectorGetY(m_vSize); }
 public:
 	virtual void EnterCollision(Collider* _other);
 	virtual void StayCollision(Collider* _other);
@@ -56,8 +61,8 @@ public:
 private:
 	//POINT m_ptPos;
 	//POINT m_ptSize;
-	Vec2 m_vPos;
-	Vec2 m_vSize = { 100, 100 };
+	XMVECTOR m_vPos;
+	XMVECTOR m_vSize = { 100, 100 };
 	vector<Component*> m_vecComponents;
 };
 

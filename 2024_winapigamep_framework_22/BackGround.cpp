@@ -38,13 +38,13 @@ void Background::Render(HDC _hdc)
     ComponentRender(_hdc);
 
 	if (_maxEnemyCount- _currentEnemyCount <= 0) return;
-	Vec2 pos = GetPos();
-	Vec2 size = GetSize();
+	XMVECTOR pos = GetPos();
+	XMVECTOR size = GetSize();
 	::SetTextColor(_hdc, RGB(155, 188, 15));
 	HFONT oldFont = static_cast<HFONT>(SelectObject(_hdc, _font));
 
 	::SetBkMode(_hdc, 1);
-	RECT rect = { pos.x - size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y + size.y / 2 };  // 출력할 영역
+	RECT rect = { XMVectorGetX(pos) - XMVectorGetX(size) / 2, XMVectorGetY(pos) - XMVectorGetY(size) / 2, XMVectorGetX(pos) + XMVectorGetX(size) / 2, XMVectorGetY(pos) + XMVectorGetY(size) / 2 };  // 출력할 영역
 
 	::DrawText(_hdc, std::to_wstring(_maxEnemyCount- _currentEnemyCount).c_str(), -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
@@ -52,7 +52,7 @@ void Background::Render(HDC _hdc)
 	SelectObject(_hdc, oldFont);
 }
 
-void Background::SpawnEnemy(EnemyType enemyType, const Vec2& pos)
+void Background::SpawnEnemy(EnemyType enemyType, const XMVECTOR& pos)
 {
 	if (_currentSpawnedEnemyCount >= _maxEnemyCount)
 	{
@@ -76,16 +76,16 @@ void Background::SpawnEnemyByRandomPos(EnemyType enemyType)
 	srand(time(NULL));
 	int offset = 50;
 
-	Vec2 size = Vec2(( GetSize().x - offset ), (GetSize().y - offset));
+	XMVECTOR size = { GetSizeX() - offset , GetSizeY() - offset };
 
 	int ranX = 
-		(rand() % (int)size.x)
-		- (int)size.x / 2
-		+ GetPos().x;
-	int ranY = (rand() % (int)size.y)
-		- (int)size.y / 2
-		+ GetPos().y;
-	Vec2 pos = { ranX, ranY };
+		(rand() % (int)XMVectorGetX(size))
+		- (int)XMVectorGetX(size) / 2
+		+ GetPosX();
+	int ranY = (rand() % (int)XMVectorGetY(size))
+		- (int)XMVectorGetY(size) / 2
+		+ GetPosY();
+	XMVECTOR pos = { ranX, ranY };
 
 	SpawnEnemy(enemyType, pos);
 }

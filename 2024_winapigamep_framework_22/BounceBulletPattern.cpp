@@ -22,8 +22,8 @@ void BounceBulletPattern::Update()
 
 		float rotation = rand() % 360;
 
-		Vec2 dir = { cos(rotation * Deg2Rad), sin(rotation * Deg2Rad) };
-		dir.Normalize();
+		XMVECTOR dir = { cos(rotation * Deg2Rad), sin(rotation * Deg2Rad) };
+		dir = XMVector2Normalize(dir);
 
 		_owner->GetComponent<AttackCompo>()->TryFireBounceBullet(dir);
 		_owner->GetComponent<AttackCompo>()->TryFireBounceBullet(dir * -1);

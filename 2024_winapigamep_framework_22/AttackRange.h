@@ -14,7 +14,7 @@ public:
     {
         this->parent = parent;
     }
-    void SetDir(Vec2 dir);
+    void SetDir(XMVECTOR dir);
 private:
     SpriteRenderer* _spriteRenderer;
     Object* parent;

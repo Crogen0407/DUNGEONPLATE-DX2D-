@@ -25,22 +25,26 @@ EnemyBounceBullet::~EnemyBounceBullet()
 
 void EnemyBounceBullet::Update()
 {
-	Vec2 vPos = GetPos();
-	Vec2 vSize = GetSize();
+	float vPosX = GetPosX();
+	float vPosY = GetPosY();
+	float vSizeX = GetSizeX();
+	float vSizeY = GetSizeY();
 
-	vPos.x += _dir.x * _speed * fDT;
-	vPos.y += _dir.y * _speed * fDT;
-	SetPos(vPos);
+	vPosX += XMVectorGetX(_dir) * _speed * fDT;
+	vPosY += XMVectorGetY(_dir) * _speed * fDT;
+	SetPos(GetPos());
 
-	if (vPos.x < vSize.x / 2 || vPos.x > SCREEN_WIDTH - vSize.x / 2)
+	if (vPosX < vSizeX / 2 || vPosX > SCREEN_WIDTH - vSizeX / 2)
 	{
-		_dir = _dir + Vec2(-2, 0) * -_dir.Dot(Vec2(-1, 0));
+		_dir += {-2, 0};
+		_dir *= -XMVectorGetX(XMVector2Dot(_dir, { -1, 0 }));
 		remainBounce--;
 	}
 
-	if (vPos.y < vSize.y / 2 || vPos.y > SCREEN_HEIGHT - vSize.y / 2)
+	if (vPosY < vSizeY / 2 || vPosY > SCREEN_HEIGHT - vSizeY / 2)
 	{
-		_dir = _dir + Vec2(0, -2) * -_dir.Dot(Vec2(0, -1));
+		_dir += {0, -2};
+		_dir *= -XMVectorGetX(XMVector2Dot(_dir, { 0, -1 }));
 		remainBounce--;
 	}
 

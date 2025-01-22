@@ -1,7 +1,7 @@
 #pragma once
 #include "Canvas.h"
 class Slider;
-class Image;
+class Picture;
 class Text;
 class Button;
 class GameClearCanvas : public Canvas

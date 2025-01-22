@@ -20,10 +20,11 @@ void BombPattern::Update()
 	if (_isUsingSkill == false) return;
 
 	_curDelayTime += fDT;
-	Vec2 playerDir =
+	XMVECTOR playerDir =
 	{
-		_player->GetPos().x - _owner->GetPos().x,
-		_player->GetPos().y - _owner->GetPos().y
+
+		_player->GetPosX() - _owner->GetPosX(),
+		_player->GetPosY() - _owner->GetPosY()
 	};
 
 	if (_curDelayTime > _bombMaxCount)
@@ -36,12 +37,13 @@ void BombPattern::Update()
 		{
 			float halfAngle = angleRange * ((float)i/count);
 
-			Vec2 dir = playerDir;
+			XMVECTOR dir = playerDir;
 			float finalAngle = halfAngle - angleRange / 2;
-			dir.x = dir.x * cosf(finalAngle) - dir.y * sinf(finalAngle);
-			dir.y = dir.x * sinf(finalAngle) + dir.y * cosf(finalAngle);
-			dir.Normalize();
-			Vec2 pos = _owner->GetPos();
+			dir = XMVectorSet(
+					XMVectorGetX(dir) * cosf(finalAngle) - XMVectorGetY(dir) * sinf(finalAngle),
+					XMVectorGetX(dir) * sinf(finalAngle) + XMVectorGetY(dir) * cosf(finalAngle), 0, 0);
+			dir = XMVector2Normalize(dir);
+			XMVECTOR pos = _owner->GetPos();
 			pos += dir * 30;
 			auto enemyBomb = static_cast<EnemyBomb*>(POP(L"EnemyBomb", pos));
 

@@ -15,14 +15,14 @@ public:
     void ExitCollision(Collider* _other); // 충돌해제
     const UINT& GetID() const { return m_ID; }
 public:
-    void SetSize(Vec2 _vSize) { m_vSize = _vSize; }
-    const Vec2& GetSize() const { return m_vSize; }
-    void SetOffSetPos(Vec2 _vOffsetPos)
+    void SetSize(XMVECTOR _vSize) { m_vSize = _vSize; }
+    const XMVECTOR& GetSize() const { return m_vSize; }
+    void SetOffSetPos(XMVECTOR _vOffsetPos)
     {
         m_vOffsetPos = _vOffsetPos;
     }
-    const Vec2& GetOffSetPos() const { return m_vOffsetPos; }
-    const Vec2& GetLatedUpatedPos() const
+    const XMVECTOR& GetOffSetPos() const { return m_vOffsetPos; }
+    const XMVECTOR& GetLatedUpatedPos() const
     {
         return m_vLatePos;
     }
@@ -31,11 +31,11 @@ private:
     UINT m_ID; // 충돌체 고유 ID값
     static UINT m_sNextID;
 
-    Vec2 m_vSize; // 콜라이더 크기
+    XMVECTOR m_vSize; // 콜라이더 크기
     // Object로부터 상대적인 위치
-    Vec2 m_vOffsetPos;
+    XMVECTOR m_vOffsetPos;
     // LateUpdate에서 매 프레임마다 오브젝트로부터 계산되는 위치
-    Vec2 m_vLatePos;
+    XMVECTOR m_vLatePos;
 
 };
 

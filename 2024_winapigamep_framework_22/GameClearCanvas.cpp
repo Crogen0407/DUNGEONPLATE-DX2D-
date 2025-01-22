@@ -3,7 +3,7 @@
 #include "Button.h"
 #include "Text.h"
 #include "Slider.h"
-#include "Image.h"
+#include "Picture.h"
 #include "ResourceManager.h"
 #include "TimeManager.h"
 #include "FadeManager.h"
@@ -16,16 +16,16 @@ GameClearCanvas::GameClearCanvas()
 
 	//Background
 	{
-		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
-		Vec2 pos = { size.x * 0.5f, size.y * 0.5f };
-		Image* background = CreateUI<Image>(pos, size);
+		XMVECTOR size = { SCREEN_WIDTH, SCREEN_HEIGHT };
+		XMVECTOR pos = { XMVectorGetX(size) * 0.5f, XMVectorGetY(size) * 0.5f };
+		Picture* background = CreateUI<Picture>(pos, size);
 		background->texture = LOADTEXTURE(L"GameClear", L"Texture\\GameClear.bmp");
 	}
 
 	//TitleText
 	{
-		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
-		Vec2 pos = { size.x * 0.5f, size.y * 0.3f };
+		XMVECTOR size = { SCREEN_WIDTH, SCREEN_HEIGHT };
+		XMVECTOR pos = { XMVectorGetX(size) * 0.5f, XMVectorGetY(size) * 0.3f };
 		titleText = CreateUI<Text>(pos, size);
 		titleText->SetText(L"CLEAR!");
 		titleText->LoadFont(L"PF스타더스트 Bold", 60, 72);
@@ -35,8 +35,8 @@ GameClearCanvas::GameClearCanvas()
 
 	//MentText
 	{
-		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
-		Vec2 pos = { size.x * 0.5f, size.y * 0.4f };
+		XMVECTOR size = { SCREEN_WIDTH, SCREEN_HEIGHT };
+		XMVECTOR pos = { XMVectorGetX(size) * 0.5f, XMVectorGetY(size) * 0.4f };
 		mentText = CreateUI<Text>(pos, size);
 		mentText->SetText(L"축하드립니다!");
 		mentText->LoadFont(L"PF스타더스트", 20, 25);
@@ -46,8 +46,8 @@ GameClearCanvas::GameClearCanvas()
 
 	//GotoTitleSceneButton
 	{
-		Vec2 size = { 400, 50 };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.585f };
+		XMVECTOR size = { 400, 50 };
+		XMVECTOR pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.585f };
 		gotoTitleSceneButton = CreateUI<Button>(pos, size);
 		gotoTitleSceneButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.bmp");
 		gotoTitleSceneButton->onlyOneCountClick = true;
@@ -68,8 +68,8 @@ GameClearCanvas::GameClearCanvas()
 
 	//InfoText
 	{
-		Vec2 size = { 300, 100 };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.506f };
+		XMVECTOR size = { 300, 100 };
+		XMVECTOR pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.506f };
 
 		Text* infoText = CreateUI<Text>(pos, size);
 		wstring str;
@@ -83,8 +83,8 @@ GameClearCanvas::GameClearCanvas()
 
 	//InfoValueText
 	{
-		Vec2 size = { 300, 100 };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.506f };
+		XMVECTOR size = { 300, 100 };
+		XMVECTOR pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.506f };
 
 		Text* infoValueText = CreateUI<Text>(pos, size);
 		wstring str;

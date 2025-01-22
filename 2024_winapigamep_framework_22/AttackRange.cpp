@@ -27,7 +27,7 @@ void AttackRange::Render(HDC _hdc)
 	ComponentRender(_hdc);
 }
 
-void AttackRange::SetDir(Vec2 dir)
+void AttackRange::SetDir(XMVECTOR dir)
 {
 	if (TIMESCALE <= 0.1f) return;
 	_spriteRenderer->LookAt(dir);

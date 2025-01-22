@@ -27,16 +27,16 @@ void SpriteRenderer::Render(HDC _hdc)
 {
 	if (texture == nullptr) return;
 	if (enable == false) return;
-	Vec2 pos = GetOwner()->GetPos();
-	Vec2 size = GetOwner()->GetSize();
-	Vec2 texSize = { (float)texture->GetWidth(), (float)texture->GetHeight() };
+	XMVECTOR pos = GetOwner()->GetPos();
+	XMVECTOR size = GetOwner()->GetSize();
+	XMVECTOR texSize = { (float)texture->GetWidth(), (float)texture->GetHeight() };
 	if (isRotatable)
 	{
 		float sinA = sinf(angle - PI / 2);
 		float cosA = cosf(angle - PI / 2);
 
-		float halfWidth = size.x / 2;
-		float halfHeight = size.y / 2;
+		float halfWidth = XMVectorGetX(size) / 2;
+		float halfHeight = XMVectorGetY(size) / 2;
 
 		POINT vertices[4];
 
@@ -113,16 +113,17 @@ void SpriteRenderer::Render(HDC _hdc)
 			texture->GetHeight(),
 			nullptr, 0, 0);
 
-		float xPercent = (maxX - minX) / texSize.x;
-		float yPercent = (maxY - minY) / texSize.y;
-		size.x = xPercent * size.x;
-		size.y = yPercent * size.y;
+		float xPercent = (maxX - minX) / XMVectorGetX(texSize);
+		float yPercent = (maxY - minY) / XMVectorGetY(texSize);
+
+		size = XMVectorSet(xPercent * XMVectorGetX(size), 
+			yPercent * XMVectorGetY(size), 0, 0);
 
 		TransparentBlt(_hdc,
-			(int)((pos.x) - size.x / 2),
-			(int)((pos.y) - size.y / 2),
-			(int)size.x,
-			(int)size.y,
+			(int)(XMVectorGetX(pos) - XMVectorGetX(size) / 2),
+			(int)(XMVectorGetY(pos) - XMVectorGetY(size) / 2),
+			(int)XMVectorGetX(size),
+			(int)XMVectorGetY(size),
 			memDC,
 			minX, minY, // 회전 이후 영역 좌상단
 			maxX - minX, // 회전 이후 영역 W
@@ -135,14 +136,14 @@ void SpriteRenderer::Render(HDC _hdc)
 	else
 	{
 		TransparentBlt(_hdc,
-			(int)((pos.x) - size.x / 2),
-			(int)((pos.y) - size.y / 2),
-			(int)size.x,
-			(int)size.y,
+			(int)(XMVectorGetX(pos) - XMVectorGetX(size) / 2),
+			(int)(XMVectorGetY(pos) - XMVectorGetY(size) / 2),
+			(int)XMVectorGetX(size),
+			(int)XMVectorGetY(size),
 			texture->GetTexDC(),
 			0, 0, // 회전 이후 영역 좌상단
-			texSize.x,
-			texSize.y,
+			XMVectorGetX(texSize),
+			XMVectorGetY(texSize),
 			RGB(255, 0, 255)); // 흰색 영역 투명화
 	}
 }

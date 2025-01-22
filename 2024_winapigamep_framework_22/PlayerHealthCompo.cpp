@@ -63,8 +63,8 @@ void PlayerHealthCompo::Render(HDC hdc)
 {
 	//HealthCompo::Render(hdc);
 
-	//Vec2 pos = GetOwner()->GetPos();
-	//Vec2 size = { GetOwner()->GetSize().x, 6.f };
+	//XMVECTOR pos = GetOwner()->GetPos();
+	//XMVECTOR size = { GetOwner()->GetSize().x, 6.f };
 	//pos.y += offsetY + size.y/2;
 
 	////Back

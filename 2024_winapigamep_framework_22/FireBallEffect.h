@@ -23,12 +23,12 @@ public:
     void Render(HDC _hdc) override;
     void EnterCollision(Collider* _other) override;
     
-    void SetDir(const Vec2& dir);
+    void SetDir(const XMVECTOR& dir);
     void SetMode(const EFireBallModeType& mode);
 private:
     Collider* _collider;
     SpriteRenderer* _spriteRenderer;
-    Vec2 _moveDir;
+    XMVECTOR _moveDir;
     const float _speed = 400.f;
     int _damage = 15.f;
 };

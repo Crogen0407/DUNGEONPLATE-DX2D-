@@ -30,9 +30,9 @@ public:
         else
             this->angle = angle;
     }
-    void LookAt(const Vec2& dir)
+    void LookAt(const XMVECTOR& dir)
     {
-        this->angle = std::atan2(dir.y, dir.x);
+        this->angle = std::atan2(XMVectorGetY(dir), XMVectorGetX(dir));
     }
 public:
     bool enable = true;

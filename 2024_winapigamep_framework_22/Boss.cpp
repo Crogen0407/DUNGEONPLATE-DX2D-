@@ -20,7 +20,7 @@ Boss::Boss() : _currentSkill{ nullptr }
 	SetSize({ 100,100 });
 	texture = LOADTEXTURE(L"Boss", L"Texture\\Enemy03.bmp");
 	_target = FindObject(L"Player", LAYER::PLAYER);
-	Vec2 texSize = { (int)texture->GetWidth() / 6, (int)texture->GetHeight() };
+	XMVECTOR texSize = { (int)texture->GetWidth() / 6, (int)texture->GetHeight() };
 	AddComponent< Collider>();
 	AddComponent<Animator>();
 	AddComponent<AttackCompo>();
@@ -28,7 +28,7 @@ Boss::Boss() : _currentSkill{ nullptr }
 
 	GetComponent<Collider>()->SetSize({ 100,100 });
 	GetComponent<HealthCompo>()->SetOffsetY(50);
-	GetComponent<Animator>()->CreateAnimation(L"Boss", texture, { 0,0 }, texSize, { (int)texSize.x, 0 }, 6, 0.2f, false);
+	GetComponent<Animator>()->CreateAnimation(L"Boss", texture, { 0,0 }, texSize, { XMVectorGetX(texSize), 0 }, 6, 0.2f, false);
 	GetComponent<Animator>()->PlayAnimation(L"Boss", true, 100);
 	GetComponent<HealthCompo>()->SetHp(425, 425);
 
@@ -63,16 +63,16 @@ void Boss::Update()
 {
 	if (_isDead)
 	{
-		Vec2 vSize = GetSize();
-		Vec2 curPos = GetPos();
+		XMVECTOR vSize = GetSize();
+		XMVECTOR curPos = GetPos();
 		curPos += _knockDir * 500 * fDT;
 		_rotation += 420 * fDT;
 
 		SetPos(curPos);
 		//GetComponent<SpriteRenderer>()->SetAngle(_rotation, true);
 
-		if (curPos.x < -vSize.x / 2 || curPos.x > SCREEN_WIDTH + vSize.x / 2
-			|| curPos.y < -vSize.y / 2 || curPos.y > SCREEN_HEIGHT + vSize.y / 2)
+		if (XMVectorGetX(curPos) < -XMVectorGetX(vSize) / 2 || XMVectorGetX(curPos) > SCREEN_WIDTH + XMVectorGetX(vSize) / 2
+			|| XMVectorGetY(curPos) < -XMVectorGetY(vSize) / 2 || XMVectorGetY(curPos) > SCREEN_HEIGHT + XMVectorGetY(vSize) / 2)
 		{
 			GET_SINGLE(EventManager)->DeleteObject(this);
 		}
@@ -102,9 +102,9 @@ void Boss::Update()
 	{
 		_prevDash = TIME;
 
-		Vec2 dashDir = { rand() % 2 == 0 ? 1 : -1, 0 };
-		if (GetPos().x < 100) dashDir = { 1,0 };
-		else if (GetPos().x > SCREEN_WIDTH - 100) dashDir = { -1,0 };
+		XMVECTOR dashDir = { rand() % 2 == 0 ? 1 : -1, 0 };
+		if (GetPosX() < 100) dashDir = { 1,0 };
+		else if (GetPosX() > SCREEN_WIDTH - 100) dashDir = { -1,0 };
 
 		GetComponent<Movement>()->Dash(dashDir, 1000.f, 0.1f);
 	}

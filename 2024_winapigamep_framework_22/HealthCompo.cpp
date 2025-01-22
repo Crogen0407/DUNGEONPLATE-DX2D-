@@ -24,7 +24,7 @@ HealthCompo::~HealthCompo()
 
 void HealthCompo::ApplyDamage(int value)
 {
-	Vec2 pos = GetOwner()->GetPos();
+	XMVECTOR pos = GetOwner()->GetPos();
 	GET_SINGLE(ResourceManager)->Play(L"Hit");
 	POP(L"HitEffect", pos);
 	SetHp(hp - value);
@@ -37,7 +37,7 @@ void HealthCompo::ApplyDamage(int value)
 
 void HealthCompo::ApplyHeal(int value)
 {
-	Vec2 pos = GetOwner()->GetPos();
+	XMVECTOR pos = GetOwner()->GetPos();
 	POP(L"HealEffect", pos);
 	GET_SINGLE(ResourceManager)->Play(L"Heal");
 	SetHp(hp + value);
@@ -52,26 +52,26 @@ void HealthCompo::Render(HDC hdc)
 {
 	if (hpBarActive == false) return;
 
-	Vec2 pos = GetOwner()->GetPos();
-	pos.y += offsetY;
-	Vec2 size = { GetOwner()->GetSize().x, 12.f};
+	XMVECTOR pos = GetOwner()->GetPos();
+	pos += {0, offsetY};
+	XMVECTOR size = { GetOwner()->GetSizeX(), 12.f};
 
 	//Back
 	HBRUSH oldBrush = static_cast<HBRUSH>(::SelectObject(hdc, backBrush));
 	::Rectangle(hdc,
-		pos.x - size.x / 2,
-		pos.y - size.y / 2,
-		pos.x + size.x/2,
-		pos.y + size.y/2);
+		XMVectorGetX(pos) - XMVectorGetX(size) / 2,
+		XMVectorGetY(pos) - XMVectorGetY(size) / 2,
+		XMVectorGetX(pos) + XMVectorGetX(size) / 2,
+		XMVectorGetY(pos) + XMVectorGetY(size) / 2);
 
 	//Fill
 	static_cast<HBRUSH>(::SelectObject(hdc, fillBrush));
 
 	::Rectangle(hdc,
-		pos.x - size.x / 2,
-		pos.y - size.y / 2,
-		(pos.x + (size.x / 2)*(std::clamp(hp / maxHp, 0.f, 1.f)*2-1)),
-		pos.y + size.y / 2);
+		XMVectorGetX(pos) - XMVectorGetX(size) / 2,
+		XMVectorGetY(pos) - XMVectorGetY(size) / 2,
+		XMVectorGetX(pos) + (XMVectorGetX(size) / 2)*(std::clamp(hp / maxHp, 0.f, 1.f)*2-1),
+		XMVectorGetY(pos) + XMVectorGetY(size) / 2);
 
 	::SelectObject(hdc, oldBrush);
 }

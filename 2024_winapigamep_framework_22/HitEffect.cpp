@@ -12,10 +12,10 @@ HitEffect::HitEffect()
 	AddComponent<Animator>();
 	SetSize({ 120,120 });
 	Texture* texture = LOADTEXTURE(L"HitEffect", L"Texture\\Effect\\HitEffect.bmp");
-	Vec2 texSize = { (int)texture->GetWidth() / 5, (int)texture->GetHeight() };
+	XMVECTOR texSize = { (int)texture->GetWidth() / 5, (int)texture->GetHeight() };
 	_lifeTime = 0.2f;
 	_animator = GetComponent<Animator>();
-	_animator->CreateAnimation(L"HitEffect", texture, { 0,0 }, texSize, { (int)texSize.x,0 }, 5, _lifeTime / 4.f, false);
+	_animator->CreateAnimation(L"HitEffect", texture, { 0,0 }, texSize, { XMVectorGetX(texSize),0 }, 5, _lifeTime / 4.f, false);
 }
 
 HitEffect::~HitEffect()

@@ -3,7 +3,7 @@
 #include "Canvas.h"
 #include "Slider.h"
 #include "Button.h"
-#include "Image.h"
+#include "Picture.h"
 #include "Text.h"
 
 Canvas::Canvas()

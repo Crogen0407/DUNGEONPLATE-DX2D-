@@ -14,7 +14,7 @@ private:
     Texture* m_defaultTex;
 private:
     SpriteRenderer* spriteRenderer;
-    Vec2 dir;
+    XMVECTOR dir;
     Object* parent;
 public:
     void SetParent(Object* parent);

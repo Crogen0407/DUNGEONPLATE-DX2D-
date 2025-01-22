@@ -26,7 +26,7 @@ void PoolManager::Init(Scene* curScene)
     MakeObjectPool<EnemyBomb>(L"EnemyBomb", LAYER::PROJECTILE, 60);
 }
 
-PoolableObject* PoolManager::Pop(const std::wstring& type, Vec2 pos)
+PoolableObject* PoolManager::Pop(const std::wstring& type, XMVECTOR pos)
 {
     if (pool.find(type) == pool.end()) return nullptr;
     PoolableObject* poolObject = pool.at(type).top();

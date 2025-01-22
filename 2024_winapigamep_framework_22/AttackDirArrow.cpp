@@ -32,15 +32,15 @@ void AttackDirArrow::Update()
 {
 	if (parent == nullptr) return;
 	if (TIMESCALE == 0) return;
-	Vec2 mousePos = GET_MOUSEPOS;
+	XMVECTOR mousePos = GET_MOUSEPOS;
 	dir = mousePos - parent->GetPos();
-	dir.Normalize();
+	dir = XMVector2Normalize(dir);
 
 	float distance = 30;
 
-	Vec2 selfPos = (dir * distance) + parent->GetPos();
+	XMVECTOR selfPos = (dir * distance) + parent->GetPos();
 
-	float angle = atan2(dir.y, dir.x);
+	float angle = atan2(XMVectorGetY(dir), XMVectorGetX(dir));
 
 	spriteRenderer->LookAt(dir);
 	SetPos(selfPos);

@@ -9,9 +9,9 @@ public:
 	AttackCompo();
 	virtual ~AttackCompo();
 public:
-	void TryFireBullet(Vec2 dir, float speed);
-	void TryFireMissile(Vec2 dir);
-	void TryFireBounceBullet(Vec2 dir);
+	void TryFireBullet(XMVECTOR dir, float speed);
+	void TryFireMissile(XMVECTOR dir);
+	void TryFireBounceBullet(XMVECTOR dir);
 	void TryFireRazer(float lifeTime);
 
 protected:

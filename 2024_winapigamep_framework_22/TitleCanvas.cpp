@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "TitleCanvas.h"
-#include "Image.h"
+#include "Picture.h"
 #include "Text.h"
 #include "Button.h"
 #include "Slider.h"
@@ -13,32 +13,32 @@ TitleCanvas::TitleCanvas()
 {
 	//Fill
 	{
-		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f };
-		Image* fill = CreateUI<Image>(pos, size);
+		XMVECTOR size = { SCREEN_WIDTH, SCREEN_HEIGHT };
+		XMVECTOR pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f };
+		Picture* fill = CreateUI<Picture>(pos, size);
 		fill->texture = LOADTEXTURE(L"OnePoint", L"Texture\\OnePoint.bmp");
 	}
 
 	//BackGround
 	{
-		Vec2 size = { SCREEN_WIDTH/3, SCREEN_HEIGHT/3 };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.55f };
-		Image* background = CreateUI<Image>(pos, size);
+		XMVECTOR size = { SCREEN_WIDTH/3, SCREEN_HEIGHT/3 };
+		XMVECTOR pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.55f };
+		Picture* background = CreateUI<Picture>(pos, size);
 		background->texture = LOADTEXTURE(L"Background", L"Texture\\Background.bmp");
 	}
 
 	//TitleText
 	{
-		Vec2 size = { 844, 153 };
-		Vec2 pos = {SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT* 0.26f };
-		Image* titleText = CreateUI<Image>(pos, size);
+		XMVECTOR size = { 844, 153 };
+		XMVECTOR pos = {SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT* 0.26f };
+		Picture* titleText = CreateUI<Picture>(pos, size);
 		titleText->texture = LOADTEXTURE(L"Title", L"Texture\\Title.bmp");
 	}
 
 	//StartButton
 	{
-		Vec2 size = { 250, 32 };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.47f };
+		XMVECTOR size = { 250, 32 };
+		XMVECTOR pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.47f };
 		_startButton = CreateUI<Button>(pos, size);
 		_startButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.bmp");
 		_startButton->onlyOneCountClick = true;
@@ -72,8 +72,8 @@ TitleCanvas::TitleCanvas()
 
 	//HelpButton
 	{
-		Vec2 size = { 250, 32 };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.55f };
+		XMVECTOR size = { 250, 32 };
+		XMVECTOR pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.55f };
 		_helpButton = CreateUI<Button>(pos, size);
 		_helpButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.bmp");
 		_helpButton->onlyOneCountClick = true;
@@ -108,8 +108,8 @@ TitleCanvas::TitleCanvas()
 
 	//QuitButton
 	{
-		Vec2 size = { 250, 32 };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.63f };
+		XMVECTOR size = { 250, 32 };
+		XMVECTOR pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.63f };
 		_quitButton = CreateUI<Button>(pos, size);
 		_quitButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.bmp");
 		_quitButton->onlyOneCountClick = true;
@@ -143,8 +143,8 @@ TitleCanvas::TitleCanvas()
 
 	//DevText
 	{
-		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f };
+		XMVECTOR size = { SCREEN_WIDTH, SCREEN_HEIGHT };
+		XMVECTOR pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f };
 
 		Text* devText = CreateUI<Text>(pos, size);
 		devText->SetText(L"±èÁøÈÄ, Á¤À±Âù, ÃÖ¿µÈ¯");

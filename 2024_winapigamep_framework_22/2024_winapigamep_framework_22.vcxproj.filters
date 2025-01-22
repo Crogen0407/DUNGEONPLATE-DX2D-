@@ -50,9 +50,6 @@
     <Filter Include="Engine\03. Object\Projectile">
       <UniqueIdentifier>{04aad006-beaa-4b1f-9945-5d650f525a40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Crogen\DOTween">
-      <UniqueIdentifier>{5677b2bd-b674-41aa-98d0-d2c91cd0bd93}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\08.UI">
       <UniqueIdentifier>{080fcf78-1167-493d-af0d-63e9d0c60fa0}</UniqueIdentifier>
     </Filter>
@@ -76,6 +73,9 @@
     </Filter>
     <Filter Include="Engine\09.Skill\Item">
       <UniqueIdentifier>{28f3e670-71d7-4e8b-ae1f-2e501ac19a28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\98.Shader">
+      <UniqueIdentifier>{9a6ee3bb-26ef-4b9e-b80c-2e2b63125f06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +114,6 @@
     </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>Engine\03. Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Vec2.h">
-      <Filter>Engine\99. Header</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Engine\04. Scene</Filter>
@@ -178,7 +175,7 @@
     <ClInclude Include="UI.h">
       <Filter>Engine\03. Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Image.h">
+    <ClInclude Include="Picture.h">
       <Filter>Engine\03. Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="Slider.h">
@@ -457,6 +454,9 @@
     <ClInclude Include="Enemy.h">
       <Filter>Engine\03. Object\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>Engine\99. Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="2024_winapigamep_framework_22.rc">
@@ -550,7 +550,7 @@
     <ClCompile Include="StageScene.cpp">
       <Filter>Engine\04. Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Image.cpp">
+    <ClCompile Include="Picture.cpp">
       <Filter>Engine\03. Object\UI</Filter>
     </ClCompile>
     <ClCompile Include="Slider.cpp">
@@ -826,5 +826,10 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Engine\03. Object\Enemy</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\Output\Resource\Shaders\Default.hlsl">
+      <Filter>Engine\98.Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

@@ -15,19 +15,19 @@ SkillCanvas::SkillCanvas()
 	_skillSlots.clear();
 
 	GET_SINGLE(ResourceManager)->LoadSound(L"LevelUp", L"Sound\\LevelUp.wav", false);
-	/*Vec2 center = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
+	/*XMVECTOR center = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
 	int xDeltaPos = 300;
 
 	{
-		Vec2 size = { SCREEN_WIDTH * 2, 420};
-		Vec2 pos = center;
-		Image* backImage = CreateUI<Image>(pos, size);
-		backImage->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.bmp");
+		XMVECTOR size = { SCREEN_WIDTH * 2, 420};
+		XMVECTOR pos = center;
+		Picture* backPicture = CreateUI<Picture>(pos, size);
+		backPicture->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.bmp");
 	}
 
-	CreateSlot(center - Vec2(xDeltaPos, 0));
+	CreateSlot(center - XMVECTOR(xDeltaPos, 0));
 	CreateSlot(center);
-	CreateSlot(center + Vec2(xDeltaPos, 0));*/
+	CreateSlot(center + XMVECTOR(xDeltaPos, 0));*/
 
 	GET_SINGLE(XPManager)->LevelUpEvent +=
 		[ct = this](int level)
@@ -58,18 +58,19 @@ void SkillCanvas::Render(HDC hdc)
 	Canvas::Render(hdc);
 }
 
-void SkillCanvas::CreateSlot(Vec2 slotPos)
+void SkillCanvas::CreateSlot(XMVECTOR slotPos)
 {
-	SkillSlot* skillSlot = CreateUI<SkillSlot>(slotPos, Vec2(250, 320));
+	SkillSlot* skillSlot = CreateUI<SkillSlot>(slotPos, { 250, 320 });
 
-	Vec2 namePos = Vec2(0, -110);
-	Vec2 nameSize = Vec2(skillSlot->GetSize().x - 30, 30.f);
+	XMVECTOR namePos = { 0, -110 };
+	XMVECTOR nameSize = { skillSlot->GetSizeX() - 30, 30.f };
 
-	Vec2 levelPos = Vec2(0, -64);
-	Vec2 levelSize = Vec2(skillSlot->GetSize().x - 30, 30.f);
+	XMVECTOR levelPos = { 0, -64 };
+	XMVECTOR levelSize = { skillSlot->GetSizeX() - 30, 30.f };
 
-	Vec2 descriptionPos = Vec2(0, 110);
-	Vec2 descriptionSize = skillSlot->GetSize() - Vec2(30, 30);
+	XMVECTOR descriptionPos = { 0, 110 };
+	XMVECTOR descriptionSize = skillSlot->GetSize();
+	descriptionSize -= { 30.f, 30.f };
 
 	skillSlot->name =			CreateUI<Text>(namePos, nameSize);
 	skillSlot->level =			CreateUI<Text>(levelPos, levelSize);
@@ -100,7 +101,7 @@ void SkillCanvas::CreateSlot(Vec2 slotPos)
 	skillSlot->OnSelectEnterEvent +=
 		[skillSlot](int _)
 		{
-			Vec2 posDelta = { 0, -10 };
+			XMVECTOR posDelta = { 0, -10 };
 			skillSlot->SetSize({250 * 1.05f, 320 * 1.05f });
 			skillSlot->AddPos(posDelta);
 		};
@@ -108,7 +109,7 @@ void SkillCanvas::CreateSlot(Vec2 slotPos)
 	skillSlot->OnSelectExitEvent +=
 		[skillSlot](int _)
 		{
-			Vec2 posDelta = { 0, 10 };
+			XMVECTOR posDelta = { 0, 10 };
 			skillSlot->SetSize({ 250, 320 });
 			skillSlot->AddPos(posDelta);
 		};
@@ -127,19 +128,19 @@ void SkillCanvas::ShowSlots()
 	if (_skillSlots.size() == 0)
 	{
 		_skillSlots.clear();
-		Vec2 center = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
+		XMVECTOR center = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
 		int xDeltaPos = 300;
 
 		{
-			Vec2 size = { SCREEN_WIDTH * 2, 420 };
-			Vec2 pos = center;
-			Image* backImage = CreateUI<Image>(pos, size);
-			backImage->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.bmp");
+			XMVECTOR size = { SCREEN_WIDTH * 2, 420 };
+			XMVECTOR pos = center;
+			Picture* backPicture = CreateUI<Picture>(pos, size);
+			backPicture->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.bmp");
 		}
 
-		CreateSlot(center - Vec2(xDeltaPos, 0));
+		CreateSlot(XMVectorSubtract(center, {-(float)xDeltaPos, 0}));
 		CreateSlot(center);
-		CreateSlot(center + Vec2(xDeltaPos, 0));
+		CreateSlot(XMVectorSubtract(center, {(float)xDeltaPos, 0 }));
 
 		GET_SINGLE(XPManager)->LevelUpEvent +=
 			[ct = this](int level)

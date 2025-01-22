@@ -20,7 +20,7 @@ AttackCompo::~AttackCompo()
 {
 }
 
-void AttackCompo::TryFireBullet(Vec2 dir, float speed)
+void AttackCompo::TryFireBullet(XMVECTOR dir, float speed)
 {
 	EnemyBullet* projectile 
 		= dynamic_cast<EnemyBullet*>(POP(L"EnemyBullet", GetOwner()->GetPos()));
@@ -29,7 +29,7 @@ void AttackCompo::TryFireBullet(Vec2 dir, float speed)
 	projectile->SetSpeed(speed);
 }
 
-void AttackCompo::TryFireBounceBullet(Vec2 dir)
+void AttackCompo::TryFireBounceBullet(XMVECTOR dir)
 {
 	EnemyBounceBullet* projectile
 		= dynamic_cast<EnemyBounceBullet*>(POP(L"EnemyBounceBullet", GetOwner()->GetPos()));
@@ -47,7 +47,7 @@ void AttackCompo::TryFireRazer(float lifeTime)
 		->AddObject(razer, LAYER::PROJECTILE);
 }
 
-void AttackCompo::TryFireMissile(Vec2 dir)
+void AttackCompo::TryFireMissile(XMVECTOR dir)
 {
 	GuidedMissile* projectile
 		= dynamic_cast<GuidedMissile*>(POP(L"GuidedMissile", GetOwner()->GetPos()));

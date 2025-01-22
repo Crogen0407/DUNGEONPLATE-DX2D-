@@ -18,7 +18,7 @@ Collider::~Collider()
 void Collider::LateUpdate()
 {
 	const Object* pOwner = GetOwner();
-	Vec2 vPos = pOwner->GetPos();
+	XMVECTOR vPos = pOwner->GetPos();
 	m_vLatePos = vPos + m_vOffsetPos;
 }
 
@@ -29,8 +29,8 @@ void Collider::Render(HDC _hdc)
 	PEN_TYPE ePen = PEN_TYPE::RED;
 	GDISelector pen(_hdc, ePen);
 	GDISelector brush(_hdc, BRUSH_TYPE::HOLLOW);
-	RECT_RENDER(_hdc, m_vLatePos.x, m_vLatePos.y,
-		m_vSize.x, m_vSize.y);
+	RECT_RENDER(_hdc, XMVectorGetX(m_vLatePos), XMVectorGetY(m_vLatePos),
+		XMVectorGetX(m_vSize), XMVectorGetY(m_vSize));
 }
 
 void Collider::EnterCollision(Collider* _other)

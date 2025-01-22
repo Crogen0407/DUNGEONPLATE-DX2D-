@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Texture.h"
-#include <assert.h>
 #include "Core.h"
 Texture::Texture()
 	: m_hDC(nullptr)
@@ -21,9 +20,9 @@ void Texture::Load(const wstring& _path)
 	// 2: 경로
 	// 3. BITMAP / ICON / CURSOR / .. 
 	// 4,5 : 이미지(리소스) 크기
-	// 6: 추가 플래그
+	// 6: 추가 플래그퍈
 	m_hBit = (HBITMAP)::LoadImage(nullptr, _path.c_str(), IMAGE_BITMAP,
-		0,0, LR_CREATEDIBSECTION | LR_LOADFROMFILE);
+		0, 0, LR_CREATEDIBSECTION | LR_LOADFROMFILE);
 	assert(m_hBit); // nullptr이면 assert가 걸립니다.
 	m_hDC = ::CreateCompatibleDC(GET_SINGLE(Core)->GetMainDC());
 	::SelectObject(m_hDC, m_hBit);

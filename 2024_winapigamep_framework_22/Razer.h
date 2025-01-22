@@ -14,7 +14,7 @@ public:
 	void SetOwner(Object* owner)
 	{
 		_owner = owner;
-		_targetSize = SCREEN_HEIGHT - owner->GetPos().y + 50;
+		_targetSize = SCREEN_HEIGHT - owner->GetPosY() + 50;
 	}
 
 	void EnterCollision(Collider* _other) override;

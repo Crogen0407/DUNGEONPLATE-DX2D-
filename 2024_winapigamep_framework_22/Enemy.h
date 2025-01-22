@@ -19,7 +19,7 @@ protected:
 	int _giveExp;
 
 	Object* _target;
-	Vec2 _knockDir;
+	XMVECTOR _knockDir;
 	float _rotation;
 	bool _isDead;
 };

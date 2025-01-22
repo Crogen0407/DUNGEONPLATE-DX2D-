@@ -12,12 +12,12 @@ ExplosionEffect::ExplosionEffect(wstring name)
 	_curTime = TIME;
 	SetSize({ 100,100 });
 	Texture* texture = LOADTEXTURE(name, L"Texture\\Effect\\" + name + L".bmp");
-	Vec2 texSize = { (int)texture->GetWidth() / 4, (int)texture->GetHeight() };
+	XMVECTOR texSize = { (int)texture->GetWidth() / 4, (int)texture->GetHeight() };
 
 	AddComponent<Animator>();
 
 	GetComponent<Animator>()
-		->CreateAnimation(L"Explosion", texture, { 0,0 }, texSize, { (int)texSize.x,0 }, 4, 0.1f, false);
+		->CreateAnimation(L"Explosion", texture, { 0,0 }, texSize, { XMVectorGetX(texSize),0 }, 4, 0.1f, false);
 	GetComponent<Animator>()->PlayAnimation(L"Explosion", true);
 }
 

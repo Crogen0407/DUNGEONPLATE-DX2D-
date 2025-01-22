@@ -39,16 +39,16 @@ void EnemyE::Update()
 {
 	_rotation += 360 * fDT;
 	_rotation = (int)_rotation % 360;
-	Vec2 rot = { cos(_rotation * Deg2Rad), sin(_rotation * Deg2Rad) };
+	XMVECTOR rot = { cos(_rotation * Deg2Rad), sin(_rotation * Deg2Rad) };
 	GetComponent<SpriteRenderer>()->LookAt(rot);
 
 	if (_prevAttack + _attackDelay < TIME)
 	{
 		_prevAttack = TIME;
 
-		Vec2 dir = _target->GetPos();
+		XMVECTOR dir = _target->GetPos();
 		dir -= GetPos();
-		dir.Normalize();
+		dir = XMVector2Normalize(dir);
 
 		GetComponent<Movement>()->Dash(dir, 500, 0.15f);
 		_roundAttack->Init(15, 30, 12);

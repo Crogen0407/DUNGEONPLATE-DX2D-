@@ -1,9 +1,9 @@
 #pragma once
-#include "Image.h"
+#include "Picture.h"
 #include "Action.h"
 
 class Texture;
-class Button : public Image
+class Button : public Picture
 {
 public:
     Button();

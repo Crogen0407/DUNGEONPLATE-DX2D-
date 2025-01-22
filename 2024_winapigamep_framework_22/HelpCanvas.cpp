@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "HelpCanvas.h"
-#include "Image.h"
+#include "Picture.h"
 #include "Text.h"
 #include "Button.h"
 #include "ResourceManager.h"
@@ -16,7 +16,6 @@ HelpCanvas::HelpCanvas()
 	slides.push_back(new Slide(L"적들의 투사체를 튕겨내세요!\n그것이 공격할 수 있는 유일한 방법입니다."));
 	slides.push_back(new Slide(L"적을 처치하면 경험치를 획득합니다."));
 	slides.push_back(new Slide(L"레벨업하여 다양한 스킬들을 획득해보세요."));
-	//slides.push_back(new Slide(L"그럼 던전에서 뵙겠습니다. 행운을 빌어요."));
 
 	for (int i = 0; i < slides.size(); i++)
 	{
@@ -26,24 +25,24 @@ HelpCanvas::HelpCanvas()
 
 	//Background
 	{
-		Vec2 size = {SCREEN_WIDTH, SCREEN_HEIGHT};
-		Vec2 pos = { size.x / 2, size.y / 2 };
-		Image* background = CreateUI<Image>(pos, size);
+		XMVECTOR size = {SCREEN_WIDTH, SCREEN_HEIGHT};
+		XMVECTOR pos = { XMVectorGetX(size) / 2, XMVectorGetY(size) / 2 };
+		Picture* background = CreateUI<Picture>(pos, size);
 		background->texture = LOADTEXTURE(L"OnePoint", L"Texture\\OnePoint.bmp");
 	}
 
 	//Slide
 	{
-		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
-		Vec2 pos = { size.x / 2, size.y / 2 };
-		_slideImage = CreateUI<Image>(pos, size);
-		_slideImage->texture = slides[0]->texture;
+		XMVECTOR size = { SCREEN_WIDTH, SCREEN_HEIGHT };
+		XMVECTOR pos = { XMVectorGetX(size) / 2, XMVectorGetY(size) / 2 };
+		_slidePicture = CreateUI<Picture>(pos, size);
+		_slidePicture->texture = slides[0]->texture;
 	}
 
 	//DescriptionText
 	{
-		Vec2 size = { SCREEN_WIDTH , (SCREEN_HEIGHT / 8) * 2 };
-		Vec2 pos = { SCREEN_WIDTH/2.f, SCREEN_HEIGHT-(size.y/2)};
+		XMVECTOR size = { SCREEN_WIDTH , (SCREEN_HEIGHT / 8) * 2 };
+		XMVECTOR pos = { SCREEN_WIDTH/2.f, SCREEN_HEIGHT-(XMVectorGetY(size)/2)};
 		_descriptionText = CreateUI<Text>(pos, size);
 		_descriptionText->SetColor(RGB(155, 188, 15));
 		_descriptionText->LoadFont(L"PF스타더스트 Bold", 28, 37);
@@ -72,7 +71,7 @@ void HelpCanvas::Update()
 			return;
 		}
 		if (_isFading == true) return;
-		_slideImage->texture = slides[_curSlide]->texture;
+		_slidePicture->texture = slides[_curSlide]->texture;
 		_descriptionText->SetText(slides[_curSlide]->description);
 	}
 }

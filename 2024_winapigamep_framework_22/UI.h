@@ -4,8 +4,8 @@ class UI
 {
 protected:
     bool active = true;
-    Vec2 _position;
-    Vec2 _size;
+    XMVECTOR _position;
+    XMVECTOR _size;
     Canvas* _owner;
     UI* _parent;
 public:
@@ -36,31 +36,63 @@ public:
     {
         _owner = canvas;
     }
-    void SetPosAndSize(const Vec2& pos, const Vec2& size)
+    void SetPosAndSize(const XMVECTOR& pos, const XMVECTOR& size)
     {
         this->_position = pos;
         this->_size = size;
     }
 public:
-    void SetPos(Vec2 pos)
+    void SetPos(XMVECTOR pos)
     {
         this->_position = pos;
     }
-    void AddPos(const Vec2& pos)
+    void SetPosX(float x)
+    {
+        this->_position = XMVectorSetX(_position, x);
+    }
+    void SetPosY(float y)
+    {
+        this->_position = XMVectorSetY(_position, y);
+    }
+    void AddPos(const XMVECTOR& pos)
     {
         this->_position += pos;
     }
-    void SetSize(Vec2 size)
+    void SetSize(XMVECTOR size)
     {
         this->_size = size;
     }
-    Vec2& GetPos()
+    void SetSizeX(float x)
+    {
+        this->_size = XMVectorSetX(this->_size, x);
+    }
+    void SetSizeY(float y)
+    {
+        this->_size = XMVectorSetY(this->_size, y);
+    }
+    const XMVECTOR& GetPos() const
     {
         return _position;
     }
-    Vec2& GetSize()
+    const float& GetPosX() const
+    {
+        return XMVectorGetX(_position);
+    }
+    const float& GetPosY() const
+    {
+        return XMVectorGetY(_position);
+    }
+    const XMVECTOR& GetSize() const
     {
         return _size;
+    }
+    const float& GetSizeX() const
+    {
+        return XMVectorGetX(_size);
+    }
+    const float& GetSizeY() const
+    {
+        return XMVectorGetY(_size);
     }
 public:
     void SetParent(UI* parent)

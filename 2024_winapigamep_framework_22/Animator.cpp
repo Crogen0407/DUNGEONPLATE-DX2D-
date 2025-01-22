@@ -30,7 +30,7 @@ void Animator::Render(HDC _hdc)
 		m_pCurrentAnimation->Render(_hdc);
 }
 
-void Animator::CreateAnimation(const wstring& _strName, Texture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _framecount, float _fDuration, bool _isRotate)
+void Animator::CreateAnimation(const wstring& _strName, Texture* _pTex, XMVECTOR _vLT, XMVECTOR _vSliceSize, XMVECTOR _vStep, UINT _framecount, float _fDuration, bool _isRotate)
 {
 	Animation* pAnim = FindAnimation(_strName);
 	if (pAnim != nullptr)

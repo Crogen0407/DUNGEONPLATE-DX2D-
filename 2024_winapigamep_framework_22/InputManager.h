@@ -30,9 +30,9 @@ public:
 	{
 		return m_vecKey[(int)_eKey].eState;
 	}
-	const POINT& GetMousePos() const { return m_ptMouse; }
+	const XMVECTOR& GetMousePos() const { return m_ptMouse; }
 private:
-	POINT			 m_ptMouse = {};
+	XMVECTOR		 m_ptMouse = {};
 	vector<tKeyInfo> m_vecKey;
 	int				 m_arrVKKey[(int)KEY_TYPE::LAST] =
 	{ VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, 'Q','W','E','R',

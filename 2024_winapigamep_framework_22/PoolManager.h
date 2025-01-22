@@ -27,6 +27,6 @@ public:
 		}
 	}
 public:
-	PoolableObject* Pop(const std::wstring& type, Vec2 pos);
+	PoolableObject* Pop(const std::wstring& type, XMVECTOR pos);
 	void Push(const std::wstring& type, PoolableObject* object);
 };

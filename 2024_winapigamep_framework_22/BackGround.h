@@ -17,7 +17,7 @@ public:
     virtual void Update() abstract override;
     void Render(HDC _hdc) override;
 protected:
-    void SpawnEnemy(EnemyType enemyType, const Vec2& pos);
+    void SpawnEnemy(EnemyType enemyType, const XMVECTOR& pos);
     void SpawnEnemyByRandomPos(EnemyType enemyType);
 public:
     bool isPlayerArea = false;

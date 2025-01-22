@@ -12,7 +12,7 @@ public:
 	void LateUpdate() override;
 	void Render(HDC hdc) override;
 public:
-	void CreateSlot(Vec2 slotPos);
+	void CreateSlot(XMVECTOR slotPos);
 	void ShowSlots();
 	void CloseSlot();
 private:
