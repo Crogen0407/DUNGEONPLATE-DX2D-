@@ -26,9 +26,9 @@ bool Core::Init(HWND _hwnd)
 	CreateVS();
 	CreateInputLayout();
 	CreatePS();
-
-
 	
+	CreateSRV();
+
 	CreateGDI();
 	// === Manager Init === 
 	GET_SINGLE(TimeManager)->Init();
@@ -110,7 +110,7 @@ void Core::MainRender()
 
 		// PS
 		_deviceContext->PSSetShader(_pixelShader.Get(), nullptr, 0);
-
+		_deviceContext->PSSetShaderResources(0, 1, _shaderResourceView.GetAddressOf());
 		// OM
 
 		_deviceContext->DrawIndexed(_indices.size(), 0, 0);
@@ -239,20 +239,16 @@ void Core::CreateGeometry()
 		_vertices.resize(4);
 
 		_vertices[0].position = { -0.5f, -0.5f, 0 };
-		_vertices[0].color = XMFLOAT4( 1, 0, 0, 1 );
-		//_vertices[0].uv = { 0.f, 1.f };
+		_vertices[0].uv = { 0.f, 1.f };
 
 		_vertices[1].position = { -0.5f, 0.5f, 0 };
-		_vertices[1].color = XMFLOAT4(1, 1, 0, 1);
-		//_vertices[1].uv = { 0.f, 0.f };
+		_vertices[1].uv = { 0.f, 0.f };
 
 		_vertices[2].position = { 0.5f, -0.5f, 0 };
-		_vertices[2].color = XMFLOAT4(1, 1, 1, 1);
-		//_vertices[2].uv = { 1.f, 1.f };
-
+		_vertices[2].uv = { 1.f, 1.f };
+		 
 		_vertices[3].position = { 0.5f, 0.5f, 0 };
-		_vertices[3].color = XMFLOAT4(0, 0, 0, 1);
-		//_vertices[3].uv = {1.f, 0.f};
+		_vertices[3].uv = {1.f, 0.f};
 	}
 
 	// VertexBuffer
@@ -298,7 +294,7 @@ void Core::CreateInputLayout()
 	D3D11_INPUT_ELEMENT_DESC layout[] =
 	{
 		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
-		{"COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0}
+		{"TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0}
 	};
 
 	const int count = sizeof(layout) / sizeof(D3D11_INPUT_ELEMENT_DESC);
@@ -319,6 +315,17 @@ void Core::CreatePS()
 	LoadShaderFromFile(L"Default.hlsl", "PS", "ps_5_0", _psBlob);
 	HRESULT hr = _device->CreatePixelShader(_psBlob->GetBufferPointer(), 
 		_psBlob->GetBufferSize(), nullptr, _pixelShader.GetAddressOf());
+	CHECK(hr);
+}
+
+void Core::CreateSRV()
+{
+	DirectX::TexMetadata md;
+	DirectX::ScratchImage img;
+	HRESULT hr = ::LoadFromWICFile(L"Resource\\Texture\\Enemy01.bmp", WIC_FLAGS_FILTER_POINT, &md, img);
+	CHECK(hr);
+
+	hr = ::CreateShaderResourceView(_device.Get(), img.GetImages(), img.GetImageCount(), md, _shaderResourceView.GetAddressOf());
 	CHECK(hr);
 }
 
