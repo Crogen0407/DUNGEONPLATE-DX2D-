@@ -27,7 +27,12 @@ bool Core::Init(HWND _hwnd)
 	CreateInputLayout();
 	CreatePS();
 	
+	CreateRasterizerState();
+	CreateSamplerState();
+	CreateBlendState();
+
 	CreateSRV();
+	CreateConstantBuffer();
 
 	CreateGDI();
 	// === Manager Init === 
@@ -63,15 +68,6 @@ void Core::CleanUp()
 
 void Core::GameLoop()
 {
-	//static int callcount = 0;
-	//++callcount;
-	//static int prev = GetTickCount64();
-	//int cur = GetTickCount64();
-	//if (cur - prev > 1000)
-	//{
-	//	prev = cur;
-	//	callcount = 0;
-	//}
 	MainUpdate();
 	MainRender();
 	GET_SINGLE(EventManager)->Update();
@@ -79,6 +75,17 @@ void Core::GameLoop()
 
 void Core::MainUpdate()
 {
+	_transformData.offset.x = sinf(TIME) * 0.3f;
+	_transformData.offset.y = 0.3f;
+
+	D3D11_MAPPED_SUBRESOURCE subResource;
+	ZeroMemory(&subResource, sizeof(subResource));
+
+	// 내가 만든 구조체를 subResource에 복사하여 전달한다
+	_deviceContext->Map(_constantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &subResource);
+	::memcpy(subResource.pData, &_transformData, sizeof(_transformData));
+	_deviceContext->Unmap(_constantBuffer.Get(), 0);
+
 	// === Manager Update === 
 	GET_SINGLE(TimeManager)->Update();
 	GET_SINGLE(InputManager)->Update();
@@ -105,14 +112,18 @@ void Core::MainRender()
 
 		// VS
 		_deviceContext->VSSetShader(_vertexShader.Get(), nullptr, 0);
+		_deviceContext->VSSetConstantBuffers(0, 1, _constantBuffer.GetAddressOf());
 
-		// RS
+		// RS 
+		_deviceContext->RSSetState(_rasterizerState.Get());
 
 		// PS
 		_deviceContext->PSSetShader(_pixelShader.Get(), nullptr, 0);
 		_deviceContext->PSSetShaderResources(0, 1, _shaderResourceView.GetAddressOf());
-		// OM
+		_deviceContext->PSSetSamplers(0, 1, _samplerState.GetAddressOf());
 
+		// OM
+		_deviceContext->OMSetBlendState(_blendState.Get(), nullptr, 0xffffffff);
 		_deviceContext->DrawIndexed(_indices.size(), 0, 0);
 
 		/*GET_SINGLE(SceneManager)->Render(_hBackDC);
@@ -248,7 +259,7 @@ void Core::CreateGeometry()
 		_vertices[2].uv = { 1.f, 1.f };
 		 
 		_vertices[3].position = { 0.5f, 0.5f, 0 };
-		_vertices[3].uv = {1.f, 0.f};
+		_vertices[3].uv = { 1.f, 0.f};
 	}
 
 	// VertexBuffer
@@ -318,14 +329,80 @@ void Core::CreatePS()
 	CHECK(hr);
 }
 
+void Core::CreateRasterizerState()
+{
+	D3D11_RASTERIZER_DESC desc;
+	ZeroMemory(&desc, sizeof(desc));
+	desc.FillMode = D3D11_FILL_SOLID;
+	desc.CullMode = D3D11_CULL_BACK;
+	desc.FrontCounterClockwise = false; // 앞, 뒤는 시계 방향으로 그리는지, 반시계방향으로 그리는지로 판별한다
+
+	HRESULT hr = _device->CreateRasterizerState(&desc, _rasterizerState.GetAddressOf());
+	CHECK(hr);
+}
+
+void Core::CreateSamplerState()
+{
+	D3D11_SAMPLER_DESC desc;
+	ZeroMemory(&desc, sizeof(desc));
+	desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
+	desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	desc.MipLODBias = 0.f;
+	desc.MaxAnisotropy = 2;
+	desc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+	desc.BorderColor[0] = 1;
+	desc.BorderColor[1] = 0.f;
+	desc.BorderColor[2] = 0.f;
+	desc.BorderColor[3] = 1;
+	desc.MaxLOD = FLT_MAX;       //밉맵의 범위상한치 MaxLod >= MinLod이어야 하며         
+	desc.MinLOD = -FLT_MAX;      //밉맵의 범위하한치 0이 최대이며 가장 세부적인 밉맵 레벨을 나타낸다
+
+	_device->CreateSamplerState(&desc, _samplerState.GetAddressOf());
+}
+
+void Core::CreateBlendState()
+{
+	D3D11_BLEND_DESC desc;
+	ZeroMemory(&desc, sizeof(D3D11_BLEND_DESC));
+	desc.AlphaToCoverageEnable = false;
+	desc.IndependentBlendEnable = false;
+
+	desc.RenderTarget[0].BlendEnable = true;
+	desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+	desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+	desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+	HRESULT hr = _device->CreateBlendState(&desc, _blendState.GetAddressOf());
+	CHECK(hr);
+}
+
 void Core::CreateSRV()
 {
 	DirectX::TexMetadata md;
 	DirectX::ScratchImage img;
-	HRESULT hr = ::LoadFromWICFile(L"Resource\\Texture\\Enemy01.bmp", WIC_FLAGS_FILTER_POINT, &md, img);
+	HRESULT hr = ::LoadFromWICFile(L"Resource\\Texture\\AttackRange.png", WIC_FLAGS_NONE, &md, img);
 	CHECK(hr);
 
 	hr = ::CreateShaderResourceView(_device.Get(), img.GetImages(), img.GetImageCount(), md, _shaderResourceView.GetAddressOf());
+	CHECK(hr);
+}
+
+void Core::CreateConstantBuffer()
+{
+	D3D11_BUFFER_DESC desc;
+	ZeroMemory(&desc, sizeof(desc));
+	desc.Usage = D3D11_USAGE_DYNAMIC; // CPU_Write + GPU_Read
+	desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	desc.ByteWidth = sizeof(TransformData);
+	desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+
+	HRESULT hr = _device->CreateBuffer(&desc, nullptr, _constantBuffer.GetAddressOf());
 	CHECK(hr);
 }
 
