@@ -37,7 +37,7 @@ public:
 
 public:
     void LateUpdate() override;
-    void Render(HDC hdc) override;
+    void Render() override;
 private:
     bool _isDie = false;
     float curDelay = 0;

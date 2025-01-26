@@ -9,7 +9,6 @@ public:
 	GuidedMissile();
 	~GuidedMissile() override;
 	void Update() override;
-	void Render(HDC _hdc) override;
 	void SetDir(XMVECTOR dir) override;
 
 	void Parry(XMVECTOR dir) override;

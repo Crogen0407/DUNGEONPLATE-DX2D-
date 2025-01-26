@@ -30,11 +30,6 @@ void HealEffect::Update()
 	}
 }
 
-void HealEffect::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}
-
 void HealEffect::OnPop()
 {
 	_animator->PlayAnimation(L"Heal", false);

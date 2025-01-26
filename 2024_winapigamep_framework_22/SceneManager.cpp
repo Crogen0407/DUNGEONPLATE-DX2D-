@@ -35,11 +35,11 @@ void SceneManager::Update()
 	m_pCurrentScene->LateUpdate();
 }
 
-void SceneManager::Render(HDC _hdc)
+void SceneManager::Render(std::shared_ptr<Pipeline> pipeline)
 {
 	if (m_pCurrentScene == nullptr)
 		return;
-	m_pCurrentScene->Render(_hdc);
+	m_pCurrentScene->Render(pipeline);
 }
 
 void SceneManager::RegisterScene(const wstring& _sceneName, std::shared_ptr<Scene> _scene)

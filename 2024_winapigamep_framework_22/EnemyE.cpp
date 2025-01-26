@@ -55,8 +55,3 @@ void EnemyE::Update()
 		_roundAttack->UseSkill();
 	}
 }
-
-void EnemyE::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}

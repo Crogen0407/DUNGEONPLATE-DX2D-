@@ -10,7 +10,6 @@ public:
 
 	// Enemy을(를) 통해 상속됨
 	void Update() override;
-	void Render(HDC _hdc) override;
 	void OnDie() override;
 private:
 	bool _isDead = false;

@@ -48,7 +48,7 @@ void HealthCompo::LateUpdate()
 	
 }
 
-void HealthCompo::Render(HDC hdc)
+void HealthCompo::Render()
 {
 	if (hpBarActive == false) return;
 
@@ -57,21 +57,21 @@ void HealthCompo::Render(HDC hdc)
 	XMVECTOR size = { GetOwner()->GetSizeX(), 12.f};
 
 	//Back
-	HBRUSH oldBrush = static_cast<HBRUSH>(::SelectObject(hdc, backBrush));
-	::Rectangle(hdc,
-		XMVectorGetX(pos) - XMVectorGetX(size) / 2,
-		XMVectorGetY(pos) - XMVectorGetY(size) / 2,
-		XMVectorGetX(pos) + XMVectorGetX(size) / 2,
-		XMVectorGetY(pos) + XMVectorGetY(size) / 2);
+	//HBRUSH oldBrush = static_cast<HBRUSH>(::SelectObject(hdc, backBrush));
+	//::Rectangle(hdc,
+	//	XMVectorGetX(pos) - XMVectorGetX(size) / 2,
+	//	XMVectorGetY(pos) - XMVectorGetY(size) / 2,
+	//	XMVectorGetX(pos) + XMVectorGetX(size) / 2,
+	//	XMVectorGetY(pos) + XMVectorGetY(size) / 2);
 
-	//Fill
-	static_cast<HBRUSH>(::SelectObject(hdc, fillBrush));
+	////Fill
+	//static_cast<HBRUSH>(::SelectObject(hdc, fillBrush));
 
-	::Rectangle(hdc,
-		XMVectorGetX(pos) - XMVectorGetX(size) / 2,
-		XMVectorGetY(pos) - XMVectorGetY(size) / 2,
-		XMVectorGetX(pos) + (XMVectorGetX(size) / 2)*(std::clamp(hp / maxHp, 0.f, 1.f)*2-1),
-		XMVectorGetY(pos) + XMVectorGetY(size) / 2);
+	//::Rectangle(hdc,
+	//	XMVectorGetX(pos) - XMVectorGetX(size) / 2,
+	//	XMVectorGetY(pos) - XMVectorGetY(size) / 2,
+	//	XMVectorGetX(pos) + (XMVectorGetX(size) / 2)*(std::clamp(hp / maxHp, 0.f, 1.f)*2-1),
+	//	XMVectorGetY(pos) + XMVectorGetY(size) / 2);
 
-	::SelectObject(hdc, oldBrush);
+	//::SelectObject(hdc, oldBrush);
 }

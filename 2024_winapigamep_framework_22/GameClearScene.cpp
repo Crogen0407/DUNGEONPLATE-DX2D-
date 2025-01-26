@@ -17,18 +17,3 @@ void GameClearScene::Release()
 	Scene::Release();
 	GET_SINGLE(ResourceManager)->Stop(SOUND_CHANNEL::BGM);
 }
-
-void GameClearScene::Update()
-{
-	Scene::Update();
-}
-
-void GameClearScene::LateUpdate()
-{
-	Scene::LateUpdate();
-}
-
-void GameClearScene::Render(HDC _hdc)
-{
-	Scene::Render(_hdc);
-}

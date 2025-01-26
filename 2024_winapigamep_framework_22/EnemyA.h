@@ -7,8 +7,7 @@ public:
 	EnemyA();
 	~EnemyA() override;
 public:
-	void Update() override; 
-	void Render(HDC _hdc) override;
+	void Update() override;
 private:
 	float _shootDelay = 1;
 	float _prevShootTime = 0;

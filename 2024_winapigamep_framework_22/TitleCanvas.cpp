@@ -157,18 +157,3 @@ TitleCanvas::TitleCanvas()
 TitleCanvas::~TitleCanvas()
 {
 }
-
-void TitleCanvas::Update()
-{
-	Canvas::Update();
-}
-
-void TitleCanvas::LateUpdate()
-{
-	Canvas::LateUpdate();
-}
-
-void TitleCanvas::Render(HDC hdc)
-{
-	Canvas::Render(hdc);
-}

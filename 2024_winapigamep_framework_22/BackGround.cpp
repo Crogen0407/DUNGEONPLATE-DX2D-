@@ -33,23 +33,23 @@ Background::~Background()
 	delete(_enemySpawner);
 }
 
-void Background::Render(HDC _hdc)
+void Background::Render(std::shared_ptr<Pipeline> pipeline)
 {
-    ComponentRender(_hdc);
+	Object::Render(pipeline);
 
-	if (_maxEnemyCount- _currentEnemyCount <= 0) return;
-	XMVECTOR pos = GetPos();
-	XMVECTOR size = GetSize();
-	::SetTextColor(_hdc, RGB(155, 188, 15));
-	HFONT oldFont = static_cast<HFONT>(SelectObject(_hdc, _font));
+	//if (_maxEnemyCount- _currentEnemyCount <= 0) return;
+	//XMVECTOR pos = GetPos();
+	//XMVECTOR size = GetSize();
+	//::SetTextColor(_hdc, RGB(155, 188, 15));
+	//HFONT oldFont = static_cast<HFONT>(SelectObject(_hdc, _font));
 
-	::SetBkMode(_hdc, 1);
-	RECT rect = { XMVectorGetX(pos) - XMVectorGetX(size) / 2, XMVectorGetY(pos) - XMVectorGetY(size) / 2, XMVectorGetX(pos) + XMVectorGetX(size) / 2, XMVectorGetY(pos) + XMVectorGetY(size) / 2 };  // 출력할 영역
+	//::SetBkMode(_hdc, 1);
+	//RECT rect = { XMVectorGetX(pos) - XMVectorGetX(size) / 2, XMVectorGetY(pos) - XMVectorGetY(size) / 2, XMVectorGetX(pos) + XMVectorGetX(size) / 2, XMVectorGetY(pos) + XMVectorGetY(size) / 2 };  // 출력할 영역
 
-	::DrawText(_hdc, std::to_wstring(_maxEnemyCount- _currentEnemyCount).c_str(), -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+	//::DrawText(_hdc, std::to_wstring(_maxEnemyCount- _currentEnemyCount).c_str(), -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
-	SetTextColor(_hdc, RGB(0, 0, 0));
-	SelectObject(_hdc, oldFont);
+	//SetTextColor(_hdc, RGB(0, 0, 0));
+	//SelectObject(_hdc, oldFont);
 }
 
 void Background::SpawnEnemy(EnemyType enemyType, const XMVECTOR& pos)

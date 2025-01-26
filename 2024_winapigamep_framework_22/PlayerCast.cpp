@@ -30,11 +30,6 @@ void PlayerCast::LateUpdate()
 	Object::LateUpdate();
 }
 
-void PlayerCast::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}
-
 void PlayerCast::EnterCollision(Collider* _other)
 {    
 	other = _other;

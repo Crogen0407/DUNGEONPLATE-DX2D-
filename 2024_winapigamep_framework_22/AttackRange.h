@@ -9,7 +9,6 @@ public:
     ~AttackRange() override;
 public:
     void Update() override;
-    void Render(HDC _hdc) override;
     void SetParent(Object* parent)
     {
         this->parent = parent;

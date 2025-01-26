@@ -11,13 +11,9 @@
 #include "CollisionManager.h"
 #include "ResourceManager.h"
 #include "StageLoader.h"
-#include "GDISelector.h"
 #include "SkillManager.h"
 #include "TimeManager.h"
 #include "InputManager.h"
-
-//#include "InputManager.h"
-//#include "XPManager.h"
 
 GameScene::GameScene() :
 	_stageLoader(nullptr)
@@ -73,23 +69,6 @@ void GameScene::Update()
 
 	_stageLoader->Update();
 	Scene::Update();
-	//if (GET_KEYDOWN(KEY_TYPE::NUM_1))
-	//{
-	//	ADDXP(5);
-	//}
-}
-
-void GameScene::Render(HDC hdc)
-{
-	GDISelector::GDISelector(hdc, RGB(15, 56, 15));
-	RECT_RENDER(hdc, SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f,
-		SCREEN_WIDTH, SCREEN_HEIGHT);
-
-	Scene::Render(hdc);
-}
-
-void GameScene::SetEnemyCount()
-{
 }
 
 void GameScene::OnNextStageEffect()

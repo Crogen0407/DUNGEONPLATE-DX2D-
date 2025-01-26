@@ -52,10 +52,10 @@ void SkillCanvas::LateUpdate()
 	Canvas::LateUpdate();
 }
 
-void SkillCanvas::Render(HDC hdc)
+void SkillCanvas::Render(std::shared_ptr<Pipeline> pipeline)
 {
 	if (showSkillSlots == false) return;
-	Canvas::Render(hdc);
+	Canvas::Render(pipeline);
 }
 
 void SkillCanvas::CreateSlot(XMVECTOR slotPos)

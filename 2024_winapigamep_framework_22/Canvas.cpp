@@ -14,22 +14,18 @@ Canvas::~Canvas()
 {
 }
 
-void Canvas::Update()
-{
-	
-}
-
 void Canvas::LateUpdate()
 {
 	for (auto& child : children)
 		child->LateUpdate();
 }
 
-void Canvas::Render(HDC _hdc)
+void Canvas::Render(std::shared_ptr<Pipeline> pipeline)
 {
+	Object::Render(pipeline);
 	for (auto& child : children)
 	{
 		if(child->GetActive())
-			child->Render(_hdc);
+			child->Render(pipeline);
 	}
 }

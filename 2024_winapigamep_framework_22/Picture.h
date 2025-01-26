@@ -10,6 +10,6 @@ public:
 	Texture* texture;
 public:
 	void LateUpdate() override;
-	void Render(HDC _hdc) override;
+	void Render(std::shared_ptr<Pipeline> pipeline) override;
 };
 

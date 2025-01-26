@@ -33,20 +33,4 @@ void TitleScene::Release()
 {
 	Scene::Release();
 	GET_SINGLE(ResourceManager)->Stop(SOUND_CHANNEL::BGM);
-
-}
-
-void TitleScene::Update()
-{
-	Scene::Update();
-}
-
-void TitleScene::LateUpdate()
-{
-	Scene::LateUpdate();
-}
-
-void TitleScene::Render(HDC hdc)
-{
-	Scene::Render(hdc);
 }

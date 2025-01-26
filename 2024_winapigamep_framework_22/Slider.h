@@ -8,7 +8,7 @@ public:
 	~Slider() override;
 public:
 	void LateUpdate() override;
-	void Render(HDC _hdc) override;
+	void Render(std::shared_ptr<Pipeline> pipeline) override;
 public:
 	void SetValue(float value)
 	{

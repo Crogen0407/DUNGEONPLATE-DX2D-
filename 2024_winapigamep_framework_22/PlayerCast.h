@@ -11,7 +11,6 @@ public:
 public:
     void Update() override;
     void LateUpdate() override;
-    void Render(HDC _hdc) override;
     void EnterCollision(Collider* _other);
     void StayCollision(Collider* _other);
     void ExitCollision(Collider* _other);

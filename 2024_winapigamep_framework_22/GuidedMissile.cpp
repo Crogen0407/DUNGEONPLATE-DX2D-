@@ -83,11 +83,6 @@ void GuidedMissile::Update()
 
 		PUSH(_poolName, this);
 	}
-}
-
-void GuidedMissile::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
 	GetComponent<SpriteRenderer>()->LookAt(_dir);
 }
 

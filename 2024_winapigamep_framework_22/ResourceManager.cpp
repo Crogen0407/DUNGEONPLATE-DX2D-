@@ -27,10 +27,10 @@ Texture* ResourceManager::TextureLoad(const wstring& _key, const wstring& _path)
 	texpath += _path;
 	
 	// 2. Texture 만들어야죠?
-	pTex = new Texture;
-	pTex->Load(texpath);
-	pTex->SetKey(_key);
-	pTex->SetPath(texpath);
+	/*pTex = new Texture;
+	pTex->Load(texpath);*/
+	/*pTex->SetKey(_key);
+	pTex->SetPath(texpath);*/
 	m_mapTextures.insert({_key,pTex});
 	return pTex;
 }

@@ -50,16 +50,6 @@ void FadeObject::Update()
 
 }
 
-void FadeObject::LateUpdate()
-{
-	Object::LateUpdate();
-}
-
-void FadeObject::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}
-
 void FadeObject::FadeIn()
 {
 	_animator->PlayAnimation(L"FadeIn", false, 1);

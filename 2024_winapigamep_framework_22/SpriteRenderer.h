@@ -1,6 +1,9 @@
 #pragma once
 #include "Component.h"
 #include "ResourceManager.h"
+#include "Geometry.h"
+
+class VertexTextureData;
 
 class Texture;
 class SpriteRenderer :
@@ -11,12 +14,9 @@ public:
     ~SpriteRenderer() override;
 private:
     Texture* texture;
-    HDC memDC;
-    HBITMAP hBmap;
-    HBRUSH brush;
 public:
     void LateUpdate() override;
-    void Render(HDC _hdc) override;
+    void Render() override;
 public:
     void SetTexture(std::wstring name, std::wstring path);
     void SetTexture(Texture* texture);
@@ -34,10 +34,14 @@ public:
     {
         this->angle = std::atan2(XMVectorGetY(dir), XMVectorGetX(dir));
     }
+
 public:
     bool enable = true;
     bool isRotatable = true;
+
 private:
     float angle;
+
+
 };
 

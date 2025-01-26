@@ -9,7 +9,6 @@ public:
 	~EnemyB() override;
 public:
 	void Update() override;
-	void Render(HDC _hdc) override;
 private:
 	float shootDelay = 1;
 	float prevShootTime = 0;

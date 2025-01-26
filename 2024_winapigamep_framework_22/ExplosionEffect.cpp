@@ -30,8 +30,3 @@ void ExplosionEffect::Update()
 	if (_curTime + _lifeTime < TIME)
 		GET_SINGLE(EventManager)->DeleteObject(this);
 }
-
-void ExplosionEffect::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}

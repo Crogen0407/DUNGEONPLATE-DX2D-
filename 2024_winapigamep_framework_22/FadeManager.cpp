@@ -37,9 +37,9 @@ void FadeManager::Update()
 	_fadeObject->LateUpdate();
 }
 
-void FadeManager::Render(HDC hdc)
+void FadeManager::Render(std::shared_ptr<Pipeline> pipeline)
 {
-	_fadeObject->Render(hdc);
+	_fadeObject->Render(pipeline);
 }
 
 void FadeManager::LoadScene(std::wstring sceneName)

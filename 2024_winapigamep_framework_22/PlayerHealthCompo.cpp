@@ -59,9 +59,9 @@ void PlayerHealthCompo::LateUpdate()
 	}
 }
 
-void PlayerHealthCompo::Render(HDC hdc)
+void PlayerHealthCompo::Render()
 {
-	//HealthCompo::Render(hdc);
+	//HealthCompo::Render();
 
 	//XMVECTOR pos = GetOwner()->GetPos();
 	//XMVECTOR size = { GetOwner()->GetSize().x, 6.f };

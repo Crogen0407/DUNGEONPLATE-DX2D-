@@ -40,11 +40,6 @@ void EnemyBullet::Update()
 	}
 }
 
-void EnemyBullet::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}
-
 void EnemyBullet::OnPop()
 {
 	_hitEnemy = false;

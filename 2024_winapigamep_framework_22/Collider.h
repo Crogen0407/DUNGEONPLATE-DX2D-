@@ -8,7 +8,7 @@ public:
 public:
     // Component을(를) 통해 상속됨
     void LateUpdate() override;
-    void Render(HDC _hdc) override;
+    void Render() override;
 public:
     void EnterCollision(Collider* _other); // 충돌진입
     void StayCollision(Collider* _other); // 충돌중

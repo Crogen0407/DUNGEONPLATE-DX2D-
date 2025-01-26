@@ -18,27 +18,27 @@ void Text::LateUpdate()
 {
 }
 
-void Text::Render(HDC _hdc)
+void Text::Render(std::shared_ptr<Pipeline> pipeline)
 {
-	if (_owner == nullptr) return;
-	XMVECTOR pos = GetPos() + _owner->GetPos();
-	if (_parent != nullptr)
-		pos += _parent->GetPos();
+	//if (_owner == nullptr) return;
+	//XMVECTOR pos = GetPos() + _owner->GetPos();
+	//if (_parent != nullptr)
+	//	pos += _parent->GetPos();
 
-	XMVECTOR size = GetSize();
-	::SetTextColor(_hdc, color);
-	HFONT oldFont = static_cast<HFONT>(SelectObject(_hdc, pfont));
+	//XMVECTOR size = GetSize();
+	//::SetTextColor(_hdc, color);
+	//HFONT oldFont = static_cast<HFONT>(SelectObject(_hdc, pfont));
 
-	::SetBkMode(_hdc, 1);
-	RECT rect = { XMVectorGetX(pos) - XMVectorGetX(size) / 2, 
-		XMVectorGetY(pos) - XMVectorGetY(size) / 2, 
-		XMVectorGetX(pos) + XMVectorGetX(size) / 2, 
-		XMVectorGetY(pos) + XMVectorGetY(size) / 2 };  // 출력할 영역
+	//::SetBkMode(_hdc, 1);
+	//RECT rect = { XMVectorGetX(pos) - XMVectorGetX(size) / 2, 
+	//	XMVectorGetY(pos) - XMVectorGetY(size) / 2, 
+	//	XMVectorGetX(pos) + XMVectorGetX(size) / 2, 
+	//	XMVectorGetY(pos) + XMVectorGetY(size) / 2 };  // 출력할 영역
 
-	::DrawText(_hdc, text.c_str(), -1, &rect, iPitchAndFamily);
+	//::DrawText(_hdc, text.c_str(), -1, &rect, iPitchAndFamily);
 
-	SetTextColor(_hdc, RGB(0, 0, 0));
-	SelectObject(_hdc, oldFont);
+	//SetTextColor(_hdc, RGB(0, 0, 0));
+	//SelectObject(_hdc, oldFont);
 }
 
 void Text::LoadFont(std::wstring fontName, int fontWidth, int fontHegith)

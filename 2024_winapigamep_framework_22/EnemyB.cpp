@@ -61,17 +61,3 @@ void EnemyB::Update()
 		_rotation += 45;
 	}
 }
-
-void EnemyB::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-	/*HBRUSH brush = CreateSolidBrush(RGB(0, 255, 0));
-	HBRUSH oldbrush = (HBRUSH)SelectObject(_hdc, brush);
-
-	XMVECTOR vPos = GetPos();
-	XMVECTOR vSize = GetSize();
-	RECT_RENDER(_hdc, vPos.x, vPos.y, vSize.x, vSize.y);
-
-	SelectObject(_hdc, oldbrush);
-	DeleteObject(brush);*/
-}

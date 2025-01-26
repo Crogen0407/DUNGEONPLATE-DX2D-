@@ -19,7 +19,7 @@ public:
     Action<int> OnSelectExitEvent;
 public:
     void LateUpdate() override;
-    void Render(HDC _hdc) override;
+    void Render(std::shared_ptr<Pipeline> pipeline) override;
 public:
     bool m_showDebug = false;
     bool onlyOneCountClick = false;

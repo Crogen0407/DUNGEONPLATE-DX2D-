@@ -40,11 +40,6 @@ void EnemyBomb::Update()
 	}
 }
 
-void EnemyBomb::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}
-
 void EnemyBomb::Parry(XMVECTOR pos)
 {
 	XMVECTOR dir = (pos * -1) + GetPos();

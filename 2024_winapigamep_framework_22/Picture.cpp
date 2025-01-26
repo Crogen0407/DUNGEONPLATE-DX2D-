@@ -16,7 +16,7 @@ void Picture::LateUpdate()
 {
 }
 
-void Picture::Render(HDC _hdc)
+void Picture::Render(std::shared_ptr<Pipeline> pipeline)
 {
 	if (texture == nullptr) return;
 
@@ -27,7 +27,7 @@ void Picture::Render(HDC _hdc)
 
 	XMVECTOR size = GetSize();
 
-	TransparentBlt(_hdc,
+	/*TransparentBlt(_hdc,
 		(int)XMVectorGetX(pos) - XMVectorGetX(size) / 2,
 		(int)XMVectorGetY(pos) - XMVectorGetY(size) / 2,
 		(int)XMVectorGetX(size),
@@ -37,5 +37,5 @@ void Picture::Render(HDC _hdc)
 		0,
 		texture->GetWidth(),
 		texture->GetHeight(),
-		RGB(255, 0, 255));
+		RGB(255, 0, 255));*/
 }

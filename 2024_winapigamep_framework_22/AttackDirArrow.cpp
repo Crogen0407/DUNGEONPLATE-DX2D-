@@ -45,8 +45,3 @@ void AttackDirArrow::Update()
 	spriteRenderer->LookAt(dir);
 	SetPos(selfPos);
 }
-
-void AttackDirArrow::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}

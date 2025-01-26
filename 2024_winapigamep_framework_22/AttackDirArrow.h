@@ -7,15 +7,18 @@ class AttackDirArrow : public Object
 public:
     AttackDirArrow();
     ~AttackDirArrow() override;
+
 public:
     void Update() override;
-    void Render(HDC _hdc) override;
+
 private:
     Texture* m_defaultTex;
+
 private:
     SpriteRenderer* spriteRenderer;
     XMVECTOR dir;
     Object* parent;
+
 public:
     void SetParent(Object* parent);
 };

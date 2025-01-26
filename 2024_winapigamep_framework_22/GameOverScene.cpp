@@ -11,23 +11,3 @@ void GameOverScene::Init()
 	GET_SINGLE(ResourceManager)->LoadSound(L"Gameover_bgm", L"Sound\\Gameover_bgm.wav", false);
 	GET_SINGLE(ResourceManager)->Play(L"Gameover_bgm");
 }
-
-void GameOverScene::Release()
-{
-	Scene::Release();
-}
-
-void GameOverScene::Update()
-{
-	Scene::Update();
-}
-
-void GameOverScene::LateUpdate()
-{
-	Scene::LateUpdate();
-}
-
-void GameOverScene::Render(HDC _hdc)
-{
-	Scene::Render(_hdc);
-}

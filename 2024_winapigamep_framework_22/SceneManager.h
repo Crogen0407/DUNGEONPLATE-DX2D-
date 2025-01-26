@@ -8,7 +8,7 @@ class SceneManager
 public:
 	void Init(); // start
 	void Update();
-	void Render(HDC _hdc);
+	void Render(std::shared_ptr<Pipeline> pipeline);
 public:
 	void RegisterScene(const wstring& _sceneName, 
 					std::shared_ptr<Scene> _scene);

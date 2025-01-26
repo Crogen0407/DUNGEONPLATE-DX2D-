@@ -89,18 +89,3 @@ GameOverCanvas::GameOverCanvas()
 GameOverCanvas::~GameOverCanvas()
 {
 }
-
-void GameOverCanvas::Update()
-{
-
-}
-
-void GameOverCanvas::LateUpdate()
-{
-	Canvas::LateUpdate();
-}
-
-void GameOverCanvas::Render(HDC hdc)
-{
-	Canvas::Render(hdc);
-}

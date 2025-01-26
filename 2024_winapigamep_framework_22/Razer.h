@@ -10,7 +10,7 @@ public:
 
 	// Projectile을(를) 통해 상속됨
 	void Update() override;
-	void Render(HDC _hdc) override;
+	void Render(std::shared_ptr<Pipeline> pipeline) override;
 	void SetOwner(Object* owner)
 	{
 		_owner = owner;

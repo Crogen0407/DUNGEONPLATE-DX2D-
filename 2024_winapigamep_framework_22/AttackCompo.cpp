@@ -59,6 +59,6 @@ void AttackCompo::LateUpdate()
 {
 }
 
-void AttackCompo::Render(HDC _hdc)
+void AttackCompo::Render()
 {
 }

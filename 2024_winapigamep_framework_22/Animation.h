@@ -15,7 +15,7 @@ public:
 	~Animation();
 public:
 	void Update();
-	void Render(HDC _hdc);
+	void Render();
 public:
 	void Create(Texture* _pTex, XMVECTOR _vLT, XMVECTOR _vSliceSize,
 		XMVECTOR _vStep, int _framecount, float _fDuration, bool _isRotate);

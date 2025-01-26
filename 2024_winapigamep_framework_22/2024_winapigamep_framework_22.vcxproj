@@ -192,6 +192,7 @@
     <ClInclude Include="BackgroundF.h" />
     <ClInclude Include="BackgroundNull.h" />
     <ClInclude Include="BaseWindow.h" />
+    <ClInclude Include="BlendState.h" />
     <ClInclude Include="BombPattern.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BounceBulletPattern.h" />
@@ -213,6 +214,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="DashSkill.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -267,10 +269,9 @@
     </ClInclude>
     <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="GameScene.h" />
-    <ClInclude Include="GDISelector.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="Geometry.h" />
+    <ClInclude Include="GeometryHelper.h" />
+    <ClInclude Include="Graphics.h" />
     <ClInclude Include="GuidedMissile.h" />
     <ClInclude Include="HealEffect.h" />
     <ClInclude Include="HealItem.h">
@@ -291,6 +292,8 @@
     </ClInclude>
     <ClInclude Include="HelpScene.h" />
     <ClInclude Include="HitEffect.h" />
+    <ClInclude Include="IndexBuffer.h" />
+    <ClInclude Include="InputLayout.h" />
     <ClInclude Include="Picture.h" />
     <ClInclude Include="IncreaseAttackSpeedSkill.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -320,6 +323,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Pipeline.h" />
+    <ClInclude Include="PixelShader.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerCast.h" />
     <ClInclude Include="PlayerHealthCompo.h">
@@ -329,6 +334,7 @@
     <ClInclude Include="PoolableObject.h" />
     <ClInclude Include="PoolManager.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="RasterizerState.h" />
     <ClInclude Include="Razer.h" />
     <ClInclude Include="RazerPattern.h" />
     <ClInclude Include="Resource.h" />
@@ -341,11 +347,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="RoundAttackPattern.h" />
+    <ClInclude Include="SamplerState.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="Skill.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
@@ -383,7 +391,6 @@
     <ClInclude Include="Stage8.h" />
     <ClInclude Include="Stage9.h" />
     <ClInclude Include="StageLoader.h" />
-    <ClInclude Include="StageScene.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Struct.h" />
@@ -404,6 +411,9 @@
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="UIScene.h" />
+    <ClInclude Include="VertexBuffer.h" />
+    <ClInclude Include="VertexData.h" />
+    <ClInclude Include="VertexShader.h" />
     <ClInclude Include="XPManager.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
@@ -435,6 +445,7 @@
     <ClCompile Include="BackgroundF.cpp" />
     <ClCompile Include="BackgroundNull.cpp" />
     <ClCompile Include="BaseWindow.cpp" />
+    <ClCompile Include="BlendState.cpp" />
     <ClCompile Include="BombPattern.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BounceBulletPattern.cpp" />
@@ -459,6 +470,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="ConstantBuffer.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="DashSkill.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -509,10 +521,9 @@
     </ClCompile>
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="GDISelector.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="GeometryHelper.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="GuidedMissile.cpp" />
     <ClCompile Include="HealEffect.cpp" />
     <ClCompile Include="HealItem.cpp">
@@ -533,6 +544,8 @@
     </ClCompile>
     <ClCompile Include="HelpScene.cpp" />
     <ClCompile Include="HitEffect.cpp" />
+    <ClCompile Include="IndexBuffer.cpp" />
+    <ClCompile Include="InputLayout.cpp" />
     <ClCompile Include="Picture.cpp" />
     <ClCompile Include="IncreaseAttackSpeedSkill.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -564,15 +577,17 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Pipeline.cpp" />
+    <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerCast.cpp" />
     <ClCompile Include="PlayerHealthCompo.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="PoolableObject.cpp" />
     <ClCompile Include="PoolManager.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="RasterizerState.cpp" />
     <ClCompile Include="Razer.cpp" />
     <ClCompile Include="RazerPattern.cpp" />
     <ClCompile Include="ResourceBase.cpp">
@@ -584,11 +599,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="RoundAttackPattern.cpp" />
+    <ClCompile Include="SamplerState.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skill.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
@@ -626,7 +643,6 @@
     <ClCompile Include="Stage8.cpp" />
     <ClCompile Include="Stage9.cpp" />
     <ClCompile Include="StageLoader.cpp" />
-    <ClCompile Include="StageScene.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Text.cpp" />
@@ -644,6 +660,9 @@
     </ClCompile>
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="UIScene.cpp" />
+    <ClCompile Include="VertexBuffer.cpp" />
+    <ClCompile Include="VertexData.cpp" />
+    <ClCompile Include="VertexShader.cpp" />
     <ClCompile Include="XPManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>

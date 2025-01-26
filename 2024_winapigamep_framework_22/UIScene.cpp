@@ -38,8 +38,3 @@ void UIScene::Update()
 	if (GET_KEYDOWN(KEY_TYPE::P))
 		static_cast<SkillCanvas*>(skillCanvas)->ShowSlots();
 }
-
-void UIScene::Render(HDC _hdc)
-{
-	Scene::Render(_hdc);
-}

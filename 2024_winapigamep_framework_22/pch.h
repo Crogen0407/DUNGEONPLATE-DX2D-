@@ -81,3 +81,18 @@ using namespace Microsoft::WRL;
 
 using std::cout;
 using std::endl;
+
+#include "Graphics.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "InputLayout.h"
+#include "GeometryHelper.h"
+#include "VertexData.h"
+#include "VertexShader.h"
+#include "PixelShader.h"
+#include "ConstantBuffer.h"
+#include "Texture.h"
+#include "RasterizerState.h"
+#include "SamplerState.h"
+#include "BlendState.h"
+#include "Pipeline.h"

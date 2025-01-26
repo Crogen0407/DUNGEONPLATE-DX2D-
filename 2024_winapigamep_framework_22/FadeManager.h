@@ -7,7 +7,7 @@ class FadeManager
 public:
 	void Init();
 	void Update();
-	void Render(HDC hdc);
+	void Render(std::shared_ptr<Pipeline> pipeline);
 	void LoadScene(std::wstring sceneName);
 public:
 	void FadeIn();

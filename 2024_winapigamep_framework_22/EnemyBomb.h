@@ -8,7 +8,6 @@ public:
     ~EnemyBomb() override;
 public:
     void Update() override;
-    void Render(HDC _hdc) override;
     void Parry(XMVECTOR pos) override;
     void OnPush()override;
 public:

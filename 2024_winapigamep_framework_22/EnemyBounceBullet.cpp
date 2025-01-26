@@ -53,11 +53,6 @@ void EnemyBounceBullet::Update()
 		PUSH(_poolName, this);
 }
 
-void EnemyBounceBullet::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}
-
 void EnemyBounceBullet::OnPop()
 {
 	_hitEnemy = false;

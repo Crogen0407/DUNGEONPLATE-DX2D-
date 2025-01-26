@@ -7,7 +7,7 @@ public:
 	~Text() override;
 public:
 	void LateUpdate() override;
-	void Render(HDC _hdc) override;
+	void Render(std::shared_ptr<Pipeline> pipeline) override;
 public:
 	void LoadFont(std::wstring fontName, int fontWidth, int fontHegith);
 public:

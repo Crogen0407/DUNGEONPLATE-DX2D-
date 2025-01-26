@@ -65,8 +65,3 @@ void EnemyA::Update()
 		GetComponent<Movement>()->Dash(dashDir, 1000.f, 0.1f);
 	}
 }
-
-void EnemyA::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}

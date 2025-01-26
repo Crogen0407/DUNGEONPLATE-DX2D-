@@ -43,7 +43,7 @@ public:
     }
 public:
     virtual void LateUpdate() override;
-    virtual void Render(HDC hdc) override;
+    virtual void Render() override;
 protected:
     //HpBar
     HBRUSH fillBrush;

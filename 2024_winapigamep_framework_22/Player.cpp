@@ -130,11 +130,6 @@ void Player::Update()
 	_spriteRenderer->LookAt(attackDir);
 }
 
-void Player::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}
-
 void Player::Parry()
 {
 	if (isParrying == true) return;

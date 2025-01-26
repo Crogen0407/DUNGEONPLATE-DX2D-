@@ -7,7 +7,6 @@ public:
 	Projectile();
 	virtual ~Projectile();
 	void Update() abstract;
-	void Render(HDC _hdc) abstract;
 public:
 	virtual void SetDir(XMVECTOR dir)
 	{

@@ -48,6 +48,6 @@ void Movement::LateUpdate()
 	}
 }
 
-void Movement::Render(HDC _hdc)
+void Movement::Render()
 {
 }

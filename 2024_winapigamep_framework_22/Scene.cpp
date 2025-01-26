@@ -37,7 +37,7 @@ void Scene::LateUpdate()
 	}
 }
 
-void Scene::Render(HDC _hdc)
+void Scene::Render(std::shared_ptr<Pipeline> pipeline)
 {
 	for (UINT i = 0; i < (UINT)LAYER::END; ++i)
 	{
@@ -50,7 +50,7 @@ void Scene::Render(HDC _hdc)
 					j++;
 					continue;
 				}
-				m_vecObj[i][j++]->Render(_hdc);
+				m_vecObj[i][j++]->Render(pipeline);
 			}
 			else
 				m_vecObj[i].erase(m_vecObj[i].begin() + j);

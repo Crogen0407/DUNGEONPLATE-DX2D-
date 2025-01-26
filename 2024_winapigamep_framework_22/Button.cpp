@@ -2,7 +2,6 @@
 #include "Button.h"
 #include "Texture.h"
 #include "InputManager.h"
-#include "GDISelector.h"
 #include "ResourceManager.h"
 #include "Canvas.h"
 
@@ -90,9 +89,9 @@ void Button::LateUpdate()
 	}
 }
 
-void Button::Render(HDC _hdc)
+void Button::Render(std::shared_ptr<Pipeline> pipeline)
 {
-	Picture::Render(_hdc);
+	/*Picture::Render();
 
 	if(_owner == nullptr) return;
 	XMVECTOR pos = GetPos() + _owner->GetPos();
@@ -108,5 +107,5 @@ void Button::Render(HDC _hdc)
 		GDISelector brush(_hdc, BRUSH_TYPE::HOLLOW);
 		RECT_RENDER(_hdc, XMVectorGetX(pos), XMVectorGetY(pos),
 			XMVectorGetX(size), XMVectorGetY(size));
-	}
+	}*/
 }

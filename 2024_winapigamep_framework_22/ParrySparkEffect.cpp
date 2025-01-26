@@ -31,11 +31,6 @@ void ParrySparkEffect::Update()
 	}
 }
 
-void ParrySparkEffect::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}
-
 void ParrySparkEffect::OnPop()
 {
 	_animator->PlayAnimation(L"ParrySpark", false);

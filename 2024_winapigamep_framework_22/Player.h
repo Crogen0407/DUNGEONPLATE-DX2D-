@@ -13,8 +13,6 @@ public:
 	~Player() override;
 public:
 	void Update() override;
-	void Render(HDC _hdc) override;
-
 	void Parry();
 	void Parrying();
 public:

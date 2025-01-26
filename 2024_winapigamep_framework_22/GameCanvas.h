@@ -10,8 +10,6 @@ public:
     ~GameCanvas() override;
 public:
     void Update() override;
-    void LateUpdate() override;
-    void Render(HDC hdc) override;
 public:
     void ShowDashUI();
 private: //UI

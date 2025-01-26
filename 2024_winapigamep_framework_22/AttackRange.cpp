@@ -22,11 +22,6 @@ void AttackRange::Update()
 	SetPos(parent->GetPos());
 }
 
-void AttackRange::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}
-
 void AttackRange::SetDir(XMVECTOR dir)
 {
 	if (TIMESCALE <= 0.1f) return;

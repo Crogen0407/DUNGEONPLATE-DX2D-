@@ -109,8 +109,3 @@ void Boss::Update()
 		GetComponent<Movement>()->Dash(dashDir, 1000.f, 0.1f);
 	}
 }
-
-void Boss::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}

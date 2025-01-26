@@ -10,7 +10,7 @@ public:
 	virtual void Init() abstract;
 	virtual void Update();
 	virtual void LateUpdate();
-	virtual void Render(HDC _hdc);
+	virtual void Render(std::shared_ptr<Pipeline> pipeline);
 	virtual void Release();
 public:
 	void ChangeLayer(Object* _obj, LAYER from, LAYER to)

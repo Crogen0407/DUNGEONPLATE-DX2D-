@@ -10,9 +10,7 @@ public:
     FadeObject();
     ~FadeObject();
 public:
-    void Update() override; 
-    void LateUpdate() override;
-    void Render(HDC _hdc) override;
+    void Update() override;
 public:
     void FadeIn();
     void FadeOut();

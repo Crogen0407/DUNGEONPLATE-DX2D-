@@ -31,11 +31,6 @@ void HitEffect::Update()
 	}
 }
 
-void HitEffect::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}
-
 void HitEffect::OnPop()
 {
 	_animator->PlayAnimation(L"HitEffect", false);

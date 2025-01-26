@@ -10,10 +10,6 @@ class GameOverCanvas :
 public:
     GameOverCanvas();
     ~GameOverCanvas() override;
-public:
-    void Update() override;
-    void LateUpdate() override;
-    void Render(HDC hdc) override;
 private:
     Text* titleText;
     Text* mentText;

@@ -10,7 +10,7 @@ public:
 public:
 	void Update() override;
 	void LateUpdate() override;
-	void Render(HDC hdc) override;
+	void Render(std::shared_ptr<Pipeline> pipeline) override;
 public:
 	void CreateSlot(XMVECTOR slotPos);
 	void ShowSlots();

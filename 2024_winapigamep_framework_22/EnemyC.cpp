@@ -51,13 +51,3 @@ void EnemyC::Update()
 		GetComponent<AttackCompo>()->TryFireBullet(dir2,500);
 	}
 }
-
-void EnemyC::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}
-
-void EnemyC::OnDie()
-{
-	Enemy::OnDie();
-}

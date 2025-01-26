@@ -9,7 +9,6 @@ public:
     ~HealEffect() override;
 public:
     void Update() override;
-    void Render(HDC _hdc) override;
 public:
     void OnPop() override;
     void OnPush() override;

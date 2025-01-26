@@ -40,11 +40,6 @@ void FireBallEffect::Update()
 	AddPos(moveDir);
 }
 
-void FireBallEffect::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}
-
 void FireBallEffect::EnterCollision(Collider* _other)
 {
 	//Object::EnterCollision(_other);

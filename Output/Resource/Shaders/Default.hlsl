@@ -27,9 +27,6 @@ VS_OUTPUT VS(VS_INPUT input)
 Texture2D texture0 : register(t0);
 SamplerState sampler0 : register(s0);
 
-float3 maskColor = float3(1.f, 0, 1.f);
-float tolerance = 0.01f;
-
 float4 PS(VS_OUTPUT input) : SV_Target
 {
     float4 color = texture0.Sample(sampler0, input.uv);

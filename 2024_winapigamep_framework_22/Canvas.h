@@ -12,9 +12,8 @@ public:
     Canvas();
     virtual ~Canvas() override;
 public:
-    void Update() override;
     void LateUpdate() override;
-    void Render(HDC _hdc) override;
+    void Render(std::shared_ptr<Pipeline> pipeline) override;
 public:
     template<typename T>
     T* CreateUI() {

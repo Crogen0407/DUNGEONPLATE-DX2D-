@@ -42,16 +42,3 @@ PauseCanvas::PauseCanvas()
 PauseCanvas::~PauseCanvas()
 {
 }
-
-void PauseCanvas::Update()
-{
-}
-
-void PauseCanvas::LateUpdate()
-{
-}
-
-void PauseCanvas::Render(HDC hdc)
-{
-	Canvas::Render(hdc);
-}

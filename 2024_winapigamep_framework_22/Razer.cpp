@@ -45,10 +45,11 @@ void Razer::Update()
 	SetPos(vPos);
 }
 
-void Razer::Render(HDC _hdc)
+void Razer::Render(std::shared_ptr<Pipeline> pipeline)
 {
-	//ComponentRender(_hdc);
-	XMVECTOR vPos = GetPos();
+	Object::Render(pipeline);
+	//ComponentRender();
+	/*XMVECTOR vPos = GetPos();
 	XMVECTOR vSize = GetSize();
 
 	int width = _texture->GetWidth();
@@ -58,7 +59,7 @@ void Razer::Render(HDC _hdc)
 		, (int)(XMVectorGetY(vPos) - XMVectorGetY(vSize) / 2)
 		, XMVectorGetX(vSize), XMVectorGetY(vSize),
 		_texture->GetTexDC()
-		, 0, 0, width, height, RGB(255, 0, 255));
+		, 0, 0, width, height, RGB(255, 0, 255));*/
 }
 
 void Razer::EnterCollision(Collider* _other)

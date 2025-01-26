@@ -10,7 +10,7 @@ public:
 	~Animator();
 public:
 	virtual void LateUpdate() override;
-	virtual void Render(HDC _hdc) override;
+	virtual void Render() override;
 public:
 	// 애니메이션 생성함수
 	void CreateAnimation(const wstring& _strName, Texture* _pTex,

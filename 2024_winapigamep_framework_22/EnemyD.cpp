@@ -64,11 +64,6 @@ void EnemyD::Update()
 	GetComponent<Movement>()->Move(dir);
 }
 
-void EnemyD::Render(HDC _hdc)
-{
-	ComponentRender(_hdc);
-}
-
 void EnemyD::OnDie()
 {
 	Enemy::OnDie();

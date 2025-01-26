@@ -15,7 +15,7 @@ public:
     virtual ~Background() override;
 public:
     virtual void Update() abstract override;
-    void Render(HDC _hdc) override;
+    virtual void Render(std::shared_ptr<Pipeline> pipeline) override;
 protected:
     void SpawnEnemy(EnemyType enemyType, const XMVECTOR& pos);
     void SpawnEnemyByRandomPos(EnemyType enemyType);

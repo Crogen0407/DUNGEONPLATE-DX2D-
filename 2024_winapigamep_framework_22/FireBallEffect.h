@@ -20,7 +20,6 @@ public:
     void OnPush() override;
 
     void Update() override;
-    void Render(HDC _hdc) override;
     void EnterCollision(Collider* _other) override;
     
     void SetDir(const XMVECTOR& dir);

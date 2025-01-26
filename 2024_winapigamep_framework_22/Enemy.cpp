@@ -6,7 +6,6 @@
 #include "PoolManager.h"
 #include "HealthCompo.h"
 #include "XPManager.h"
-#include "StageScene.h"
 #include "StageLoader.h"
 #include "Movement.h"
 #include "ExplosionEffect.h"

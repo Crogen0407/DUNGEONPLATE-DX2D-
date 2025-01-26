@@ -24,10 +24,10 @@ void Animator::LateUpdate()
 		m_pCurrentAnimation->Update();
 }
 
-void Animator::Render(HDC _hdc)
+void Animator::Render()
 {
 	if (nullptr != m_pCurrentAnimation)
-		m_pCurrentAnimation->Render(_hdc);
+		m_pCurrentAnimation->Render();
 }
 
 void Animator::CreateAnimation(const wstring& _strName, Texture* _pTex, XMVECTOR _vLT, XMVECTOR _vSliceSize, XMVECTOR _vStep, UINT _framecount, float _fDuration, bool _isRotate)

@@ -22,8 +22,6 @@ public:
     void Init() override;
     void Release() override;
     void Update() override;
-    void Render(HDC hdc) override;
-    void SetEnemyCount();
     void OnNextStageEffect();
 private:
     GameCanvas* _gameCanvas;

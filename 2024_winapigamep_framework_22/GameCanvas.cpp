@@ -242,17 +242,6 @@ void GameCanvas::Update()
 	timeText->SetText(message_w.assign(finalStr.begin(), finalStr.end()).c_str());
 }
 
-void GameCanvas::LateUpdate()
-{
-	Canvas::LateUpdate();
-
-}
-
-void GameCanvas::Render(HDC hdc)
-{
-	Canvas::Render(hdc);
-}
-
 void GameCanvas::ShowDashUI()
 {
 	dashCoolTimeBar->SetActive(true);

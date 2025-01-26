@@ -10,10 +10,6 @@ class TitleCanvas :
 public:
     TitleCanvas();
     ~TitleCanvas() override;
-public:
-    void Update() override;
-    void LateUpdate() override;
-    void Render(HDC hdc) override;
 private:
     Button* _startButton;
     Button* _helpButton;
