@@ -20,22 +20,20 @@ AttackCompo::~AttackCompo()
 {
 }
 
-void AttackCompo::TryFireBullet(XMVECTOR dir, float speed)
+void AttackCompo::TryFireBullet(Vec2 dir, float speed)
 {
 	EnemyBullet* projectile 
 		= dynamic_cast<EnemyBullet*>(POP(L"EnemyBullet", GetOwner()->GetPos()));
-	projectile->SetOwner(GetOwner());
 	projectile->SetDir(dir);
 	projectile->SetSpeed(speed);
 }
 
-void AttackCompo::TryFireBounceBullet(XMVECTOR dir)
+void AttackCompo::TryFireBounceBullet(Vec2 dir)
 {
-	EnemyBounceBullet* projectile
+	EnemyBounceBullet* bounceBullet 
 		= dynamic_cast<EnemyBounceBullet*>(POP(L"EnemyBounceBullet", GetOwner()->GetPos()));
-	projectile->SetOwner(GetOwner());
-	projectile->SetDir(dir);
-	projectile->SetSpeed(700);
+	bounceBullet->SetDir(dir);
+	bounceBullet->SetSpeed(700);
 }
 
 void AttackCompo::TryFireRazer(float lifeTime)
@@ -47,18 +45,17 @@ void AttackCompo::TryFireRazer(float lifeTime)
 		->AddObject(razer, LAYER::PROJECTILE);
 }
 
-void AttackCompo::TryFireMissile(XMVECTOR dir)
-{
-	GuidedMissile* projectile
-		= dynamic_cast<GuidedMissile*>(POP(L"GuidedMissile", GetOwner()->GetPos()));
-	projectile->SetOwner(GetOwner());
-	projectile->SetDir(dir);
-}
-
 void AttackCompo::LateUpdate()
 {
 }
 
-void AttackCompo::Render()
+void AttackCompo::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
+}
+
+void AttackCompo::TryFireMissile(Vec2 dir)
+{
+	GuidedMissile* missile
+		= dynamic_cast<GuidedMissile*>(POP(L"GuidedMissile", GetOwner()->GetPos()));
+	missile->SetDir(dir);
 }

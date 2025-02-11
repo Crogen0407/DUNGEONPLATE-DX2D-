@@ -17,7 +17,7 @@
 #include "HealthCompo.h"
 #include "EventManager.h"
 
-EnemyA::EnemyA()
+EnemyA::EnemyA() : Enemy::Enemy()
 {
 	_giveExp = 3;
 	_target = FindObject(L"Player", LAYER::PLAYER);
@@ -25,7 +25,7 @@ EnemyA::EnemyA()
 
 	_prevShootTime = TIME;
 	Texture* texture = LOADTEXTURE(L"Enemy01", L"Texture\\Enemy01.bmp");
-	XMVECTOR texSize = { (int)texture->GetWidth() / 3, (int)texture->GetHeight() };
+	Vec2 texSize = Vec2((int)texture->GetWidth() / 3, (int)texture->GetHeight());
 
 	//AddComponent<HealthCompo>();
 	AddComponent<Animator>();
@@ -33,7 +33,7 @@ EnemyA::EnemyA()
 	AddComponent<Movement>();
 
 	GetComponent<Animator>()
-		->CreateAnimation(L"Enemy01Idle", texture, { 0,0 }, texSize, { XMVectorGetX(texSize), 0 }, 3, 0.2f);
+		->CreateAnimation(L"Enemy01Idle", texture, { 0.f, 0.f }, texSize, { texSize.x, 0 }, 3, 0.2f);
 	GetComponent<Animator>()->PlayAnimation(L"Enemy01Idle", true, 5);
 	GetComponent<HealthCompo>()->SetOffsetY(42);
 	GetComponent<HealthCompo>()->SetHp(20,20);
@@ -47,7 +47,7 @@ void EnemyA::Update()
 {
 	if (_prevShootTime + _shootDelay < TIME)
 	{
-		XMVECTOR dir = _target->GetPos();
+		Vec2 dir = _target->GetPos();
 		dir -= GetPos();
 
 		_prevShootTime = TIME;
@@ -58,9 +58,9 @@ void EnemyA::Update()
 	{
 		_prevDash = TIME;
 
-		XMVECTOR dashDir = { rand() % 2 == 0 ? 1 : -1, 0 };
-		if (XMVectorGetX(GetPos()) < 100) dashDir = { 1,0 };
-		else if (XMVectorGetX(GetPos()) > SCREEN_WIDTH - 100) dashDir = { -1,0 };
+		Vec2 dashDir = { rand() % 2 == 0 ? 1.f : -1.f, 0.f };
+		if (GetPos().x < 100) dashDir = { 1,0 };
+		else if (GetPos().x > SCREEN_WIDTH - 100) dashDir = { -1,0 };
 
 		GetComponent<Movement>()->Dash(dashDir, 1000.f, 0.1f);
 	}

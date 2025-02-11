@@ -7,6 +7,6 @@ public :
 	Agent();
 	virtual ~Agent() override;
 protected:
-	void Move(XMVECTOR dir);
+	void Move(Vec2 dir);
 };
 

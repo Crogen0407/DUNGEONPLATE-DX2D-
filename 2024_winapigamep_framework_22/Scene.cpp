@@ -37,7 +37,7 @@ void Scene::LateUpdate()
 	}
 }
 
-void Scene::Render(std::shared_ptr<Pipeline> pipeline)
+void Scene::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
 	for (UINT i = 0; i < (UINT)LAYER::END; ++i)
 	{
@@ -50,7 +50,7 @@ void Scene::Render(std::shared_ptr<Pipeline> pipeline)
 					j++;
 					continue;
 				}
-				m_vecObj[i][j++]->Render(pipeline);
+				m_vecObj[i][j++]->Render(renderTarget);
 			}
 			else
 				m_vecObj[i].erase(m_vecObj[i].begin() + j);

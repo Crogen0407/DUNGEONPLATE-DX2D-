@@ -3,7 +3,7 @@
 #include "Canvas.h"
 #include "Slider.h"
 #include "Button.h"
-#include "Picture.h"
+#include "Image.h"
 #include "Text.h"
 
 Canvas::Canvas()
@@ -14,18 +14,25 @@ Canvas::~Canvas()
 {
 }
 
+void Canvas::Update()
+{
+	
+}
+
 void Canvas::LateUpdate()
 {
+	if (enable == false) return;
 	for (auto& child : children)
 		child->LateUpdate();
 }
 
-void Canvas::Render(std::shared_ptr<Pipeline> pipeline)
+void Canvas::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
-	Object::Render(pipeline);
+	if (enable == false) return;
+
 	for (auto& child : children)
 	{
 		if(child->GetActive())
-			child->Render(pipeline);
+			child->Render(renderTarget);
 	}
 }

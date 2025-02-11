@@ -2,6 +2,7 @@
 #include "Button.h"
 #include "Texture.h"
 #include "InputManager.h"
+#include "GDISelector.h"
 #include "ResourceManager.h"
 #include "Canvas.h"
 
@@ -56,18 +57,18 @@ void Button::OnSelectExit()
 void Button::LateUpdate()
 {
 	if (_owner == nullptr) return;
-	XMVECTOR pos = GetPos() + _owner->GetPos();
+	Vec2 pos = GetPos() + _owner->GetPos();
 	if (_parent != nullptr)
 		pos += _parent->GetPos();
 
-	XMVECTOR size = GetSize();
+	Vec2 size = GetSize();
 
-	XMVECTOR mousePos = GET_MOUSEPOS;
+	Vec2 mousePos = GET_MOUSEPOS;
 
-	if (XMVectorGetY(pos) + (XMVectorGetY(size) / 2) > XMVectorGetY(mousePos) &&
-		XMVectorGetX(pos) + (XMVectorGetX(size) / 2) > XMVectorGetX(mousePos) &&
-		XMVectorGetY(pos) - (XMVectorGetY(size) / 2) < XMVectorGetY(mousePos) &&
-		XMVectorGetX(pos) - (XMVectorGetX(size) / 2) < XMVectorGetX(mousePos)) //마우스가 닿았는지
+	if (pos.y + (size.y / 2) > mousePos.y &&
+		pos.x + (size.x / 2) > mousePos.x &&
+		pos.y - (size.y / 2) < mousePos.y &&
+		pos.x - (size.x / 2) < mousePos.x) //마우스가 닿았는지
 	{
 		if (m_isSelected == false)
 		{
@@ -89,23 +90,14 @@ void Button::LateUpdate()
 	}
 }
 
-void Button::Render(std::shared_ptr<Pipeline> pipeline)
+void Button::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
-	/*Picture::Render();
+	Image::Render(renderTarget);
 
 	if(_owner == nullptr) return;
-	XMVECTOR pos = GetPos() + _owner->GetPos();
+	Vec2 pos = GetPos() + _owner->GetPos();
 	if (_parent != nullptr)
 		pos += _parent->GetPos();
 
-	XMVECTOR size = GetSize();
-
-	if (m_showDebug)
-	{
-		PEN_TYPE ePen = PEN_TYPE::RED;
-		GDISelector pen(_hdc, ePen);
-		GDISelector brush(_hdc, BRUSH_TYPE::HOLLOW);
-		RECT_RENDER(_hdc, XMVectorGetX(pos), XMVectorGetY(pos),
-			XMVectorGetX(size), XMVectorGetY(size));
-	}*/
+	Vec2 size = GetSize();
 }

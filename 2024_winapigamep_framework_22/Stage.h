@@ -21,15 +21,15 @@ public:
 	template<typename T>
 	T* AddBackground(int x, int y)
 	{
-		XMVECTOR size = StageLoader::mapSize;
+		Vec2 size = StageLoader::mapSize;
 
-		int xStart = (SCREEN_WIDTH	- XMVectorGetX(size) * 3) / 2 + (XMVectorGetX(size)/2);
-		int yStart = (SCREEN_HEIGHT - XMVectorGetY(size) * 3) / 2 + (XMVectorGetY(size)/2);
+		int xStart = (SCREEN_WIDTH	- size.x * 3) / 2 + (size.x/2);
+		int yStart = (SCREEN_HEIGHT - size.y * 3) / 2 + (size.y/2);
 
-		XMVECTOR pos = 
+		Vec2 pos = 
 		{ 
-			xStart + XMVectorGetX(size) * x,
-			yStart + XMVectorGetY(size) * y
+			xStart + size.x * x,
+			yStart + size.y * y
 		};
 		grid[x][y] = new T;
 		grid[x][y]->owner = this;
@@ -39,22 +39,22 @@ public:
 		return static_cast<T*>(grid[x][y]);
 	}
 	template<typename T>
-	T* AddBackground(int x, int y, bool isPlayerArea)
+	T* AddBackground(float x, float y, bool isPlayerArea)
 	{
 		AddBackground<T>(x, y);
-		_playerPos = { (float)x, (float)y };
-		grid[x][y]->isPlayerArea = isPlayerArea;
-		return static_cast<T*>(grid[x][y]);
+		_playerPos = { x, y };
+		grid[(int)x][(int)y]->isPlayerArea = isPlayerArea;
+		return static_cast<T*>(grid[(int)x][(int)y]);
 	}
 	int GetEnemyCount() const { return _enemyCount; }
 	const Background* GetPlayerArea() const
 	{
-		return grid[(int)XMVectorGetX(_playerPos)][(int)XMVectorGetY(_playerPos)];
+		return grid[(int)_playerPos.x][(int)_playerPos.y];
 	}
 public:
 	Background* grid[3][3];
 protected:
 	int _enemyCount;
-	XMVECTOR _playerPos;
+	Vec2 _playerPos;
 	bool m_isClear = false;
 };

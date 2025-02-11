@@ -30,20 +30,18 @@ void EnemyBomb::Update()
 {
 	AddPos(_dir * _speed * fDT);
 
-	float posX = GetPosX();
-	float posY = GetPosY();
+	Vec2 pos = GetPos();
 
-	if (posY < -posY / 2 || posX < -posX / 2
-		|| posY > SCREEN_HEIGHT + posY || posX > SCREEN_WIDTH)
+	if (pos.y < -pos.y / 2 || pos.x < -pos.x / 2
+		|| pos.y > SCREEN_HEIGHT + pos.y || pos.x > SCREEN_WIDTH)
 	{
 		PUSH(_poolName, this);
 	}
 }
 
-void EnemyBomb::Parry(XMVECTOR pos)
+void EnemyBomb::Parry()
 {
-	XMVECTOR dir = (pos * -1) + GetPos();
-	dir = XMVector2Normalize(dir);
+	Projectile::Parry();
 
 	_damage = 10.f;
 	SetSpeed(_speed * 6.f);

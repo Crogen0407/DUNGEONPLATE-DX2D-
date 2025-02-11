@@ -8,10 +8,10 @@ public:
     ~EnemyBomb() override;
 public:
     void Update() override;
-    void Parry(XMVECTOR pos) override;
+    void Parry() override;
     void OnPush()override;
 public:
-    void SetMoveDirection(XMVECTOR dir)
+    void SetMoveDirection(Vec2 dir)
     {
         _dir = dir;
     }

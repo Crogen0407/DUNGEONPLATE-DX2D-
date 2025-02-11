@@ -9,9 +9,10 @@ public:
 	GuidedMissile();
 	~GuidedMissile() override;
 	void Update() override;
-	void SetDir(XMVECTOR dir) override;
+	void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
+	void SetDir(Vec2 dir) override;
 
-	void Parry(XMVECTOR dir) override;
+	void Parry() override;
 	void EnterCollision(Collider* _other) override;
 
 	// Projectile을(를) 통해 상속됨

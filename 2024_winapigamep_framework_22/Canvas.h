@@ -8,12 +8,19 @@ class Canvas :
 {
 private:
     std::list<std::unique_ptr<UI>> children;
+
+public:
+    bool enable = true;
+
 public:
     Canvas();
     virtual ~Canvas() override;
+
 public:
+    void Update() override;
     void LateUpdate() override;
-    void Render(std::shared_ptr<Pipeline> pipeline) override;
+    void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
+
 public:
     template<typename T>
     T* CreateUI() {
@@ -27,7 +34,7 @@ public:
     }
     
     template<typename T>
-    T* CreateUI(const XMVECTOR& pos, const XMVECTOR& size) {
+    T* CreateUI(const Vec2& pos, const Vec2& size) {
         T* newInstance = CreateUI<T>();
         newInstance->SetPosAndSize(pos, size);
 

@@ -16,5 +16,5 @@ public:
 	EnemySpawner();
 	~EnemySpawner();
 
-	Enemy* SpawnEnemy(XMVECTOR pos, EnemyType enemyType);
+	Enemy* SpawnEnemy(Vec2 pos, EnemyType enemyType);
 };

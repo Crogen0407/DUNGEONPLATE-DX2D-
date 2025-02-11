@@ -61,10 +61,10 @@ void DashSkill::Update()
 		_curDashTime += fDT;
 		_prevPos = _player->GetPos();
 		float percent = _curDashTime / _dashTime;
-		XMVECTOR pos =
+		Vec2 pos =
 		{
-			(float)std::lerp(XMVectorGetX(_playerPos), XMVectorGetX(_playerPos) + XMVectorGetX(_dashDir) * _dashDistance, percent),
-			(float)std::lerp(XMVectorGetY(_playerPos), XMVectorGetY(_playerPos) + XMVectorGetY(_dashDir) * _dashDistance, percent)
+			(float)std::lerp(_playerPos.x, _playerPos.x + _dashDir.x * _dashDistance, percent),
+			(float)std::lerp(_playerPos.y, _playerPos.y + _dashDir.y * _dashDistance, percent)
 		};
 
 		/*if (pos.x < (size.x / 2) || pos.x > SCREEN_WIDTH - (size.x / 2) ||

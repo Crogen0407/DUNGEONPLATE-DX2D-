@@ -61,16 +61,17 @@ void FireBallSkill::Update()
 
 void FireBallSkill::Fire(Player* player, const EFireBallModeType& fireBallModeType, const int& count)
 {
-	XMVECTOR playerPos = player->GetPos();
+	Vec2 playerPos = player->GetPos();
 	for (int i = 0; i < count; i++)
 	{
-		XMVECTOR ranDir;
+		Vec2 ranDir;
 
 		srand(time(NULL)+i);
 		rand(); //이상하게 처음값이 계속 특정 숫자 이하로 안떨어짐...
-		ranDir = XMVectorSet((rand() / static_cast<float>(RAND_MAX)) * 2 - 1.f,
-			(rand() / static_cast<float>(RAND_MAX)) * 2 - 1.f, 0, 0);
-		ranDir = XMVector2Normalize(ranDir);
+		ranDir.y = (rand() / static_cast<float>(RAND_MAX)) * 2 - 1.f;
+		ranDir.x = (rand() / static_cast<float>(RAND_MAX)) * 2 - 1.f;
+
+		ranDir.Normalize();
 
 		FireBallEffect* fireBallEffect =
 			static_cast<FireBallEffect*>(POP(L"FireBallEffect", playerPos));

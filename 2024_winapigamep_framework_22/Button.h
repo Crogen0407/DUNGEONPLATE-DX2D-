@@ -1,9 +1,9 @@
 #pragma once
-#include "Picture.h"
+#include "Image.h"
 #include "Action.h"
 
 class Texture;
-class Button : public Picture
+class Button : public Image
 {
 public:
     Button();
@@ -19,9 +19,8 @@ public:
     Action<int> OnSelectExitEvent;
 public:
     void LateUpdate() override;
-    void Render(std::shared_ptr<Pipeline> pipeline) override;
+    void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
 public:
-    bool m_showDebug = false;
     bool onlyOneCountClick = false;
 private:
     bool _isClicked = false;

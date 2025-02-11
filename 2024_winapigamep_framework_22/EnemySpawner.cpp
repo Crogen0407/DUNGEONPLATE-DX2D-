@@ -18,7 +18,7 @@ EnemySpawner::~EnemySpawner()
 {
 }
 
-Enemy* EnemySpawner::SpawnEnemy(XMVECTOR pos, EnemyType enemyType)
+Enemy* EnemySpawner::SpawnEnemy(Vec2 pos, EnemyType enemyType)
 {
 	Enemy* enemy;
 

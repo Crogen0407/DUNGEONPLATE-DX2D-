@@ -35,13 +35,13 @@ void SlashEffect::Update()
 	}
 
 	AddPos(_dir * 500.f * fDT);
-	XMVECTOR size = { 75, 75 };
-	float effectSize = EaseOutCirc(_curTime / _lifeTime) * (XMVectorGetX(size) * 0.8f) + (XMVectorGetX(size) * 0.2f);
+	Vec2 size = { 75, 75 };
+	float effectSize = EaseOutCirc(_curTime / _lifeTime) * (size.x * 0.8f) + (size.x * 0.2f);
 	int a = 0;
 	SetSize({ effectSize, effectSize });
 }
 
-void SlashEffect::LookAt(const XMVECTOR& dir)
+void SlashEffect::LookAt(const Vec2& dir)
 {
 	_dir = dir;
 	_spriteRenderer->LookAt(dir);

@@ -72,15 +72,15 @@ Player::~Player()
 
 void Player::Update()
 {
-	XMVECTOR dir = {};
+	Vec2 dir;
 	if (GET_KEY(KEY_TYPE::W))
-		dir += {0, -1};
+		dir += Vec2(0, -1);
 	if (GET_KEY(KEY_TYPE::S))
-		dir += {0, 1};
+		dir += Vec2(0, 1);
 	if (GET_KEY(KEY_TYPE::A))
-		dir += {-1, 0};
+		dir += Vec2(-1, 0);
 	if (GET_KEY(KEY_TYPE::D))
-		dir += {1, 0};
+		dir += Vec2(1, 0);
 	if (GET_KEYDOWN(KEY_TYPE::LBUTTON))
 	{
 		if (TIMESCALE <= 0.01f) return;
@@ -93,10 +93,10 @@ void Player::Update()
 	{
 		playerCast->SetPos(GetPos());
 	
-		if (XMVectorGetX(XMVector2LengthSq(dir)) > 0.1f)
+		if (dir.LengthSquared() > 0.1f)
 			_lastDir = dir;
 		playerCast->SetMoveDir(_lastDir);
-		dir = XMVector2Normalize(dir);
+		dir.Normalize();
 	}
 	for (auto playerCast : _playerCasts)
 	{
@@ -119,8 +119,8 @@ void Player::Update()
 		SetPos(lastPos);
 	}
 
-	attackDir = ((XMVECTOR)GET_MOUSEPOS - GetPos());
-	attackDir = XMVector2Normalize(attackDir);
+	attackDir = (GET_MOUSEPOS - GetPos());
+	attackDir.Normalize();
 	attackRange->SetDir(attackDir);
 	Parrying();
 
@@ -141,7 +141,7 @@ void Player::Parry()
 	AttackEvent.Invoke(NULL);
 
 	{
-		XMVECTOR effectPos = GetPos();
+		Vec2 effectPos = GetPos();
 		effectPos += attackDir * 50.f;
 		SlashEffect* slashEffect = static_cast<SlashEffect*>(POP(L"SlashEffect", effectPos));
 		slashEffect->LookAt(attackDir);
@@ -164,29 +164,26 @@ void Player::Parrying()
 		return;
 	}
 
-	XMVECTOR vPos = GetPos();
+	Vec2 vPos = GetPos();
 	bool parried = false;
 	vector<Object*> projectiles = FindObjects(LAYER::PROJECTILE);
 
 	for (Object* projObj : projectiles)
 	{
-		XMVECTOR dist = projObj->GetPos();
+		Projectile* proj = dynamic_cast<Projectile*>(projObj);
+
+		Vec2 dist = projObj->GetPos();
 		dist -= vPos;
-		if (XMVectorGetX(XMVector2Length(dist)) > parryDist) continue;
+		if (dist.Length() > parryDist) continue;
 
-		attackDir = XMVector2Normalize(attackDir);
-		dist = XMVector2Normalize(dist);
+		attackDir.Normalize();
+		dist.Normalize();
 
-		//반격 로직(총알이 어떻게 튕기는지)
-		float rotation = acos(XMVectorGetX(XMVector2Dot(attackDir, dist))) * Rad2Deg;
+		float rotation = acos(attackDir.Dot(dist)) * Rad2Deg;
 		if (abs(rotation) < 45)
 		{
-			Projectile* proj = dynamic_cast<Projectile*>(projObj);
 			if (proj == nullptr) continue;
-			XMVECTOR dir = proj->GetOwner()->GetPos();
-			dir -= proj->GetPos();
-			dir = XMVector2Normalize(dir);
-			proj->Parry(dir);
+			proj->Parry();
 			parried = true;
 		}
 	}

@@ -9,6 +9,7 @@ public:
 
 	// Enemy을(를) 통해 상속됨
 	void Update() override;
+	void OnDie() override;
 private:
 	float _shootDelay = 1;
 	float _prevShootTime = 0;

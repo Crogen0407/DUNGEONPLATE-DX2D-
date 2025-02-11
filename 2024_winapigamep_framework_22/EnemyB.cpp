@@ -15,13 +15,13 @@
 #include "Texture.h"
 #include "EventManager.h"
 
-EnemyB::EnemyB()
+EnemyB::EnemyB() : Enemy::Enemy()
 {
 	_giveExp = 4;
 	SetSize({ 50,50 });
 	_target = FindObject(L"Player", LAYER::PLAYER);
 	texture = LOADTEXTURE(L"Enemy02", L"Texture\\Enemy02.bmp");
-	XMVECTOR texSize = { (int)texture->GetWidth() / 7, (int)texture->GetHeight() };
+	Vec2 texSize = Vec2((int)texture->GetWidth() / 7, (int)texture->GetHeight());
 
 	prevShootTime = TIME;
 	AddComponent<Animator>();
@@ -29,7 +29,7 @@ EnemyB::EnemyB()
 	//AddComponent<HealthCompo>();
 
 	GetComponent<Animator>()
-		->CreateAnimation(L"Enemy02Idle", texture, { 0,0 }, texSize, { XMVectorGetX(texSize), 0 }, 7, 0.2f, false);
+		->CreateAnimation(L"Enemy02Idle", texture, { 0.f, 0.f }, texSize, { (float)texSize.x, 0.f }, 7, 0.2f, false);
 	GetComponent<Animator>()->PlayAnimation(L"Enemy02Idle", true, 100);
 
 	GetComponent<HealthCompo>()->SetOffsetY(40);
@@ -52,7 +52,7 @@ void EnemyB::Update()
 
 		for (int i = 0; i < 4; i++)
 		{
-			XMVECTOR attackDir = { sin(_rotation * Deg2Rad), cos(_rotation * Deg2Rad) };
+			Vec2 attackDir = { sin(_rotation * Deg2Rad), cos(_rotation * Deg2Rad) };
 			GetComponent<AttackCompo>()->TryFireBullet(attackDir, 500);
 
 			_rotation += 90;

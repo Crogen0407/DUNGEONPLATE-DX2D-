@@ -8,7 +8,7 @@ class SceneManager
 public:
 	void Init(); // start
 	void Update();
-	void Render(std::shared_ptr<Pipeline> pipeline);
+	void Render(ComPtr<ID2D1BitmapRenderTarget> renderTarget);
 public:
 	void RegisterScene(const wstring& _sceneName, 
 					std::shared_ptr<Scene> _scene);

@@ -19,11 +19,11 @@ public:
         return _isCast;
     }
 public:
-    void SetMoveDir(XMVECTOR dir);
+    void SetMoveDir(Vec2 dir);
     Collider* other;
 private:
     float _startAngle = 0.f;
-    XMVECTOR _dir;
+    Vec2 _dir;
     float _distance = 10.f;
     Collider* _collider;
     bool _isCast = true;

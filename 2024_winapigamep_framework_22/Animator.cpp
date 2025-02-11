@@ -24,13 +24,13 @@ void Animator::LateUpdate()
 		m_pCurrentAnimation->Update();
 }
 
-void Animator::Render()
+void Animator::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
 	if (nullptr != m_pCurrentAnimation)
-		m_pCurrentAnimation->Render();
+		m_pCurrentAnimation->Render(renderTarget);
 }
 
-void Animator::CreateAnimation(const wstring& _strName, Texture* _pTex, XMVECTOR _vLT, XMVECTOR _vSliceSize, XMVECTOR _vStep, UINT _framecount, float _fDuration, bool _isRotate)
+void Animator::CreateAnimation(const wstring& _strName, Texture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _framecount, float _fDuration, bool _isRotate)
 {
 	Animation* pAnim = FindAnimation(_strName);
 	if (pAnim != nullptr)

@@ -39,9 +39,9 @@ GuidedMissile::~GuidedMissile()
 
 void GuidedMissile::Update()
 {
-	XMVECTOR vPos = GetPos();
-	XMVECTOR targetDir = (vPos * -1) + target->GetPos();
-	targetDir = XMVector2Normalize(targetDir);
+	Vec2 vPos = GetPos();
+	Vec2 targetDir = (vPos * -1) + target->GetPos();
+	targetDir.Normalize();
 
 	_curTime += fDT;
 
@@ -51,11 +51,11 @@ void GuidedMissile::Update()
 	}
 	else
 	{
-		XMVECTOR cross = XMVectorScale(XMVector3Cross(targetDir, _dir), 1);
-		float crossScalar = XMVectorGetZ(cross);
-		if (crossScalar > 0)
+		float dot = targetDir.Dot(_dir);
+
+		if (dot < 1 && dot > 0)
 			_rotation -= 3.f * fDT;
-		else if (crossScalar < 0)
+		else if (dot < 0 && dot > -1)
 			_rotation += 3.f * fDT;
 
 		_dir = { cos(_rotation), sin(_rotation) };
@@ -65,14 +65,15 @@ void GuidedMissile::Update()
 	{
 		_prevAttack = TIME;
 
-		XMVECTOR dir1 = { cos(_rotation + 150 * Deg2Rad), sin(_rotation + 150 * Deg2Rad) };
-		XMVECTOR dir2 = { cos(_rotation - 150 * Deg2Rad), sin(_rotation - 150 * Deg2Rad) };
+		Vec2 dir1 = { cos(_rotation + 150 * Deg2Rad), sin(_rotation + 150 * Deg2Rad) };
+		Vec2 dir2 = { cos(_rotation - 150 * Deg2Rad), sin(_rotation - 150 * Deg2Rad) };
 
 		GetComponent<AttackCompo>()->TryFireBullet(dir1, 200);
 		GetComponent<AttackCompo>()->TryFireBullet(dir2, 200);
 	}
-	
-	vPos = XMVectorAdd(_dir * _speed * fDT, vPos);
+
+	vPos.x += _dir.x * _speed * fDT;
+	vPos.y += _dir.y * _speed * fDT;
 	SetPos(vPos);
 
 	if (_lifetime < _curTime)
@@ -83,22 +84,25 @@ void GuidedMissile::Update()
 
 		PUSH(_poolName, this);
 	}
+}
+
+void GuidedMissile::Render(ComPtr<ID2D1RenderTarget> renderTarget)
+{
+	Object::Render(renderTarget);
 	GetComponent<SpriteRenderer>()->LookAt(_dir);
 }
 
-void GuidedMissile::SetDir(XMVECTOR dir)
+void GuidedMissile::SetDir(Vec2 dir)
 {
 	_dir = dir;
-	_dir = XMVector2Normalize(_dir);
-	_rotation = atan2f(XMVectorGetY(dir), XMVectorGetX(dir)) * Rad2Deg;
+	_dir.Normalize();
+	_rotation = atan2f(_dir.y, _dir.x) * Rad2Deg;
 }
 
-void GuidedMissile::Parry(XMVECTOR dir)
+void GuidedMissile::Parry()
 {
-	XMVECTOR parriedDir = (_dir * -1) + GetPos();
-	parriedDir = XMVector2Normalize(parriedDir);
+	Projectile::Parry();
 
-	SetDir(parriedDir);
 	_hitEnemy = true;
 	_isParry = true;
 }

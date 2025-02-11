@@ -13,7 +13,7 @@ public:
     void OnPop() override;
     void OnPush() override;
 public:
-    void LookAt(const XMVECTOR& dir);
+    void LookAt(const Vec2& dir);
 public:
     float EaseOutCirc(float x)
     {
@@ -25,6 +25,6 @@ public:
     }
 private:
     SpriteRenderer* _spriteRenderer;
-    XMVECTOR _dir;
+    Vec2 _dir;
 };
 

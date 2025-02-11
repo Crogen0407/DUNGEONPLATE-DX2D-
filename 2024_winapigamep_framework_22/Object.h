@@ -6,26 +6,16 @@ class Object
 public:
 	Object();
 	virtual ~Object();
-
 public:
-	virtual void Update();
+	virtual void Update() abstract;
 	virtual void LateUpdate();
-	virtual void Render(std::shared_ptr<Pipeline> pipeline);
-
-private:
-	void ComponentRender(std::shared_ptr<Pipeline> pipeline);
-
+	virtual void Render(ComPtr<ID2D1RenderTarget> renderTarget);
 public:
-	void SetPos(XMVECTOR _vPos) { m_vPos = _vPos; }
-	void AddPos(XMVECTOR pos) { m_vPos += pos; }
-	void SetSize(XMVECTOR _vSize) { m_vSize = _vSize; }
-	const XMVECTOR& GetPos() const { return m_vPos; }
-	const float& GetPosX() const { return XMVectorGetX(m_vPos); }
-	const float& GetPosY() const { return XMVectorGetY(m_vPos); }
-	const XMVECTOR& GetSize() const { return m_vSize; }
-	const float& GetSizeX() const { return XMVectorGetX(m_vSize); }
-	const float& GetSizeY() const { return XMVectorGetY(m_vSize); }
-
+	void SetPos(Vec2 _vPos) { m_vPos = _vPos; }
+	void AddPos(Vec2 pos) { m_vPos += pos; }
+	void SetSize(Vec2 _vSize) { m_vSize = _vSize; }
+	const Vec2& GetPos() const { return m_vPos; }
+	const Vec2& GetSize() const { return m_vSize; }
 public:
 	virtual void EnterCollision(Collider* _other);
 	virtual void StayCollision(Collider* _other);
@@ -38,19 +28,19 @@ public:
 	const wstring& GetName() const { return m_name; }
 	static Object* FindObject(std::wstring name, LAYER layer);
 	static vector<Object*> FindObjects(LAYER layer);
-
 protected:
 	bool m_IsDie;
 	bool activeSelf = true;
 	wstring m_name;
-
 public:
 	template<typename T>
-	void AddComponent()
+	T* AddComponent()
 	{
 		T* com = new T;
 		com->SetOwner(this);
 		m_vecComponents.push_back(com);
+
+		return com;
 	}
 	template<typename T>
 	T* GetComponent()
@@ -67,32 +57,8 @@ public:
 private:
 	//POINT m_ptPos;
 	//POINT m_ptSize;
-	XMVECTOR m_vPos;
-	XMVECTOR m_vSize = { 100, 100 };
+	Vec2 m_vPos;
+	Vec2 m_vSize = { 100, 100 };
 	vector<Component*> m_vecComponents;
-
-private:
-	ComPtr<ID3D11Device> _device;
-
-	std::shared_ptr<Geometry<VertexTextureData>> _geometry;
-
-	std::shared_ptr<VertexBuffer> _vertexBuffer;
-	std::shared_ptr<IndexBuffer> _indexBuffer;
-	std::shared_ptr<InputLayout> _inputLayout;
-
-	std::shared_ptr<VertexShader> _vertexShader;
-	std::shared_ptr<RasterizerState> _rasterizerState = nullptr;
-	std::shared_ptr<PixelShader> _pixelShader;
-	std::shared_ptr<Texture> _texture;
-	std::shared_ptr<SamplerState> _samplerState = nullptr;
-	std::shared_ptr<BlendState> _blendState = nullptr;
-
-private:
-	TransformData _transformData;
-	std::shared_ptr<ConstantBuffer<TransformData>> _constantBuffer;
-
-	XMFLOAT3 _localPosition = { 1.f, 1.f, 1.f };
-	XMFLOAT3 _localRotation = { 1.f, 1.f, 1.f };
-	XMFLOAT3 _localScale = { 1.f, 1.f, 1.f };
 };
 

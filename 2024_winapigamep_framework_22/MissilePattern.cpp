@@ -23,12 +23,13 @@ void MissilePattern::Update()
 		_prevShootTime = TIME;
 		_currentIdx++;
 
-		XMVECTOR dir[2]{ {-1,-1}, {1,-1} };
-		XMVECTOR pos = _owner->GetPos();
+		Vec2 dir[2]{ {-1,-1}, {1,-1} };
+		Vec2 pos = _owner->GetPos();
 		pos += {0, -50};
 
-		XMVECTOR curDir = dir[_currentIdx % 2];
-		curDir = XMVector2Normalize(curDir);
+		Vec2 curDir = dir[_currentIdx % 2];
+		curDir.Normalize();
+
 		GuidedMissile* missile = new GuidedMissile();
 		missile->SetPos(pos);
 		missile->SetDir(curDir);

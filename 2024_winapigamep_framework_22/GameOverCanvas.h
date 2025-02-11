@@ -1,7 +1,7 @@
 #pragma once
 #include "Canvas.h"
 class Slider;
-class Picture;
+class Image;
 class Button;
 class Text;
 class GameOverCanvas :
@@ -10,6 +10,8 @@ class GameOverCanvas :
 public:
     GameOverCanvas();
     ~GameOverCanvas() override;
+public:
+    void Update() override;
 private:
     Text* titleText;
     Text* mentText;

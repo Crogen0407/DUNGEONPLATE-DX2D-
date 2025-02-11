@@ -18,14 +18,14 @@ void Slider::LateUpdate()
 {
 }
 
-void Slider::Render(std::shared_ptr<Pipeline> pipeline)
+void Slider::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
 	//if (_owner == nullptr) return;
-	//XMVECTOR pos = GetPos() + _owner->GetPos();
+	//Vec2 pos = GetPos() + _owner->GetPos();
 	//if (_parent != nullptr)
 	//	pos += _parent->GetPos();
 
-	//XMVECTOR size = GetSize();
+	//Vec2 size = GetSize();
 	//backBrush = ::CreateSolidBrush(backColor);
 
 	//HPEN myPen = CreatePen(PS_NULL, 0, RGB(255, 255, 255));
@@ -34,10 +34,10 @@ void Slider::Render(std::shared_ptr<Pipeline> pipeline)
 
 	////BackTexture
 	//::Rectangle(_hdc,
-	//	(int)XMVectorGetX(pos) - XMVectorGetX(size) / 2,
-	//	(int)XMVectorGetY(pos) - XMVectorGetY(size) / 2,
-	//	(int)XMVectorGetX(pos) + XMVectorGetX(size) / 2,
-	//	(int)XMVectorGetY(pos) + XMVectorGetY(size) / 2);
+	//	(int)(pos.x) - size.x / 2,
+	//	(int)(pos.y) - size.y / 2,
+	//	(int)(pos.x) + size.x / 2,
+	//	(int)(pos.y) + size.y / 2);
 
 	//::SelectObject(_hdc, oldBackBrush);
 	//::DeleteObject(backBrush);
@@ -47,30 +47,32 @@ void Slider::Render(std::shared_ptr<Pipeline> pipeline)
 
 	//if (isVertical)
 	//{
-	//	valueVec = XMVectorSet(1, value * 2 - 1, 0, 0);
+	//	valueVec.x = 1;
+	//	valueVec.y = value * 2 - 1;
 	//}
 	//else
 	//{
-	//	valueVec = XMVectorSet(value * 2 - 1, 1, 0, 0);
+	//	valueVec.x = value * 2 - 1;
+	//	valueVec.y = 1;
 	//}
 
 	//if (flip)
 	//{
 	//	//FillTexture
 	//	::Rectangle(_hdc,
-	//		(int)XMVectorGetX(pos) - (XMVectorGetX(size) * XMVectorGetX(valueVec)) / 2 + offsetX / 2,
-	//		(int)XMVectorGetY(pos) - (XMVectorGetY(size) * XMVectorGetY(valueVec)) / 2 + offsetY / 2,
-	//		(int)XMVectorGetX(pos) + (XMVectorGetX(size) / 2) - offsetX / 2,
-	//		(int)XMVectorGetY(pos) + (XMVectorGetY(size) / 2) - offsetY / 2);
+	//		(int)pos.x - (size.x * valueVec.x) / 2 + offsetX / 2,
+	//		(int)pos.y - (size.y * valueVec.y) / 2 + offsetY / 2,
+	//		(int)pos.x + (size.x / 2) - offsetX / 2,
+	//		(int)pos.y + (size.y / 2) - offsetY / 2);
 	//}
 	//else
 	//{
 	//	//FillTexture
 	//	::Rectangle(_hdc,
-	//		(int)XMVectorGetX(pos) - (XMVectorGetX(size) / 2) + offsetX / 2,
-	//		(int)XMVectorGetY(pos) - (XMVectorGetY(size) / 2) + offsetY / 2,
-	//		(int)XMVectorGetX(pos) + (XMVectorGetX(size) * XMVectorGetX(valueVec)) / 2 - offsetX / 2,
-	//		(int)XMVectorGetY(pos) + (XMVectorGetY(size) * XMVectorGetY(valueVec)) / 2 - offsetY / 2);
+	//		(int)pos.x - (size.x / 2) + offsetX / 2,
+	//		(int)pos.y - (size.y / 2) + offsetY / 2,
+	//		(int)pos.x + (size.x * valueVec.x) / 2 - offsetX / 2,
+	//		(int)pos.y + (size.y * valueVec.y) / 2 - offsetY / 2);
 	//}
 
 	//::SelectObject(_hdc, oldPen);

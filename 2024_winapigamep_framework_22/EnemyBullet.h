@@ -7,6 +7,7 @@ public:
 	EnemyBullet();
 	~EnemyBullet() override;
 	void Update() override;
+	void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
 
 	// Projectile을(를) 통해 상속됨
 	void OnPop() override;

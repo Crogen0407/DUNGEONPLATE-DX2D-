@@ -50,6 +50,9 @@
     <Filter Include="Engine\03. Object\Projectile">
       <UniqueIdentifier>{04aad006-beaa-4b1f-9945-5d650f525a40}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Crogen\DOTween">
+      <UniqueIdentifier>{5677b2bd-b674-41aa-98d0-d2c91cd0bd93}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Engine\08.UI">
       <UniqueIdentifier>{080fcf78-1167-493d-af0d-63e9d0c60fa0}</UniqueIdentifier>
     </Filter>
@@ -70,33 +73,6 @@
     </Filter>
     <Filter Include="Engine\03. Object\Enemy\EnemyPattern">
       <UniqueIdentifier>{4b5354fb-a495-4ae1-a108-a0f025b94b41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\09.Skill\Item">
-      <UniqueIdentifier>{28f3e670-71d7-4e8b-ae1f-2e501ac19a28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\98.Shader">
-      <UniqueIdentifier>{9a6ee3bb-26ef-4b9e-b80c-2e2b63125f06}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\01. Core\Pipline">
-      <UniqueIdentifier>{f5d7c982-7b54-401c-aeb8-cf6c40cb8582}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\01. Core\Pipline\02.VS">
-      <UniqueIdentifier>{e93ba92f-ffa0-414f-a0cb-c751a102d24c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\01. Core\Pipline\03.RS">
-      <UniqueIdentifier>{1f40c8ca-b792-4882-b2ac-ec1e81429466}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\01. Core\Pipline\04.PS">
-      <UniqueIdentifier>{7a0b3873-5d90-4f9f-8ac2-c450ac92a865}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\01. Core\Pipline\05.OM">
-      <UniqueIdentifier>{4a2af657-8b69-40e4-861c-74130218e16b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\01. Core\Pipline\01.IA">
-      <UniqueIdentifier>{c0ec0ac0-438a-48f5-ad9e-205efc930576}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\01. Core\Pipline\00.Geometry">
-      <UniqueIdentifier>{96402f40-fabe-4848-b229-66869cba8a87}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +112,9 @@
     <ClInclude Include="Object.h">
       <Filter>Engine\03. Object</Filter>
     </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>Engine\99. Header</Filter>
+    </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Engine\04. Scene</Filter>
     </ClInclude>
@@ -147,6 +126,9 @@
     </ClInclude>
     <ClInclude Include="GameScene.h">
       <Filter>Engine\04. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Engine\03. Object</Filter>
     </ClInclude>
     <ClInclude Include="ResourceBase.h">
       <Filter>Engine\05. Resource</Filter>
@@ -162,6 +144,9 @@
     </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Engine\06. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GDISelector.h">
+      <Filter>Engine\07. Module</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>Engine\02. Manager</Filter>
@@ -187,10 +172,13 @@
     <ClInclude Include="Projectile.h">
       <Filter>Engine\03. Object\Projectile</Filter>
     </ClInclude>
+    <ClInclude Include="StageScene.h">
+      <Filter>Engine\04. Scene</Filter>
+    </ClInclude>
     <ClInclude Include="UI.h">
       <Filter>Engine\03. Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Picture.h">
+    <ClInclude Include="Image.h">
       <Filter>Engine\03. Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="Slider.h">
@@ -445,77 +433,27 @@
     <ClInclude Include="SkillSlot.h">
       <Filter>Engine\08.UI</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="PauseCanvas.h">
       <Filter>Engine\08.UI</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Engine\09.Skill\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="HealItem.h">
-      <Filter>Engine\09.Skill\Item</Filter>
+    <ClInclude Include="HealEffect.h">
+      <Filter>Engine\03. Object\Effect</Filter>
     </ClInclude>
     <ClInclude Include="BombPattern.h">
       <Filter>Engine\03. Object\Enemy\EnemyPattern</Filter>
     </ClInclude>
     <ClInclude Include="EnemyBomb.h">
-      <Filter>Engine\03. Object\Projectile</Filter>
+      <Filter>Engine\03. Object\Enemy\EnemyPattern</Filter>
     </ClInclude>
-    <ClInclude Include="HealEffect.h">
-      <Filter>Engine\03. Object\Effect</Filter>
+    <ClInclude Include="HealItem.h">
+      <Filter>Engine\09.Skill</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Engine\02. Manager</Filter>
+    <ClInclude Include="Item.h">
+      <Filter>Engine\09.Skill</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Engine\03. Object\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Struct.h">
-      <Filter>Engine\99. Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics.h">
-      <Filter>Engine\01. Core\Pipline</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexBuffer.h">
-      <Filter>Engine\01. Core\Pipline\01.IA</Filter>
-    </ClInclude>
-    <ClInclude Include="IndexBuffer.h">
-      <Filter>Engine\01. Core\Pipline\01.IA</Filter>
-    </ClInclude>
-    <ClInclude Include="InputLayout.h">
-      <Filter>Engine\01. Core\Pipline\01.IA</Filter>
-    </ClInclude>
-    <ClInclude Include="Geometry.h">
-      <Filter>Engine\01. Core\Pipline\00.Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="GeometryHelper.h">
-      <Filter>Engine\01. Core\Pipline\00.Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexData.h">
-      <Filter>Engine\01. Core\Pipline\00.Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Engine\01. Core\Pipline\02.VS</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexShader.h">
-      <Filter>Engine\01. Core\Pipline\02.VS</Filter>
-    </ClInclude>
-    <ClInclude Include="PixelShader.h">
-      <Filter>Engine\01. Core\Pipline\04.PS</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstantBuffer.h">
-      <Filter>Engine\01. Core\Pipline\04.PS</Filter>
-    </ClInclude>
-    <ClInclude Include="RasterizerState.h">
-      <Filter>Engine\01. Core\Pipline\03.RS</Filter>
-    </ClInclude>
-    <ClInclude Include="SamplerState.h">
-      <Filter>Engine\01. Core\Pipline\04.PS</Filter>
-    </ClInclude>
-    <ClInclude Include="BlendState.h">
-      <Filter>Engine\01. Core\Pipline\05.OM</Filter>
-    </ClInclude>
-    <ClInclude Include="Pipeline.h">
-      <Filter>Engine\01. Core\Pipline</Filter>
+    <ClInclude Include="SimpleMath.h">
+      <Filter>Engine\07. Module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -568,6 +506,9 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>Engine\04. Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Engine\03. Object</Filter>
+    </ClCompile>
     <ClCompile Include="ResourceBase.cpp">
       <Filter>Engine\05. Resource</Filter>
     </ClCompile>
@@ -582,6 +523,9 @@
     </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Engine\06. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="GDISelector.cpp">
+      <Filter>Engine\07. Module</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Engine\02. Manager</Filter>
@@ -604,7 +548,10 @@
     <ClCompile Include="Projectile.cpp">
       <Filter>Engine\03. Object\Projectile</Filter>
     </ClCompile>
-    <ClCompile Include="Picture.cpp">
+    <ClCompile Include="StageScene.cpp">
+      <Filter>Engine\04. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
       <Filter>Engine\03. Object\UI</Filter>
     </ClCompile>
     <ClCompile Include="Slider.cpp">
@@ -672,6 +619,9 @@
     </ClCompile>
     <ClCompile Include="FireBallEffect.cpp">
       <Filter>Engine\03. Object\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="PoolableObject.cpp">
+      <Filter>Engine\Crogen\ObjectPooling</Filter>
     </ClCompile>
     <ClCompile Include="FadeManager.cpp">
       <Filter>Engine\02. Manager</Filter>
@@ -853,79 +803,32 @@
     <ClCompile Include="SkillSlot.cpp">
       <Filter>Engine\08.UI</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="PauseCanvas.cpp">
       <Filter>Engine\08.UI</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Engine\09.Skill\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="HealItem.cpp">
-      <Filter>Engine\09.Skill\Item</Filter>
+    <ClCompile Include="HealEffect.cpp">
+      <Filter>Engine\03. Object\Effect</Filter>
     </ClCompile>
     <ClCompile Include="BombPattern.cpp">
       <Filter>Engine\03. Object\Enemy\EnemyPattern</Filter>
     </ClCompile>
     <ClCompile Include="EnemyBomb.cpp">
-      <Filter>Engine\03. Object\Projectile</Filter>
+      <Filter>Engine\03. Object\Enemy\EnemyPattern</Filter>
     </ClCompile>
-    <ClCompile Include="HealEffect.cpp">
-      <Filter>Engine\03. Object\Effect</Filter>
+    <ClCompile Include="HealItem.cpp">
+      <Filter>Engine\09.Skill</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Engine\02. Manager</Filter>
+    <ClCompile Include="Item.cpp">
+      <Filter>Engine\09.Skill</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Engine\03. Object\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics.cpp">
-      <Filter>Engine\01. Core\Pipline</Filter>
-    </ClCompile>
-    <ClCompile Include="VertexBuffer.cpp">
-      <Filter>Engine\01. Core\Pipline\01.IA</Filter>
-    </ClCompile>
-    <ClCompile Include="IndexBuffer.cpp">
-      <Filter>Engine\01. Core\Pipline\01.IA</Filter>
-    </ClCompile>
-    <ClCompile Include="InputLayout.cpp">
-      <Filter>Engine\01. Core\Pipline\01.IA</Filter>
-    </ClCompile>
-    <ClCompile Include="Geometry.cpp">
-      <Filter>Engine\01. Core\Pipline\00.Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="GeometryHelper.cpp">
-      <Filter>Engine\01. Core\Pipline\00.Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="VertexData.cpp">
-      <Filter>Engine\01. Core\Pipline\00.Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Engine\01. Core\Pipline\02.VS</Filter>
-    </ClCompile>
-    <ClCompile Include="VertexShader.cpp">
-      <Filter>Engine\01. Core\Pipline\02.VS</Filter>
-    </ClCompile>
-    <ClCompile Include="PixelShader.cpp">
-      <Filter>Engine\01. Core\Pipline\04.PS</Filter>
-    </ClCompile>
-    <ClCompile Include="ConstantBuffer.cpp">
-      <Filter>Engine\01. Core\Pipline\04.PS</Filter>
-    </ClCompile>
-    <ClCompile Include="RasterizerState.cpp">
-      <Filter>Engine\01. Core\Pipline\03.RS</Filter>
-    </ClCompile>
-    <ClCompile Include="SamplerState.cpp">
-      <Filter>Engine\01. Core\Pipline\04.PS</Filter>
-    </ClCompile>
-    <ClCompile Include="BlendState.cpp">
-      <Filter>Engine\01. Core\Pipline\05.OM</Filter>
-    </ClCompile>
-    <ClCompile Include="Pipeline.cpp">
-      <Filter>Engine\01. Core\Pipline</Filter>
+    <ClCompile Include="SimpleMath.cpp">
+      <Filter>Engine\07. Module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="..\Output\Resource\Shaders\Default.hlsl">
-      <Filter>Engine\98.Shader</Filter>
-    </FxCompile>
+    <None Include="SimpleMath.inl">
+      <Filter>Engine\07. Module</Filter>
+    </None>
   </ItemGroup>
 </Project>

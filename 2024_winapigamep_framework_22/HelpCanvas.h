@@ -1,6 +1,6 @@
 #pragma once
 #include "Canvas.h"
-class Picture;
+class Image;
 class Text;
 class Button;
 class Texture;
@@ -29,8 +29,7 @@ public:
 public:
     void Update() override;
 private:
-    
-    Picture*      _slidePicture;
+    Image*      _slideImage;
     Text*       _descriptionText;
 
     bool _isFading = false;

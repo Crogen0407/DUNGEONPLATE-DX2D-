@@ -8,21 +8,21 @@ public:
 public:
     // Component을(를) 통해 상속됨
     void LateUpdate() override;
-    void Render() override;
+    void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
 public:
     void EnterCollision(Collider* _other); // 충돌진입
     void StayCollision(Collider* _other); // 충돌중
     void ExitCollision(Collider* _other); // 충돌해제
     const UINT& GetID() const { return m_ID; }
 public:
-    void SetSize(XMVECTOR _vSize) { m_vSize = _vSize; }
-    const XMVECTOR& GetSize() const { return m_vSize; }
-    void SetOffSetPos(XMVECTOR _vOffsetPos)
+    void SetSize(Vec2 _vSize) { m_vSize = _vSize; }
+    const Vec2& GetSize() const { return m_vSize; }
+    void SetOffSetPos(Vec2 _vOffsetPos)
     {
         m_vOffsetPos = _vOffsetPos;
     }
-    const XMVECTOR& GetOffSetPos() const { return m_vOffsetPos; }
-    const XMVECTOR& GetLatedUpatedPos() const
+    const Vec2& GetOffSetPos() const { return m_vOffsetPos; }
+    const Vec2& GetLatedUpatedPos() const
     {
         return m_vLatePos;
     }
@@ -31,11 +31,11 @@ private:
     UINT m_ID; // 충돌체 고유 ID값
     static UINT m_sNextID;
 
-    XMVECTOR m_vSize; // 콜라이더 크기
+    Vec2 m_vSize; // 콜라이더 크기
     // Object로부터 상대적인 위치
-    XMVECTOR m_vOffsetPos;
+    Vec2 m_vOffsetPos;
     // LateUpdate에서 매 프레임마다 오브젝트로부터 계산되는 위치
-    XMVECTOR m_vLatePos;
+    Vec2 m_vLatePos;
 
 };
 

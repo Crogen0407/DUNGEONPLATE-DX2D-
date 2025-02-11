@@ -33,26 +33,29 @@ Background::~Background()
 	delete(_enemySpawner);
 }
 
-void Background::Render(std::shared_ptr<Pipeline> pipeline)
+void Background::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
-	Object::Render(pipeline);
+	Object::Render(renderTarget);
 
+	// 이거 지우면 안됨
+	////////////////////////////////////////////////////////////////////////////////////////
 	//if (_maxEnemyCount- _currentEnemyCount <= 0) return;
-	//XMVECTOR pos = GetPos();
-	//XMVECTOR size = GetSize();
+	//Vec2 pos = GetPos();
+	//Vec2 size = GetSize();
 	//::SetTextColor(_hdc, RGB(155, 188, 15));
 	//HFONT oldFont = static_cast<HFONT>(SelectObject(_hdc, _font));
 
 	//::SetBkMode(_hdc, 1);
-	//RECT rect = { XMVectorGetX(pos) - XMVectorGetX(size) / 2, XMVectorGetY(pos) - XMVectorGetY(size) / 2, XMVectorGetX(pos) + XMVectorGetX(size) / 2, XMVectorGetY(pos) + XMVectorGetY(size) / 2 };  // 출력할 영역
+	//RECT rect = { pos.x - size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y + size.y / 2 };  // 출력할 영역
 
 	//::DrawText(_hdc, std::to_wstring(_maxEnemyCount- _currentEnemyCount).c_str(), -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
 	//SetTextColor(_hdc, RGB(0, 0, 0));
 	//SelectObject(_hdc, oldFont);
+	////////////////////////////////////////////////////////////////////////////////////////
 }
 
-void Background::SpawnEnemy(EnemyType enemyType, const XMVECTOR& pos)
+void Background::SpawnEnemy(EnemyType enemyType, const Vec2& pos)
 {
 	if (_currentSpawnedEnemyCount >= _maxEnemyCount)
 	{
@@ -76,16 +79,16 @@ void Background::SpawnEnemyByRandomPos(EnemyType enemyType)
 	srand(time(NULL));
 	int offset = 50;
 
-	XMVECTOR size = { GetSizeX() - offset , GetSizeY() - offset };
+	Vec2 size = Vec2(( GetSize().x - offset ), (GetSize().y - offset));
 
-	int ranX = 
-		(rand() % (int)XMVectorGetX(size))
-		- (int)XMVectorGetX(size) / 2
-		+ GetPosX();
-	int ranY = (rand() % (int)XMVectorGetY(size))
-		- (int)XMVectorGetY(size) / 2
-		+ GetPosY();
-	XMVECTOR pos = { ranX, ranY };
+	float ranX = 
+		(rand() % (int)size.x)
+		- (int)size.x / 2
+		+ GetPos().x;
+	float ranY = (rand() % (int)size.y)
+		- (int)size.y / 2
+		+ GetPos().y;
+	Vec2 pos = { ranX, ranY };
 
 	SpawnEnemy(enemyType, pos);
 }

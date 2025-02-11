@@ -18,51 +18,57 @@ Animation::~Animation()
 
 void Animation::Update()
 {
-//	if (m_pAnimator->GetRepeatcnt() <= 0)
-//	{
-//		m_CurFrame = m_vecAnimFrame.size() - 1;
-//		return;
-//	}
-//	m_fAccTime += fDT;
-//	// 누적한 시간이 내가 이 프레임에 진행한 시간을 넘어섰냐?
-//	if (m_fAccTime >= m_vecAnimFrame[m_CurFrame].fDuration)
-//	{
-//		// 일단 모은 시간에서 현재 진행한 시간을 빼고
-//		m_fAccTime -= m_vecAnimFrame[m_CurFrame].fDuration;
-//		++m_CurFrame; // 다음프레임으로 옮기기
-//		if (m_CurFrame >= m_vecAnimFrame.size()) // 한바퀴 돌게하고싶어
-//		{
-//			if (!m_pAnimator->GetRepeat())
-//				m_pAnimator->SetRepeatcnt();
-//			m_CurFrame = 0;
-//			m_fAccTime = 0.f;
-//		}
-//
-//	}
+	if (m_pAnimator->GetRepeatcnt() <= 0)
+	{
+		m_CurFrame = m_vecAnimFrame.size() - 1;
+		return;
+	}
+	m_fAccTime += fDT;
+	// 누적한 시간이 내가 이 프레임에 진행한 시간을 넘어섰냐?
+	if (m_fAccTime >= m_vecAnimFrame[m_CurFrame].fDuration)
+	{
+		// 일단 모은 시간에서 현재 진행한 시간을 빼고
+		m_fAccTime -= m_vecAnimFrame[m_CurFrame].fDuration;
+		++m_CurFrame; // 다음프레임으로 옮기기
+		if (m_CurFrame >= m_vecAnimFrame.size()) // 한바퀴 돌게하고싶어
+		{
+			if (!m_pAnimator->GetRepeat())
+				m_pAnimator->SetRepeatcnt();
+			m_CurFrame = 0;
+			m_fAccTime = 0.f;
+		}
+
+	}
 }
 
-void Animation::Render()
+void Animation::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
-//	Object* pObj = m_pAnimator->GetOwner();
-//	XMVECTOR vPos = pObj->GetPos();
-//	XMVECTOR vSize = pObj->GetSize();
-//
-//	// 오프셋 적용
-//	vPos = vPos + m_vecAnimFrame[m_CurFrame].vOffset;
-//	TransparentBlt(_hdc
-//		, (int)(pObj->GetPosX() - pObj->GetSizeX() / 2.f)
-//		, (int)(pObj->GetPosY() - pObj->GetSizeY() / 2.f)
-//		, pObj->GetSizeX() //(int)(m_vecAnimFrame[m_CurFrame].vSlice.x)
-//		, pObj->GetSizeY() //(int)(m_vecAnimFrame[m_CurFrame].vSlice.y)
-//		, m_pTex->GetTexDC()
-//		, (int)(XMVectorGetX(m_vecAnimFrame[m_CurFrame].vLT))
-//		, (int)(XMVectorGetY(m_vecAnimFrame[m_CurFrame].vLT))
-//		, (int)(XMVectorGetX(m_vecAnimFrame[m_CurFrame].vSlice))
-//		, (int)(XMVectorGetY(m_vecAnimFrame[m_CurFrame].vSlice))
-//		, RGB(255, 0, 255));
+	Object* pObj = m_pAnimator->GetOwner();
+	Vec2 vPos = pObj->GetPos();
+	Vec2 vSize = pObj->GetSize();
+
+	// 오프셋 적용
+	vPos = vPos + m_vecAnimFrame[m_CurFrame].vOffset;
+
+	renderTarget->DrawBitmap(m_pTex->GetBitmap().Get(),
+		D2D1::RectF(vPos.x - vSize.x / 2.f, vPos.y - vSize.y / 2.f,
+			vPos.x + vSize.x / 2.f, vPos.y + vSize.y / 2.f));
+	///////////////////////////////////////////////////////////////////
+	//TransparentBlt(_hdc
+	//	, (int)(vPos.x - vSize.x / 2.f)
+	//	, (int)(vPos.y - vSize.y / 2.f)
+	//	, vSize.x//(int)(m_vecAnimFrame[m_CurFrame].vSlice.x)
+	//	, vSize.y//(int)(m_vecAnimFrame[m_CurFrame].vSlice.y)
+	//	, m_pTex->GetTexDC()
+	//	, (int)(m_vecAnimFrame[m_CurFrame].vLT.x)
+	//	, (int)(m_vecAnimFrame[m_CurFrame].vLT.y)
+	//	, (int)(m_vecAnimFrame[m_CurFrame].vSlice.x)
+	//	, (int)(m_vecAnimFrame[m_CurFrame].vSlice.y)
+	//	, RGB(255, 0, 255));
+	///////////////////////////////////////////////////////////////////
 }
 
-void Animation::Create(Texture* _pTex, XMVECTOR _vLT, XMVECTOR _vSliceSize, XMVECTOR _vStep, int _framecount, float _fDuration, bool _isRotate)
+void Animation::Create(Texture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, int _framecount, float _fDuration, bool _isRotate)
 {
 	m_pTex = _pTex;
 	m_IsRotate = _isRotate;

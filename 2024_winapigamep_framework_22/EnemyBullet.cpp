@@ -26,18 +26,24 @@ EnemyBullet::~EnemyBullet()
 
 void EnemyBullet::Update()
 {
-	XMVECTOR vPos = GetPos();
-	XMVECTOR vSize = GetSize();
-	_dir = XMVector2Normalize(_dir);
+	Vec2 vPos = GetPos();
+	Vec2 vSize = GetSize();
+	_dir.Normalize();
 
-	vPos += {XMVectorGetX(_dir)* _speed* fDT, XMVectorGetY(_dir)* _speed* fDT};
+	vPos.x += _dir.x * _speed * fDT;
+	vPos.y += _dir.y * _speed * fDT;
 
 	SetPos(vPos);
-	if (XMVectorGetY(vPos) < -XMVectorGetY(vSize) / 2 || XMVectorGetX(vPos) < -XMVectorGetX(vSize) / 2
-		|| XMVectorGetY(vPos) > SCREEN_HEIGHT + XMVectorGetY(vSize) || XMVectorGetX(vPos) > SCREEN_WIDTH)
+	if (vPos.y < -vSize.y / 2 || vPos.x < -vSize.x / 2
+		|| vPos.y > SCREEN_HEIGHT + vSize.y || vPos.x > SCREEN_WIDTH)
 	{
 		PUSH(_poolName, this);
 	}
+}
+
+void EnemyBullet::Render(ComPtr<ID2D1RenderTarget> renderTarget)
+{
+	Object::Render(renderTarget);
 }
 
 void EnemyBullet::OnPop()

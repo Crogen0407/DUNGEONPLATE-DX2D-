@@ -35,11 +35,11 @@ void SceneManager::Update()
 	m_pCurrentScene->LateUpdate();
 }
 
-void SceneManager::Render(std::shared_ptr<Pipeline> pipeline)
+void SceneManager::Render(ComPtr<ID2D1BitmapRenderTarget> renderTarget)
 {
 	if (m_pCurrentScene == nullptr)
 		return;
-	m_pCurrentScene->Render(pipeline);
+	m_pCurrentScene->Render(renderTarget);
 }
 
 void SceneManager::RegisterScene(const wstring& _sceneName, std::shared_ptr<Scene> _scene)

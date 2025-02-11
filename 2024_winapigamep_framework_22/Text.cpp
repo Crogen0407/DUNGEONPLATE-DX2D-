@@ -18,22 +18,19 @@ void Text::LateUpdate()
 {
 }
 
-void Text::Render(std::shared_ptr<Pipeline> pipeline)
+void Text::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
 	//if (_owner == nullptr) return;
-	//XMVECTOR pos = GetPos() + _owner->GetPos();
+	//Vec2 pos = GetPos() + _owner->GetPos();
 	//if (_parent != nullptr)
 	//	pos += _parent->GetPos();
 
-	//XMVECTOR size = GetSize();
+	//Vec2 size = GetSize();
 	//::SetTextColor(_hdc, color);
 	//HFONT oldFont = static_cast<HFONT>(SelectObject(_hdc, pfont));
 
 	//::SetBkMode(_hdc, 1);
-	//RECT rect = { XMVectorGetX(pos) - XMVectorGetX(size) / 2, 
-	//	XMVectorGetY(pos) - XMVectorGetY(size) / 2, 
-	//	XMVectorGetX(pos) + XMVectorGetX(size) / 2, 
-	//	XMVectorGetY(pos) + XMVectorGetY(size) / 2 };  // 출력할 영역
+	//RECT rect = { pos.x - size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y + size.y / 2 };  // 출력할 영역
 
 	//::DrawText(_hdc, text.c_str(), -1, &rect, iPitchAndFamily);
 

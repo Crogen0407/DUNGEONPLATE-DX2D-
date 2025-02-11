@@ -1,6 +1,10 @@
 #pragma once
+// GameManager
+//SAFE_DELETE()
+// µø¿˚ ΩÃ±€≈Ê(¥Ÿ¿Ã≥™πÕ ΩÃ±€≈Ê)
+// ¡§¿˚ ΩÃ±€≈Ê
 #include "Define.h"
-class Object;
+//#include "Object.h"
 class Core
 {
 	DECLARE_SINGLE(Core);
@@ -11,14 +15,32 @@ public:
 private:
 	void MainUpdate();
 	void MainRender();
+	void CreateGDI();
 public:
 	const HWND& GetHwnd() const { return _hWnd; }
-	std::shared_ptr<Graphics> GetGraphics() { return _graphics; }
+	// ¿Ã∏ß πŸ≤Ÿ±‚
+	const HDC& GetMainDC() const { return m_hDC; }
+	const HBRUSH& GetBrush(BRUSH_TYPE _eType)
+	{
+		return m_colorBrushs[(UINT)_eType];
+	}
+	const HPEN& GetPen(PEN_TYPE _eType)
+	{
+		return m_colorPens[(UINT)_eType];
+	}
+	const ComPtr<ID2D1HwndRenderTarget> GetRenderTarget() { return _renderTarget; }
 private:
+	HBRUSH m_colorBrushs[(UINT)BRUSH_TYPE::END] = {};
+	HPEN m_colorPens[(UINT)PEN_TYPE::END] = {};
+
 	HWND _hWnd;
-	std::shared_ptr<Graphics> _graphics;
-	std::shared_ptr<Pipeline> _pipeline;
-	
-private:
-	std::shared_ptr<Object> _object;
+	HDC  m_hDC; // Main DC
+	HDC  m_hBackDC; // πÈπˆ∆€ DC
+	HBITMAP m_hBackBit; // πÈπˆ∆€¿« bitmap
+
+	ComPtr<ID2D1Factory> _factory = nullptr;
+
+	ComPtr<ID2D1HwndRenderTarget> _renderTarget = nullptr;
+	ID2D1SolidColorBrush* _brush = nullptr;
+	ComPtr<ID2D1BitmapRenderTarget> _backBuffer = nullptr;
 };

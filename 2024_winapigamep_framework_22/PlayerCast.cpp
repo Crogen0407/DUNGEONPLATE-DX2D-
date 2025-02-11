@@ -46,13 +46,11 @@ void PlayerCast::ExitCollision(Collider* _other)
 	_isCast = false;
 }
 
-void PlayerCast::SetMoveDir(XMVECTOR dir)
+void PlayerCast::SetMoveDir(Vec2 dir)
 {
 	_dir = dir;
 	float angle = (_startAngle * Deg2Rad);
-
-	_dir = XMVectorSet(XMVectorGetX(_dir) * cosf(angle) - XMVectorGetY(_dir) * sinf(angle),
-		XMVectorGetX(_dir) * sinf(angle) + XMVectorGetY(_dir) * cosf(angle), 0, 0);
-
+	_dir.x = _dir.x * cosf(angle) - _dir.y * sinf(angle);
+	_dir.y = _dir.x * sinf(angle) + _dir.y * cosf(angle);
 	_collider->SetOffSetPos(_dir * _distance);
 }

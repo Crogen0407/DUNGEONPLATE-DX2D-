@@ -11,36 +11,36 @@ Movement::~Movement()
 {
 }
 
-void Movement::Move(XMVECTOR dir)
+void Movement::Move(Vec2 dir)
 {
 	if (isDashing) return;
 
-	XMVECTOR position = GetOwner()->GetPos();
+	Vec2 position = GetOwner()->GetPos();
 	position += dir;
 
 	GetOwner()->SetPos(position);
 }
 
-void Movement::Dash(XMVECTOR dir, float speed, float time)
+void Movement::Dash(Vec2 dir, float speed, float time)
 {
 	dashStartTime = TIME;
 	dashSpeed = speed;
 	isDashing = true;
 	dashTime = time;
 	dashDir = dir;
-	dashDir = XMVector2Normalize(dashDir);
+	dashDir.Normalize();
 }
 
 void Movement::LateUpdate()
 {
 	if (isDashing)
 	{
-		XMVECTOR position = GetOwner()->GetPos();
-		XMVECTOR size = GetOwner()->GetSize();
+		Vec2 position = GetOwner()->GetPos();
+		Vec2 size = GetOwner()->GetSize();
 		position += dashDir * dashSpeed * fDT;
 
-		if (dashStartTime + dashTime < TIME || XMVectorGetX(position) < (XMVectorGetX(size) / 2) || XMVectorGetX(position)  > SCREEN_WIDTH - (XMVectorGetX(size) / 2)
-			|| XMVectorGetY(position) < (XMVectorGetY(size) / 2) || XMVectorGetY(position)  > SCREEN_WIDTH - (XMVectorGetY(size) / 2))
+		if (dashStartTime + dashTime < TIME || position.x < (size.x / 2) || position.x  > SCREEN_WIDTH - (size.x / 2)
+			|| position.y < (size.y / 2) || position.y  > SCREEN_WIDTH - (size.y / 2))
 			isDashing = false;
 
 
@@ -48,6 +48,6 @@ void Movement::LateUpdate()
 	}
 }
 
-void Movement::Render()
+void Movement::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
 }

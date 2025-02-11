@@ -1,7 +1,7 @@
 #pragma once
 #include "Canvas.h"
 class Slider;
-class Picture;
+class Image;
 class Text;
 class GameCanvas : public Canvas
 {
@@ -19,7 +19,7 @@ private: //UI
     Slider* dashCoolTimeBar;
     Slider* xpBar;
 
-    Picture* bottomDashCoolTimeContainer;
+    Image* bottomDashCoolTimeContainer;
 
     Text* floorText;
     Text* timeText;

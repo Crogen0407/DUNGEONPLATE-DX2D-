@@ -9,6 +9,8 @@ public:
 public:
 	void Init() override;
 	void Release() override;
+	void Update() override;
+	void LateUpdate() override;
 private:
 	Canvas* _canvas;
 };

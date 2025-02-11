@@ -9,14 +9,11 @@ public:
 	~SkillCanvas() override;
 public:
 	void Update() override;
-	void LateUpdate() override;
-	void Render(std::shared_ptr<Pipeline> pipeline) override;
 public:
-	void CreateSlot(XMVECTOR slotPos);
+	void CreateSlot(Vec2 slotPos);
 	void ShowSlots();
 	void CloseSlot();
 private:
 	vector<SkillSlot*> _skillSlots;
 private:
-	bool showSkillSlots = false;
 };

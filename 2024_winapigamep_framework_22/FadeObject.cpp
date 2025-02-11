@@ -21,6 +21,7 @@ FadeObject::FadeObject()
 	_spriteRenderer->SetTexture(_blackTexture);
 	_spriteRenderer->enable = false;
 	_spriteRenderer->isRotatable = false;
+	_spriteRenderer->SetAngle(20.f, true);
 	_animator->CreateAnimation(
 		L"FadeIn",
 		_fadeInTexture,
@@ -48,6 +49,11 @@ void FadeObject::Update()
 	SetSize({ max, max });
 	SetPos({SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2});
 
+}
+
+void FadeObject::LateUpdate()
+{
+	Object::LateUpdate();
 }
 
 void FadeObject::FadeIn()

@@ -11,7 +11,7 @@
 #include "Texture.h"
 #include "RoundAttackPattern.h"
 
-EnemyE::EnemyE()
+EnemyE::EnemyE() : Enemy::Enemy()
 {
 	_giveExp = 3;
 	SetSize({ 50,50 });
@@ -39,16 +39,16 @@ void EnemyE::Update()
 {
 	_rotation += 360 * fDT;
 	_rotation = (int)_rotation % 360;
-	XMVECTOR rot = { cos(_rotation * Deg2Rad), sin(_rotation * Deg2Rad) };
+	Vec2 rot = { cos(_rotation * Deg2Rad), sin(_rotation * Deg2Rad) };
 	GetComponent<SpriteRenderer>()->LookAt(rot);
 
 	if (_prevAttack + _attackDelay < TIME)
 	{
 		_prevAttack = TIME;
 
-		XMVECTOR dir = _target->GetPos();
+		Vec2 dir = _target->GetPos();
 		dir -= GetPos();
-		dir = XMVector2Normalize(dir);
+		dir.Normalize();
 
 		GetComponent<Movement>()->Dash(dir, 500, 0.15f);
 		_roundAttack->Init(15, 30, 12);

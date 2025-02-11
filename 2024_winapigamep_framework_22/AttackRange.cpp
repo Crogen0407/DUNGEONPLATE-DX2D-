@@ -22,7 +22,7 @@ void AttackRange::Update()
 	SetPos(parent->GetPos());
 }
 
-void AttackRange::SetDir(XMVECTOR dir)
+void AttackRange::SetDir(Vec2 dir)
 {
 	if (TIMESCALE <= 0.1f) return;
 	_spriteRenderer->LookAt(dir);

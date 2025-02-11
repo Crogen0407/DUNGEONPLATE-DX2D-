@@ -25,8 +25,8 @@ void RoundAttackPattern::UseSkill()
 
 	for (int i = 0; i < _attackCnt; i++)
 	{
-		XMVECTOR pos = _owner->GetPos();
-		XMVECTOR dir = { cos(_currentRotation * Deg2Rad) , sin(_currentRotation * Deg2Rad) };
+		Vec2 pos = _owner->GetPos();
+		Vec2 dir = { cos(_currentRotation * Deg2Rad) , sin(_currentRotation * Deg2Rad) };
 
 		_owner->GetComponent<AttackCompo>()->TryFireBullet(dir,500);
 

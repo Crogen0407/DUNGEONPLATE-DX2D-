@@ -10,11 +10,11 @@ public:
 
 	// Projectile을(를) 통해 상속됨
 	void Update() override;
-	void Render(std::shared_ptr<Pipeline> pipeline) override;
+	void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
 	void SetOwner(Object* owner)
 	{
 		_owner = owner;
-		_targetSize = SCREEN_HEIGHT - owner->GetPosY() + 50;
+		_targetSize = SCREEN_HEIGHT - owner->GetPos().y + 50;
 	}
 
 	void EnterCollision(Collider* _other) override;

@@ -10,7 +10,8 @@ public:
     FadeObject();
     ~FadeObject();
 public:
-    void Update() override;
+    void Update() override; 
+    void LateUpdate() override;
 public:
     void FadeIn();
     void FadeOut();

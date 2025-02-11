@@ -1,9 +1,6 @@
 #pragma once
 #include "Component.h"
 #include "ResourceManager.h"
-#include "Geometry.h"
-
-class VertexTextureData;
 
 class Texture;
 class SpriteRenderer :
@@ -16,32 +13,23 @@ private:
     Texture* texture;
 public:
     void LateUpdate() override;
-    void Render() override;
+    void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
 public:
     void SetTexture(std::wstring name, std::wstring path);
     void SetTexture(Texture* texture);
     void SetAngle(float angle, bool isDeg = false)
     {
-        if (isDeg)
-        {
-            this->angle = angle * Deg2Rad;
-            angle -= PI / 2;
-        }
-        else
-            this->angle = angle;
+        if (isDeg) this->angle = angle;
+        else this->angle = angle * Rad2Deg;
     }
-    void LookAt(const XMVECTOR& dir)
+    void LookAt(const Vec2& dir)
     {
-        this->angle = std::atan2(XMVectorGetY(dir), XMVectorGetX(dir));
+        this->angle = std::atan2(dir.y, dir.x);
     }
-
 public:
     bool enable = true;
     bool isRotatable = true;
-
 private:
-    float angle;
-
-
+    float angle = 0.f;
 };
 

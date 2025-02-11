@@ -37,9 +37,9 @@ void FadeManager::Update()
 	_fadeObject->LateUpdate();
 }
 
-void FadeManager::Render(std::shared_ptr<Pipeline> pipeline)
+void FadeManager::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
-	_fadeObject->Render(pipeline);
+	_fadeObject->Render(renderTarget);
 }
 
 void FadeManager::LoadScene(std::wstring sceneName)

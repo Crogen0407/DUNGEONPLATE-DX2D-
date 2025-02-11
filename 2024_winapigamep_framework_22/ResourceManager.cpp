@@ -4,6 +4,13 @@
 #include "Texture.h"
 void ResourceManager::Init()
 {
+	CoCreateInstance(
+		CLSID_WICImagingFactory,
+		nullptr,
+		CLSCTX_INPROC_SERVER,
+		IID_PPV_ARGS(_wicFactory.GetAddressOf())
+	);
+
 	::GetCurrentDirectory(255, m_resourcePath);
 	wcscat_s(m_resourcePath, 255, L"\\Resource\\");
 	//::SetWindowText(GET_SINGLE(Core)->GetHwnd(), m_resourcePath);
@@ -26,11 +33,46 @@ Texture* ResourceManager::TextureLoad(const wstring& _key, const wstring& _path)
 	wstring texpath = m_resourcePath;
 	texpath += _path;
 	
-	// 2. Texture 만들어야죠?
-	/*pTex = new Texture;
-	pTex->Load(texpath);*/
-	/*pTex->SetKey(_key);
-	pTex->SetPath(texpath);*/
+	ComPtr<IWICBitmapDecoder> decoder;
+	_wicFactory->CreateDecoderFromFilename(
+		(L"Resource\\" + _path).c_str(),  // 불러올 이미지 파일 경로
+		nullptr,
+		GENERIC_READ,
+		WICDecodeMetadataCacheOnLoad,
+		&decoder
+	);
+
+	// 첫 번째 프레임 가져오기
+	ComPtr<IWICBitmapFrameDecode> frame;
+	decoder->GetFrame(0, &frame);
+
+	// 포맷 변환기 생성
+	ComPtr<IWICFormatConverter> converter;
+	_wicFactory->CreateFormatConverter(&converter);
+
+	// 픽셀 포맷을 Direct2D 호환 포맷으로 변환
+	converter->Initialize(
+		frame.Get(),
+		GUID_WICPixelFormat32bppPBGRA,
+		WICBitmapDitherTypeNone,
+		nullptr,
+		0.0,
+		WICBitmapPaletteTypeCustom
+	);
+
+	// Direct2D 비트맵으로 변환
+	ComPtr<ID2D1Bitmap> d2dBitmap;
+
+	GET_SINGLE(Core)->GetRenderTarget()->CreateBitmapFromWicBitmap(
+		converter.Get(),
+		nullptr,
+		&d2dBitmap
+	);
+
+	pTex = new Texture;
+	pTex->SetBitmap(d2dBitmap);
+	pTex->SetKey(_key);
+	pTex->SetPath(texpath);
 	m_mapTextures.insert({_key,pTex});
 	return pTex;
 }

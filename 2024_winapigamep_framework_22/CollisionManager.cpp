@@ -129,13 +129,13 @@ void CollisionManager::CollisionLayerUpdate(LAYER _left, LAYER _right)
 
 bool CollisionManager::IsCollision(Collider* _left, Collider* _right)
 {
-	XMVECTOR vLeftPos = _left->GetLatedUpatedPos();
-	XMVECTOR vRightPos = _right->GetLatedUpatedPos();
-	XMVECTOR vLeftSize = _left->GetSize();
-	XMVECTOR vRightSize = _right->GetSize();
+	Vec2 vLeftPos = _left->GetLatedUpatedPos();
+	Vec2 vRightPos = _right->GetLatedUpatedPos();
+	Vec2 vLeftSize = _left->GetSize();
+	Vec2 vRightSize = _right->GetSize();
 
-	RECT leftRt = RECT_MAKE(XMVectorGetX(vLeftPos), XMVectorGetY(vLeftPos), XMVectorGetX(vLeftSize), XMVectorGetY(vLeftSize));
-	RECT rightRt = RECT_MAKE(XMVectorGetX(vRightPos), XMVectorGetY(vRightPos), XMVectorGetX(vRightSize), XMVectorGetY(vRightSize));
+	RECT leftRt = RECT_MAKE(vLeftPos.x, vLeftPos.y, vLeftSize.x, vLeftSize.y);
+	RECT rightRt = RECT_MAKE(vRightPos.x, vRightPos.y, vRightSize.x, vRightSize.y);
 	RECT rt;
 	return ::IntersectRect(&rt, &leftRt, &rightRt);
 	/*if (abs(vRightPos.x - vLeftPos.x) < (vLeftSize.x + vRightSize.x) / 2.f

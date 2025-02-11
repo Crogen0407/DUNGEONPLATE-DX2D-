@@ -15,19 +15,19 @@ SkillCanvas::SkillCanvas()
 	_skillSlots.clear();
 
 	GET_SINGLE(ResourceManager)->LoadSound(L"LevelUp", L"Sound\\LevelUp.wav", false);
-	/*XMVECTOR center = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
+	/*Vec2 center = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
 	int xDeltaPos = 300;
 
 	{
-		XMVECTOR size = { SCREEN_WIDTH * 2, 420};
-		XMVECTOR pos = center;
-		Picture* backPicture = CreateUI<Picture>(pos, size);
-		backPicture->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.bmp");
+		Vec2 size = { SCREEN_WIDTH * 2, 420};
+		Vec2 pos = center;
+		Image* backImage = CreateUI<Image>(pos, size);
+		backImage->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.bmp");
 	}
 
-	CreateSlot(center - XMVECTOR(xDeltaPos, 0));
+	CreateSlot(center - Vec2(xDeltaPos, 0));
 	CreateSlot(center);
-	CreateSlot(center + XMVECTOR(xDeltaPos, 0));*/
+	CreateSlot(center + Vec2(xDeltaPos, 0));*/
 
 	GET_SINGLE(XPManager)->LevelUpEvent +=
 		[ct = this](int level)
@@ -46,31 +46,19 @@ void SkillCanvas::Update()
 	Canvas::Update();
 }
 
-void SkillCanvas::LateUpdate()
+
+void SkillCanvas::CreateSlot(Vec2 slotPos)
 {
-	if (showSkillSlots == false) return;
-	Canvas::LateUpdate();
-}
+	SkillSlot* skillSlot = CreateUI<SkillSlot>(slotPos, Vec2(250, 320));
 
-void SkillCanvas::Render(std::shared_ptr<Pipeline> pipeline)
-{
-	if (showSkillSlots == false) return;
-	Canvas::Render(pipeline);
-}
+	Vec2 namePos = Vec2(0, -110);
+	Vec2 nameSize = Vec2(skillSlot->GetSize().x - 30, 30.f);
 
-void SkillCanvas::CreateSlot(XMVECTOR slotPos)
-{
-	SkillSlot* skillSlot = CreateUI<SkillSlot>(slotPos, { 250, 320 });
+	Vec2 levelPos = Vec2(0, -64);
+	Vec2 levelSize = Vec2(skillSlot->GetSize().x - 30, 30.f);
 
-	XMVECTOR namePos = { 0, -110 };
-	XMVECTOR nameSize = { skillSlot->GetSizeX() - 30, 30.f };
-
-	XMVECTOR levelPos = { 0, -64 };
-	XMVECTOR levelSize = { skillSlot->GetSizeX() - 30, 30.f };
-
-	XMVECTOR descriptionPos = { 0, 110 };
-	XMVECTOR descriptionSize = skillSlot->GetSize();
-	descriptionSize -= { 30.f, 30.f };
+	Vec2 descriptionPos = Vec2(0, 110);
+	Vec2 descriptionSize = skillSlot->GetSize() - Vec2(30, 30);
 
 	skillSlot->name =			CreateUI<Text>(namePos, nameSize);
 	skillSlot->level =			CreateUI<Text>(levelPos, levelSize);
@@ -101,7 +89,7 @@ void SkillCanvas::CreateSlot(XMVECTOR slotPos)
 	skillSlot->OnSelectEnterEvent +=
 		[skillSlot](int _)
 		{
-			XMVECTOR posDelta = { 0, -10 };
+			Vec2 posDelta = { 0, -10 };
 			skillSlot->SetSize({250 * 1.05f, 320 * 1.05f });
 			skillSlot->AddPos(posDelta);
 		};
@@ -109,7 +97,7 @@ void SkillCanvas::CreateSlot(XMVECTOR slotPos)
 	skillSlot->OnSelectExitEvent +=
 		[skillSlot](int _)
 		{
-			XMVECTOR posDelta = { 0, 10 };
+			Vec2 posDelta = { 0, 10 };
 			skillSlot->SetSize({ 250, 320 });
 			skillSlot->AddPos(posDelta);
 		};
@@ -123,24 +111,24 @@ void SkillCanvas::ShowSlots()
 	GET_SINGLE(ResourceManager)->Play(L"LevelUp");
 
 	vector<Skill*> selectedSkills = GET_SINGLE(SkillManager)->GetRandomSkills();
-	showSkillSlots = true;
+	enable = true;
 
-	if (_skillSlots.size() == 0)
+	if (_skillSlots.size() != 3)
 	{
 		_skillSlots.clear();
-		XMVECTOR center = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
+		Vec2 center = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
 		int xDeltaPos = 300;
 
 		{
-			XMVECTOR size = { SCREEN_WIDTH * 2, 420 };
-			XMVECTOR pos = center;
-			Picture* backPicture = CreateUI<Picture>(pos, size);
-			backPicture->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.bmp");
+			Vec2 size = { SCREEN_WIDTH * 2, 420 };
+			Vec2 pos = center;
+			Image* backImage = CreateUI<Image>(pos, size);
+			backImage->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.bmp");
 		}
 
-		CreateSlot(XMVectorSubtract(center, {-(float)xDeltaPos, 0}));
+		CreateSlot(center - Vec2(xDeltaPos, 0));
 		CreateSlot(center);
-		CreateSlot(XMVectorSubtract(center, {(float)xDeltaPos, 0 }));
+		CreateSlot(center + Vec2(xDeltaPos, 0));
 
 		GET_SINGLE(XPManager)->LevelUpEvent +=
 			[ct = this](int level)
@@ -164,5 +152,5 @@ void SkillCanvas::CloseSlot()
 {
 	TIMESCALE = 1;
 
-	showSkillSlots = false;
+	enable = false;
 }

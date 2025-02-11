@@ -43,13 +43,10 @@ void InputManager::Update()
 			m_vecKey[i].IsPrevCheck = false;
 		}
 	}
-	POINT mousePoint = {};
-
 	// Mouse
-	::GetCursorPos(&mousePoint); // 마우스 좌표 받기
+	::GetCursorPos(&m_ptMouse); // 마우스 좌표 받기
 	// 우리가 가진 윈도우 창 기준으로 좌표 변경
-	::ScreenToClient(GET_SINGLE(Core)->GetHwnd(), &mousePoint);
+	::ScreenToClient(GET_SINGLE(Core)->GetHwnd(), &m_ptMouse);
 
-	m_ptMouse = XMVectorSetX(m_ptMouse, mousePoint.x);
-	m_ptMouse = XMVectorSetY(m_ptMouse, mousePoint.y);
+
 }

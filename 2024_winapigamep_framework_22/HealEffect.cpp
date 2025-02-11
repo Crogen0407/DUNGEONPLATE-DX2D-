@@ -11,10 +11,10 @@ HealEffect::HealEffect()
 	AddComponent<Animator>();
 	SetSize({ 100,100 });
 	Texture* texture = LOADTEXTURE(L"HealEffect", L"Texture\\Effect\\HealEffect.bmp");
-	XMVECTOR texSize = { (int)texture->GetWidth() / 5, (int)texture->GetHeight() };
+	Vec2 texSize = { (float)texture->GetWidth() / 5, (float)texture->GetHeight() };
 	_lifeTime = 0.2f;
 	_animator = GetComponent<Animator>();
-	_animator->CreateAnimation(L"Heal", texture, { 0,0 }, texSize, { XMVectorGetX(texSize),0 }, 5, _lifeTime / 5.f, false);
+	_animator->CreateAnimation(L"Heal", texture, { 0.f,0.f }, texSize, { (float)texSize.x,0.f }, 5, _lifeTime / 5.f, false);
 }
 
 HealEffect::~HealEffect()

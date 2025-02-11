@@ -1,19 +1,22 @@
 #pragma once
 #include "PoolableObject.h"
+#include "AttackCompo.h"
 class Texture;
+class AttackCompo;
 class Projectile : public PoolableObject
 {
+	friend AttackCompo;
 public:
 	Projectile();
 	virtual ~Projectile();
 	void Update() abstract;
 public:
-	virtual void SetDir(XMVECTOR dir)
+	virtual void SetDir(Vec2 dir)
 	{
 		_dir = dir;
-		_dir = XMVector2Normalize(_dir);
+		_dir.Normalize();
 	}
-	const XMVECTOR& GetDir() const
+	Vec2 GetDir()
 	{
 		return _dir;
 	}
@@ -23,14 +26,12 @@ public:
 	virtual void ExitCollision(Collider* _other);
 public:
 	void SetSpeed(float speed) { _speed = speed; }
-	void SetOwner(Object* owner) { _owner = owner; }
-	const Object* GetOwner() const { return _owner; }
-	virtual void Parry(XMVECTOR dir);
+	virtual void Parry();
 	bool _hitEnemy = false;
 protected:
-	Object* _owner;
+	//float m_dir;
 	wstring _poolName;
-	XMVECTOR _dir = { 1.f, 1.f };
+	Vec2 _dir;
 	Texture* _texture;
 	float _speed = 500.f;
 	int _damage;

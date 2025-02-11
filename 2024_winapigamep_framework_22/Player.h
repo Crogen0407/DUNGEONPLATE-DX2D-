@@ -50,7 +50,7 @@ public:
 	}
 
 	//AttackDir
-	const XMVECTOR GetAttackDir() const
+	const Vec2 GetAttackDir() const
 	{
 		return attackDir;
 	}
@@ -66,11 +66,11 @@ public:
 	}
 
 private:
-	XMVECTOR _lastDir;
-	XMVECTOR lastPos;
+	Vec2 _lastDir;
+	Vec2 lastPos;
 	bool _isMove = false;
 	float speed = 100.f;
-	XMVECTOR attackDir;
+	Vec2 attackDir;
 	float parryDist = 150.f;
 	float parryingTime = 0.1f;
 	bool isParrying = false;

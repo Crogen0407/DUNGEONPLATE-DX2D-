@@ -6,6 +6,7 @@
 #include "PoolManager.h"
 #include "HealthCompo.h"
 #include "XPManager.h"
+#include "StageScene.h"
 #include "StageLoader.h"
 #include "Movement.h"
 #include "ExplosionEffect.h"
@@ -16,7 +17,7 @@ Enemy::Enemy() : _originHp(5), _isDead(false)
 	this->AddComponent<Collider>();
 	this->AddComponent<HealthCompo>();
 
-	GetComponent<Collider>()->SetSize({ 50, 50 });
+	GetComponent<Collider>()->SetSize(Vec2(50, 50));
 	GetComponent<HealthCompo>()->DieEvent +=
 		[ct = this](int _) { ct->OnDie(); };
 }

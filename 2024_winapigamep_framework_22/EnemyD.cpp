@@ -13,7 +13,7 @@
 #include "AttackCompo.h"
 #include "RoundAttackPattern.h"
 
-EnemyD::EnemyD()
+EnemyD::EnemyD() : Enemy::Enemy()
 {
 	_giveExp = 3;
 	_startTime = TIME;
@@ -48,10 +48,10 @@ void EnemyD::Update()
 	float sizeDelta = 40 + (sinf(TIME * 50) * 0.5f + 0.5f) * 10;
 	SetSize({ sizeDelta , sizeDelta });
 
-	XMVECTOR dir = _target->GetPos();
+	Vec2 dir = _target->GetPos();
 	dir -= GetPos();
-	float length = XMVectorGetX(XMVector2Length(dir));
-	dir = XMVector2Normalize(dir);
+	float length = dir.Length();
+	dir.Normalize();
 	dir = dir * _moveSpeed * fDT;
 
 	if (length < 100)

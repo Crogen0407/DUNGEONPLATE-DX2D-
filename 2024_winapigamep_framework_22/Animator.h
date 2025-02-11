@@ -10,11 +10,12 @@ public:
 	~Animator();
 public:
 	virtual void LateUpdate() override;
-	virtual void Render() override;
+	virtual void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
+
 public:
 	// 애니메이션 생성함수
 	void CreateAnimation(const wstring& _strName, Texture* _pTex,
-		XMVECTOR _vLT, XMVECTOR _vSliceSize, XMVECTOR _vStep,
+		Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep,
 		UINT _framecount, float _fDuration, bool _isRotate = false);
 	// 애니메이션 찾기함수
 	Animation* FindAnimation(const wstring& _strName);
@@ -22,11 +23,13 @@ public:
 	// 애니메이션 플레이 함수
 	void PlayAnimation(const wstring& _strName, bool _IsRepeat, int _repeatcnt = 1);
 	void StopAnimation();
+
 public:
 	Animation* GetCurrentAnim() { return m_pCurrentAnimation; }
 	const bool& GetRepeat() const { return m_IsRepeat; }
 	const int& GetRepeatcnt() const { return m_repeatcnt; }
 	void SetRepeatcnt() { --m_repeatcnt; }
+
 private:
 	map<wstring, Animation*> m_mapAnimations;
 	Animation* m_pCurrentAnimation;

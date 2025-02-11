@@ -12,10 +12,10 @@ ParrySparkEffect::ParrySparkEffect()
 	AddComponent<Animator>();
 	SetSize({ 100,100 });
 	Texture* texture = LOADTEXTURE(L"ParrySparkEffect", L"Texture\\Effect\\ParrySparkEffect.bmp");
-	XMVECTOR texSize = { (int)texture->GetWidth() / 4, (int)texture->GetHeight() };
+	Vec2 texSize = { (float)texture->GetWidth() / 4, (float)texture->GetHeight() };
 	_lifeTime = 0.2f;
 	_animator = GetComponent<Animator>();
-	_animator->CreateAnimation(L"ParrySpark", texture, { 0,0 }, texSize, { XMVectorGetX(texSize),0 }, 4, _lifeTime/4.f, false);
+	_animator->CreateAnimation(L"ParrySpark", texture, { 0.f,0.f }, texSize, { (float)texSize.x,0.f }, 4, _lifeTime/4.f, false);
 }
 
 ParrySparkEffect::~ParrySparkEffect()

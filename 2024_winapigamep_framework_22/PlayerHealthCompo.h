@@ -37,7 +37,7 @@ public:
 
 public:
     void LateUpdate() override;
-    void Render() override;
+    //virtual void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
 private:
     bool _isDie = false;
     float curDelay = 0;
