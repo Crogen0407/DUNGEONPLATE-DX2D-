@@ -50,22 +50,20 @@ void Animation::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 	// 오프셋 적용
 	vPos = vPos + m_vecAnimFrame[m_CurFrame].vOffset;
 
-	renderTarget->DrawBitmap(m_pTex->GetBitmap().Get(),
-		D2D1::RectF(vPos.x - vSize.x / 2.f, vPos.y - vSize.y / 2.f,
-			vPos.x + vSize.x / 2.f, vPos.y + vSize.y / 2.f));
-	///////////////////////////////////////////////////////////////////
-	//TransparentBlt(_hdc
-	//	, (int)(vPos.x - vSize.x / 2.f)
-	//	, (int)(vPos.y - vSize.y / 2.f)
-	//	, vSize.x//(int)(m_vecAnimFrame[m_CurFrame].vSlice.x)
-	//	, vSize.y//(int)(m_vecAnimFrame[m_CurFrame].vSlice.y)
-	//	, m_pTex->GetTexDC()
-	//	, (int)(m_vecAnimFrame[m_CurFrame].vLT.x)
-	//	, (int)(m_vecAnimFrame[m_CurFrame].vLT.y)
-	//	, (int)(m_vecAnimFrame[m_CurFrame].vSlice.x)
-	//	, (int)(m_vecAnimFrame[m_CurFrame].vSlice.y)
-	//	, RGB(255, 0, 255));
-	///////////////////////////////////////////////////////////////////
+	renderTarget->DrawBitmap(
+		m_pTex->GetBitmap().Get(),
+			D2D1::RectF(
+				vPos.x - vSize.x / 2.f,
+				vPos.y - vSize.y / 2.f,
+				vPos.x + vSize.x / 2.f,
+				vPos.y + vSize.y / 2.f),
+		1.f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,
+		D2D1::RectF(
+			m_vecAnimFrame[m_CurFrame].vLT.x,
+			m_vecAnimFrame[m_CurFrame].vLT.y,
+			m_vecAnimFrame[m_CurFrame].vLT.x + m_vecAnimFrame[m_CurFrame].vSlice.x,
+			m_vecAnimFrame[m_CurFrame].vLT.y + m_vecAnimFrame[m_CurFrame].vSlice.y)
+	);
 }
 
 void Animation::Create(Texture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, int _framecount, float _fDuration, bool _isRotate)

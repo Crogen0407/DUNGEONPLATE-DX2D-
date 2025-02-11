@@ -24,20 +24,15 @@
 
 Player::Player()
 {
-	this->AddComponent<SpriteRenderer>();
-	this->AddComponent<PlayerHealthCompo>();
-	this->AddComponent<Collider>();
-
-	_spriteRenderer = GetComponent<SpriteRenderer>();
-	healthCompo = GetComponent<PlayerHealthCompo>();
-	collider = GetComponent<Collider>();
+	_spriteRenderer = this->AddComponent<SpriteRenderer>();;
+	healthCompo = this->AddComponent<PlayerHealthCompo>();
+	collider = this->AddComponent<Collider>();
 
 	_playerCasts.push_back(new PlayerCast(30.f));
 	_playerCasts.push_back(new PlayerCast);
 	_playerCasts.push_back(new PlayerCast(-30.f));
 
-	_spriteRenderer->SetTexture(L"Player", L"Texture\\Player.bmp");
-	_spriteRenderer->isRotatable = false;
+	_spriteRenderer->SetTexture(L"Player", L"Texture\\Player.png");
 	collider->SetSize({ 25, 25 });
 
 	//나중에 밸패하기

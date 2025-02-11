@@ -13,7 +13,7 @@ EnemyC::EnemyC() : Enemy::Enemy()
 	_giveExp = 4;
 	SetSize({ 50,50 });
 	_target = FindObject(L"Player", LAYER::PLAYER);
-	_texture = LOADTEXTURE(L"Enemy06", L"Texture\\Enemy06.bmp");
+	_texture = LOADTEXTURE(L"Enemy06", L"Texture\\Enemy06.png");
 	Vec2 texSize = Vec2((int)_texture->GetWidth() / 5, (int)_texture->GetHeight());
 
 	AddComponent<Animator>();

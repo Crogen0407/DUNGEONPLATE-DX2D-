@@ -22,7 +22,7 @@ SkillCanvas::SkillCanvas()
 		Vec2 size = { SCREEN_WIDTH * 2, 420};
 		Vec2 pos = center;
 		Image* backImage = CreateUI<Image>(pos, size);
-		backImage->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.bmp");
+		backImage->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.png");
 	}
 
 	CreateSlot(center - Vec2(xDeltaPos, 0));
@@ -64,7 +64,7 @@ void SkillCanvas::CreateSlot(Vec2 slotPos)
 	skillSlot->level =			CreateUI<Text>(levelPos, levelSize);
 	skillSlot->description =	CreateUI<Text>(descriptionPos, descriptionSize);
 	skillSlot->level->SetText(L"New!");
-	skillSlot->texture = LOADTEXTURE(L"UISpriteSlot", L"Texture\\UISpriteSlot.bmp");
+	skillSlot->texture = LOADTEXTURE(L"UISpriteSlot", L"Texture\\UISpriteSlot.png");
 
 	skillSlot->name->LoadFont(L"PF스타더스트 Bold", 25, 30);
 	skillSlot->name->SetPitchAndFamily(DT_VCENTER);
@@ -123,7 +123,7 @@ void SkillCanvas::ShowSlots()
 			Vec2 size = { SCREEN_WIDTH * 2, 420 };
 			Vec2 pos = center;
 			Image* backImage = CreateUI<Image>(pos, size);
-			backImage->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.bmp");
+			backImage->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.png");
 		}
 
 		CreateSlot(center - Vec2(xDeltaPos, 0));

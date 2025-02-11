@@ -16,7 +16,7 @@ GameOverCanvas::GameOverCanvas()
 		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
 		Vec2 pos = { size.x * 0.5f, size.y * 0.5f };
 		Image* background = CreateUI<Image>(pos, size);
-		background->texture = LOADTEXTURE(L"GameOver", L"Texture\\GameOver.bmp");
+		background->texture = LOADTEXTURE(L"GameOver", L"Texture\\GameOver.png");
 	}
 
 	//TitleText
@@ -46,7 +46,7 @@ GameOverCanvas::GameOverCanvas()
 		Vec2 size = { 400, 50 };
 		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f };
 		retryButton = CreateUI<Button>(pos, size);
-		retryButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.bmp");
+		retryButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.png");
 		retryButton->onlyOneCountClick = true;
 		retryButton->OnClickEvent +=
 			[](int _)
@@ -68,7 +68,7 @@ GameOverCanvas::GameOverCanvas()
 		Vec2 size = { 400, 50 };
 		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.57f };
 		gotoTitleSceneButton = CreateUI<Button>(pos, size);
-		gotoTitleSceneButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.bmp");
+		gotoTitleSceneButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.png");
 		gotoTitleSceneButton->onlyOneCountClick = true;
 		gotoTitleSceneButton->OnClickEvent +=
 			[](int _)

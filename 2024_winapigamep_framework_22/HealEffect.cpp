@@ -10,7 +10,7 @@ HealEffect::HealEffect()
 {
 	AddComponent<Animator>();
 	SetSize({ 100,100 });
-	Texture* texture = LOADTEXTURE(L"HealEffect", L"Texture\\Effect\\HealEffect.bmp");
+	Texture* texture = LOADTEXTURE(L"HealEffect", L"Texture\\Effect\\HealEffect.png");
 	Vec2 texSize = { (float)texture->GetWidth() / 5, (float)texture->GetHeight() };
 	_lifeTime = 0.2f;
 	_animator = GetComponent<Animator>();

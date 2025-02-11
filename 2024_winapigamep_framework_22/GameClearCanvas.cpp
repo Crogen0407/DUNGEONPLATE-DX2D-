@@ -19,7 +19,7 @@ GameClearCanvas::GameClearCanvas()
 		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
 		Vec2 pos = { size.x * 0.5f, size.y * 0.5f };
 		Image* background = CreateUI<Image>(pos, size);
-		background->texture = LOADTEXTURE(L"GameClear", L"Texture\\GameClear.bmp");
+		background->texture = LOADTEXTURE(L"GameClear", L"Texture\\GameClear.png");
 	}
 
 	//TitleText
@@ -49,7 +49,7 @@ GameClearCanvas::GameClearCanvas()
 		Vec2 size = { 400, 50 };
 		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.585f };
 		gotoTitleSceneButton = CreateUI<Button>(pos, size);
-		gotoTitleSceneButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.bmp");
+		gotoTitleSceneButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.png");
 		gotoTitleSceneButton->onlyOneCountClick = true;
 		gotoTitleSceneButton->OnClickEvent +=
 			[](int _)

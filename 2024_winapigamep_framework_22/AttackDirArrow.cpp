@@ -14,7 +14,7 @@ AttackDirArrow::AttackDirArrow()
 {
 	AddComponent<SpriteRenderer>();
 	spriteRenderer = GetComponent<SpriteRenderer>();
-	spriteRenderer->SetTexture(L"Arrow", L"Texture\\Arrow.bmp");
+	spriteRenderer->SetTexture(L"Arrow", L"Texture\\Arrow.png");
 	spriteRenderer->SetAngle(PI);
 	SetSize({ 12, 12 });
 }
@@ -39,8 +39,6 @@ void AttackDirArrow::Update()
 	float distance = 30;
 
 	Vec2 selfPos = (dir * distance) + parent->GetPos();
-
-	float angle = atan2(dir.y, dir.x);
 
 	spriteRenderer->LookAt(dir);
 	SetPos(selfPos);

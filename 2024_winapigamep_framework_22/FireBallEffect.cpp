@@ -13,7 +13,6 @@ FireBallEffect::FireBallEffect()
 	AddComponent<SpriteRenderer>();
 
 	_spriteRenderer = GetComponent<SpriteRenderer>();
-	_spriteRenderer->isRotatable = true;
 	_lifeTime = 4.f;
 }
 
@@ -74,17 +73,17 @@ void FireBallEffect::SetMode(const EFireBallModeType& mode)
 	case EFireBallModeType::FireBall_S:
 		SetSize({ 32, 32 });
 		GetComponent<Collider>()->SetSize({ 32, 32 });
-		spriteRenderer->SetTexture(L"FireBall_S", L"Texture\\Effect\\FireBall_S.bmp");
+		spriteRenderer->SetTexture(L"FireBall_S", L"Texture\\Effect\\FireBall_S.png");
 		break;
 	case EFireBallModeType::FireBall_M:
 		SetSize({ 39, 39 });
 		GetComponent<Collider>()->SetSize({ 39, 39 });
-		spriteRenderer->SetTexture(L"FireBall_M", L"Texture\\Effect\\FireBall_M.bmp");
+		spriteRenderer->SetTexture(L"FireBall_M", L"Texture\\Effect\\FireBall_M.png");
 		break;
 	case EFireBallModeType::FireBall_L:
 		SetSize({ 60, 60 });
 		GetComponent<Collider>()->SetSize({ 60, 60 });
-		spriteRenderer->SetTexture(L"FireBall_L", L"Texture\\Effect\\FireBall_L.bmp");
+		spriteRenderer->SetTexture(L"FireBall_L", L"Texture\\Effect\\FireBall_L.png");
 		break;
 	}
 }

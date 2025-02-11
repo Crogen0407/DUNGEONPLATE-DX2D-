@@ -44,10 +44,11 @@ public:
 public:
     virtual void LateUpdate() override;
     virtual void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
+
 protected:
-    //HpBar
     ComPtr<ID2D1SolidColorBrush> _fillBrush;
     ComPtr<ID2D1SolidColorBrush> _backBrush;
+
 protected:
     bool hpBarActive = true;
     float offsetY = 0;

@@ -24,7 +24,7 @@ EnemyA::EnemyA() : Enemy::Enemy()
 	SetSize({ 50, 50 });
 
 	_prevShootTime = TIME;
-	Texture* texture = LOADTEXTURE(L"Enemy01", L"Texture\\Enemy01.bmp");
+	Texture* texture = LOADTEXTURE(L"Enemy01", L"Texture\\Enemy01.png");
 	Vec2 texSize = Vec2((int)texture->GetWidth() / 3, (int)texture->GetHeight());
 
 	//AddComponent<HealthCompo>();

@@ -2,12 +2,12 @@
 #include "Slider.h"
 #include "Canvas.h"
 #include "Texture.h"
+#include "Core.h"
 
 Slider::Slider()
 {
-	fillColor = RGB(139, 172, 15);
-	backColor = RGB(48, 98, 48);
-	value = 1.f;
+	GET_SINGLE(Core)->GetRenderTarget()->CreateSolidColorBrush(D2D1::ColorF(0x0f380f), _backBrush.GetAddressOf());
+	GET_SINGLE(Core)->GetRenderTarget()->CreateSolidColorBrush(D2D1::ColorF(0x8bac0f), _fillBrush.GetAddressOf());
 }
 
 Slider::~Slider()
@@ -20,64 +20,47 @@ void Slider::LateUpdate()
 
 void Slider::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
-	//if (_owner == nullptr) return;
-	//Vec2 pos = GetPos() + _owner->GetPos();
-	//if (_parent != nullptr)
-	//	pos += _parent->GetPos();
+	if (_owner == nullptr) return;
+	Vec2 pos = GetPos() + _owner->GetPos();
+	if (_parent != nullptr)
+		pos += _parent->GetPos();
 
-	//Vec2 size = GetSize();
-	//backBrush = ::CreateSolidBrush(backColor);
+	Vec2 size = GetSize();
 
-	//HPEN myPen = CreatePen(PS_NULL, 0, RGB(255, 255, 255));
-	//HPEN oldPen = static_cast<HPEN>(::SelectObject(_hdc, myPen));
-	//HBRUSH oldBackBrush = static_cast<HBRUSH>(::SelectObject(_hdc, backBrush));
+	renderTarget->FillRectangle(D2D1::RectF(
+		pos.x - size.x / 2,
+		pos.y - size.y / 2,
+		pos.x + size.x / 2,
+		pos.y + size.y / 2),
+		_backBrush.Get());
 
-	////BackTexture
-	//::Rectangle(_hdc,
-	//	(int)(pos.x) - size.x / 2,
-	//	(int)(pos.y) - size.y / 2,
-	//	(int)(pos.x) + size.x / 2,
-	//	(int)(pos.y) + size.y / 2);
+	if (isVertical)
+	{
+		valueVec.x = 1;
+		valueVec.y = value * 2 - 1;
+	}
+	else
+	{
+		valueVec.x = value * 2 - 1;
+		valueVec.y = 1;
+	}
 
-	//::SelectObject(_hdc, oldBackBrush);
-	//::DeleteObject(backBrush);
-
-	//fillBrush = ::CreateSolidBrush(fillColor);
-	//HBRUSH oldFillBrush = static_cast<HBRUSH>(::SelectObject(_hdc, fillBrush));
-
-	//if (isVertical)
-	//{
-	//	valueVec.x = 1;
-	//	valueVec.y = value * 2 - 1;
-	//}
-	//else
-	//{
-	//	valueVec.x = value * 2 - 1;
-	//	valueVec.y = 1;
-	//}
-
-	//if (flip)
-	//{
-	//	//FillTexture
-	//	::Rectangle(_hdc,
-	//		(int)pos.x - (size.x * valueVec.x) / 2 + offsetX / 2,
-	//		(int)pos.y - (size.y * valueVec.y) / 2 + offsetY / 2,
-	//		(int)pos.x + (size.x / 2) - offsetX / 2,
-	//		(int)pos.y + (size.y / 2) - offsetY / 2);
-	//}
-	//else
-	//{
-	//	//FillTexture
-	//	::Rectangle(_hdc,
-	//		(int)pos.x - (size.x / 2) + offsetX / 2,
-	//		(int)pos.y - (size.y / 2) + offsetY / 2,
-	//		(int)pos.x + (size.x * valueVec.x) / 2 - offsetX / 2,
-	//		(int)pos.y + (size.y * valueVec.y) / 2 - offsetY / 2);
-	//}
-
-	//::SelectObject(_hdc, oldPen);
-	//::SelectObject(_hdc, oldFillBrush);
-	//::DeleteObject(myPen);
-	//::DeleteObject(oldBackBrush);
-	//::DeleteObject(fillBrush);
+	if (flip)
+	{
+		renderTarget->FillRectangle(D2D1::RectF(
+			pos.x - (size.x * valueVec.x) / 2 + offsetX / 2,
+			pos.y - (size.y * valueVec.y) / 2 + offsetY / 2,
+			pos.x + (size.x / 2) - offsetX / 2,
+			pos.y + (size.y / 2) - offsetY / 2),
+			_fillBrush.Get());
+	}
+	else
+	{
+		renderTarget->FillRectangle(D2D1::RectF(
+			pos.x - (size.x / 2) + offsetX / 2,
+			pos.y - (size.y / 2) + offsetY / 2,
+			pos.x + (size.x * valueVec.x) / 2 - offsetX / 2,
+			pos.y + (size.y * valueVec.y) / 2 - offsetY / 2),
+			_fillBrush.Get());
+	}
 }

@@ -18,7 +18,7 @@
 Boss::Boss() : _currentSkill{ nullptr }
 {
 	SetSize({ 100,100 });
-	texture = LOADTEXTURE(L"Boss", L"Texture\\Enemy03.bmp");
+	texture = LOADTEXTURE(L"Boss", L"Texture\\Enemy03.png");
 	_target = FindObject(L"Player", LAYER::PLAYER);
 	Vec2 texSize = { (float)texture->GetWidth() / 6, (float)texture->GetHeight() };
 	AddComponent< Collider>();

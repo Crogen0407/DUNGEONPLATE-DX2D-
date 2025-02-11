@@ -15,8 +15,7 @@ EnemyBomb::EnemyBomb()
 	SpriteRenderer* spriteRenderer = GetComponent<SpriteRenderer>();
 
 	collider->SetSize(GetSize());
-	spriteRenderer->SetTexture(L"EnemyBomb", L"Texture\\EnemyBomb.bmp");
-	spriteRenderer->isRotatable = false;
+	spriteRenderer->SetTexture(L"EnemyBomb", L"Texture\\EnemyBomb.png");
 	_poolName = L"EnemyBomb";
 	_speed = 300.f;
 	_damage = 100.f;

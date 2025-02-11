@@ -11,7 +11,7 @@ HitEffect::HitEffect()
 {
 	AddComponent<Animator>();
 	SetSize({ 120,120 });
-	Texture* texture = LOADTEXTURE(L"HitEffect", L"Texture\\Effect\\HitEffect.bmp");
+	Texture* texture = LOADTEXTURE(L"HitEffect", L"Texture\\Effect\\HitEffect.png");
 	Vec2 texSize = { (float)texture->GetWidth() / 5, (float)texture->GetHeight() };
 	_lifeTime = 0.2f;
 	_animator = GetComponent<Animator>();

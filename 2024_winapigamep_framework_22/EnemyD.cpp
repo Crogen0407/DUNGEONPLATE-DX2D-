@@ -21,7 +21,7 @@ EnemyD::EnemyD() : Enemy::Enemy()
 	_roundAttack = new RoundAttackPattern();
 	_roundAttack->SetOwner(this);
 	_target = FindObject(L"Player", LAYER::PLAYER);
-	_texture = LOADTEXTURE(L"EnemyD", L"Texture\\Enemy04.bmp");
+	_texture = LOADTEXTURE(L"EnemyD", L"Texture\\Enemy04.png");
 
 	AddComponent<Movement>();
 	AddComponent<HealthCompo>();

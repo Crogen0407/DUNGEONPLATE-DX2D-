@@ -13,17 +13,8 @@
 bool Core::Init(HWND _hwnd)
 {
 	cout << "주뇽쌤 사랑해요♡";
-	// 변수 초기화
 	_hWnd = _hwnd;
-	m_hDC = ::GetDC(_hWnd);
-	m_hBackDC = 0;
-	m_hBackBit = 0;
-
-	// 더블 버퍼링
-	// 1. 생성(세팅)
-	m_hBackBit = ::CreateCompatibleBitmap(m_hDC, SCREEN_WIDTH, SCREEN_HEIGHT);
-	m_hBackDC =::CreateCompatibleDC(m_hDC);
-
+	
 	// Direct2D 렌더
 	{
 		::D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, _factory.GetAddressOf());
@@ -46,9 +37,6 @@ bool Core::Init(HWND _hwnd)
 		_renderTarget->SetAntialiasMode(D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
 	}
 
-	// 2. 연결
-	::SelectObject(m_hBackDC,m_hBackBit);
-	
 	CreateGDI();
 	// === Manager Init === 
 	GET_SINGLE(TimeManager)->Init();
@@ -63,10 +51,6 @@ bool Core::Init(HWND _hwnd)
 }
 void Core::CleanUp()
 {
-	// 생성한순서 반대로 삭제
-	::DeleteDC(m_hBackDC);	//createdc한거
-	::DeleteObject(m_hBackBit); // createbitmap 한거
-	::ReleaseDC(_hWnd, m_hDC);
 	_backBuffer->Release();
 
 	for (int i = 0; i < (UINT)PEN_TYPE::END; ++i)
@@ -103,15 +87,6 @@ void Core::MainUpdate()
 
 void Core::MainRender()
 {
-	//// 1. clear
-	//::PatBlt(m_hBackDC, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, WHITENESS);
-	//// 2. Render
-	//GET_SINGLE(SceneManager)->Render(m_hBackDC);
-	//GET_SINGLE(FadeManager)->Render(m_hBackDC);
-	//// 3. display	
-	//::BitBlt(m_hDC, 0,0, SCREEN_WIDTH,SCREEN_HEIGHT,
-	//		m_hBackDC,0,0, SRCCOPY);
-
 	_renderTarget->CreateCompatibleRenderTarget(_backBuffer.GetAddressOf());
 	{
 		_backBuffer->BeginDraw();

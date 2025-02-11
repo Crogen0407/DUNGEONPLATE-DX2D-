@@ -2,6 +2,7 @@
 #include "ResourceManager.h"
 #include "Core.h"
 #include "Texture.h"
+
 void ResourceManager::Init()
 {
 	CoCreateInstance(
@@ -61,16 +62,16 @@ Texture* ResourceManager::TextureLoad(const wstring& _key, const wstring& _path)
 	);
 
 	// Direct2D 비트맵으로 변환
-	ComPtr<ID2D1Bitmap> d2dBitmap;
+	ComPtr<ID2D1Bitmap> bitmap;
 
 	GET_SINGLE(Core)->GetRenderTarget()->CreateBitmapFromWicBitmap(
 		converter.Get(),
 		nullptr,
-		&d2dBitmap
+		&bitmap
 	);
 
 	pTex = new Texture;
-	pTex->SetBitmap(d2dBitmap);
+	pTex->SetBitmap(bitmap);
 	pTex->SetKey(_key);
 	pTex->SetPath(texpath);
 	m_mapTextures.insert({_key,pTex});

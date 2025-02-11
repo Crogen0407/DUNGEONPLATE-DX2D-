@@ -12,14 +12,12 @@
 
 Background::Background()
 {
-	AddComponent<SpriteRenderer>();
 	AddComponent<Collider>();
-	_spriteRenderer = GetComponent<SpriteRenderer>();
+	_spriteRenderer = AddComponent<SpriteRenderer>();
 	Collider* collider = GetComponent<Collider>();
 	collider->SetSize(StageLoader::mapSize);
 	collider->SetOffSetPos({ 0, 0 });
-	_spriteRenderer->isRotatable = false;
-	_spriteRenderer->SetTexture(L"Background", L"Texture\\Background.bmp");
+	_spriteRenderer->SetTexture(L"Background", L"Texture\\Background.png");
 
 	_font = CreateFont(40, 30,
 		0, 0, 0, 0, 0, 0, HANGEUL_CHARSET,
@@ -37,22 +35,19 @@ void Background::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
 	Object::Render(renderTarget);
 
-	// 이거 지우면 안됨
-	////////////////////////////////////////////////////////////////////////////////////////
-	//if (_maxEnemyCount- _currentEnemyCount <= 0) return;
-	//Vec2 pos = GetPos();
-	//Vec2 size = GetSize();
+	if (_maxEnemyCount- _currentEnemyCount <= 0) return;
+	Vec2 pos = GetPos();
+	Vec2 size = GetSize();
 	//::SetTextColor(_hdc, RGB(155, 188, 15));
 	//HFONT oldFont = static_cast<HFONT>(SelectObject(_hdc, _font));
-
+	//
 	//::SetBkMode(_hdc, 1);
 	//RECT rect = { pos.x - size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y + size.y / 2 };  // 출력할 영역
-
+	//
 	//::DrawText(_hdc, std::to_wstring(_maxEnemyCount- _currentEnemyCount).c_str(), -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
 	//SetTextColor(_hdc, RGB(0, 0, 0));
 	//SelectObject(_hdc, oldFont);
-	////////////////////////////////////////////////////////////////////////////////////////
 }
 
 void Background::SpawnEnemy(EnemyType enemyType, const Vec2& pos)

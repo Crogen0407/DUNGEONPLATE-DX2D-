@@ -11,7 +11,7 @@ EnemyBullet::EnemyBullet()
 {
 	_damage = 10;
 	_poolName = L"EnemyBullet";
-	_texture = LOADTEXTURE(L"EnemyBullet", L"Texture\\EnemyBullet.bmp");
+	_texture = LOADTEXTURE(L"EnemyBullet", L"Texture\\EnemyBullet.png");
 	AddComponent<SpriteRenderer>();
 	AddComponent<Collider>();
 	SetSize({ 20,20 });

@@ -14,13 +14,11 @@ FadeObject::FadeObject()
 	_spriteRenderer = GetComponent<SpriteRenderer>();
 	_animator = GetComponent<Animator>();
 
-	_fadeInTexture = LOADTEXTURE(L"ScreenTransition_FadeIn", L"Texture\\Effect\\ScreenTransition_FadeIn.bmp");
-	_fadeOutTexture = LOADTEXTURE(L"ScreenTransition_FadeOut", L"Texture\\Effect\\ScreenTransition_FadeOut.bmp");
-	_blackTexture = LOADTEXTURE(L"OnePoint", L"Texture\\OnePoint.bmp");
+	_fadeInTexture = LOADTEXTURE(L"ScreenTransition_FadeIn", L"Texture\\Effect\\ScreenTransition_FadeIn.png");
+	_fadeOutTexture = LOADTEXTURE(L"ScreenTransition_FadeOut", L"Texture\\Effect\\ScreenTransition_FadeOut.png");
 
-	_spriteRenderer->SetTexture(_blackTexture);
+	_spriteRenderer->SetTexture(L"OnePoint", L"Texture\\OnePoint.png");
 	_spriteRenderer->enable = false;
-	_spriteRenderer->isRotatable = false;
 	_spriteRenderer->SetAngle(20.f, true);
 	_animator->CreateAnimation(
 		L"FadeIn",

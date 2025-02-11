@@ -7,8 +7,7 @@ AttackRange::AttackRange()
 {
 	AddComponent<SpriteRenderer>();
 	_spriteRenderer = GetComponent<SpriteRenderer>();
-	_spriteRenderer->SetTexture(L"AttackRange", L"Texture\\AttackRange.bmp");
-	_spriteRenderer->enable = true;
+	_spriteRenderer->SetTexture(L"AttackRange", L"Texture\\AttackRange.png");
 	SetSize({ 110, 110 });
 }
 

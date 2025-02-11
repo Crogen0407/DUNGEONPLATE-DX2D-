@@ -24,11 +24,10 @@ public:
     }
     void LookAt(const Vec2& dir)
     {
-        this->angle = std::atan2(dir.y, dir.x);
+        this->angle = (std::atan2(dir.y, dir.x)+PI/2.f) * Rad2Deg;
     }
 public:
     bool enable = true;
-    bool isRotatable = true;
 private:
     float angle = 0.f;
 };

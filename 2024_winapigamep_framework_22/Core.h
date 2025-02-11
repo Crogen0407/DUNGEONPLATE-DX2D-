@@ -16,10 +16,9 @@ private:
 	void MainUpdate();
 	void MainRender();
 	void CreateGDI();
+
 public:
 	const HWND& GetHwnd() const { return _hWnd; }
-	// 이름 바꾸기
-	const HDC& GetMainDC() const { return m_hDC; }
 	const HBRUSH& GetBrush(BRUSH_TYPE _eType)
 	{
 		return m_colorBrushs[(UINT)_eType];
@@ -29,15 +28,13 @@ public:
 		return m_colorPens[(UINT)_eType];
 	}
 	const ComPtr<ID2D1HwndRenderTarget> GetRenderTarget() { return _renderTarget; }
+	const ComPtr<ID2D1Factory> GetFactory() { return _factory; }
+
 private:
 	HBRUSH m_colorBrushs[(UINT)BRUSH_TYPE::END] = {};
 	HPEN m_colorPens[(UINT)PEN_TYPE::END] = {};
 
 	HWND _hWnd;
-	HDC  m_hDC; // Main DC
-	HDC  m_hBackDC; // 백버퍼 DC
-	HBITMAP m_hBackBit; // 백버퍼의 bitmap
-
 	ComPtr<ID2D1Factory> _factory = nullptr;
 
 	ComPtr<ID2D1HwndRenderTarget> _renderTarget = nullptr;

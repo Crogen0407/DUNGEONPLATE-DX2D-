@@ -26,17 +26,22 @@ void SpriteRenderer::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 	Vec2 size = GetOwner()->GetSize();
 	Vec2 texSize = { (float)texture->GetWidth(), (float)texture->GetHeight() };
 
-	D2D1_MATRIX_3X2_F rotationMatrix = D2D1::Matrix3x2F::Rotation(angle, D2D1::Point2F(pos.x, pos.y));
+	D2D1_MATRIX_3X2_F rotationMatrix = 
+		D2D1::Matrix3x2F::Rotation(
+			angle, D2D1::Point2F(pos.x, pos.y)
+		);
 	renderTarget->SetTransform(rotationMatrix);
-	renderTarget->DrawBitmap(
-		texture->GetBitmap().Get(), 
-		D2D1::RectF(
-			pos.x - size.x / 2, 
-			pos.y - size.y / 2, 
-			pos.x + size.x / 2, 
-			pos.y + size.y / 2), 
-		D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR
-	);
+	{
+		renderTarget->DrawBitmap(
+			texture->GetBitmap().Get(),
+			D2D1::RectF(
+				pos.x - size.x / 2,
+				pos.y - size.y / 2,
+				pos.x + size.x / 2,
+				pos.y + size.y / 2), 
+			1.f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR
+		);
+	}
 	renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
 }
 

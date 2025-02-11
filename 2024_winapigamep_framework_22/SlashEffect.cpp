@@ -10,7 +10,7 @@ SlashEffect::SlashEffect()
 {
 	AddComponent<SpriteRenderer>();
 	_spriteRenderer = GetComponent<SpriteRenderer>();
-	_spriteRenderer->SetTexture(L"SlashEffect", L"Texture\\Effect\\SlashEffect.bmp");
+	_spriteRenderer->SetTexture(L"SlashEffect", L"Texture\\Effect\\SlashEffect.png");
 	_lifeTime = 0.15f;
 }
 SlashEffect::~SlashEffect()

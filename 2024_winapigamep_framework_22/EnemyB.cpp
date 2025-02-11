@@ -20,7 +20,7 @@ EnemyB::EnemyB() : Enemy::Enemy()
 	_giveExp = 4;
 	SetSize({ 50,50 });
 	_target = FindObject(L"Player", LAYER::PLAYER);
-	texture = LOADTEXTURE(L"Enemy02", L"Texture\\Enemy02.bmp");
+	texture = LOADTEXTURE(L"Enemy02", L"Texture\\Enemy02.png");
 	Vec2 texSize = Vec2((int)texture->GetWidth() / 7, (int)texture->GetHeight());
 
 	prevShootTime = TIME;

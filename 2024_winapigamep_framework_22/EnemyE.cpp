@@ -17,7 +17,7 @@ EnemyE::EnemyE() : Enemy::Enemy()
 	SetSize({ 50,50 });
 	_prevAttack = TIME;
 	_target = FindObject(L"Player", LAYER::PLAYER);
-	_texture = LOADTEXTURE(L"Enemy5", L"Texture\\Enemy05.bmp");
+	_texture = LOADTEXTURE(L"Enemy5", L"Texture\\Enemy05.png");
 
 	AddComponent<SpriteRenderer>();
 	AddComponent<Movement>();

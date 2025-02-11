@@ -16,7 +16,7 @@ Razer::Razer(float lifeTime)
 	SetSize({ 0,0 });
 	_lifeTime = lifeTime;
 	_startLifeTime = TIME;
-	_texture = LOADTEXTURE(L"Razer", L"Texture\\Razer.bmp");
+	_texture = LOADTEXTURE(L"Razer", L"Texture\\Razer.png");
 
 	AddComponent<Collider>();
 	GetComponent<Collider>()->SetSize(GetSize());

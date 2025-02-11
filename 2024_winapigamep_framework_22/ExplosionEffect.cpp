@@ -11,7 +11,7 @@ ExplosionEffect::ExplosionEffect(wstring name)
 {
 	_curTime = TIME;
 	SetSize({ 100,100 });
-	Texture* texture = LOADTEXTURE(name, L"Texture\\Effect\\" + name + L".bmp");
+	Texture* texture = LOADTEXTURE(name, L"Texture\\Effect\\" + name + L".png");
 	Vec2 texSize = { (float)texture->GetWidth() / 4, (float)texture->GetHeight() };
 
 	AddComponent<Animator>();

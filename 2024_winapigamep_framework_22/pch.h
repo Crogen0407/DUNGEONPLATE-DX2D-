@@ -23,6 +23,7 @@
 // DX
 #include <d2d1.h>
 #include <d2d1effects.h>
+#include <d2d1helper.h> 
 #include <wrl.h>
 #include <DirectXMath.h>
 using namespace DirectX;
@@ -40,6 +41,7 @@ using namespace Microsoft::WRL;
 #pragma comment(lib, "fmod_vc.lib") 
 #pragma comment(lib, "fmodL_vc.lib")
 #pragma comment(lib, "d2d1.lib")
+#pragma comment(lib, "dxguid.lib")
 
 // °¢Á¾ using
 using std::vector;

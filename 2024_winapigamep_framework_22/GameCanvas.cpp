@@ -35,7 +35,7 @@ GameCanvas::GameCanvas() :
 		Vec2 pos = { (size.x / 2) + offset / 2, (SCREEN_HEIGHT - size.y / 2) - offset/2 };
 
 		Image* BottomHeathContainer = CreateUI<Image>(pos, size);
-		BottomHeathContainer->texture = LOADTEXTURE(L"UISprite4X1", L"Texture\\UISprite4X1.bmp");
+		BottomHeathContainer->texture = LOADTEXTURE(L"UISprite4X1", L"Texture\\UISprite4X1.png");
 
 		//HealthBar
 		{
@@ -100,7 +100,7 @@ GameCanvas::GameCanvas() :
 		Vec2 pos = { 400.f + offset, (SCREEN_HEIGHT - size.y / 2 - offset/2) };
 
 		Image* BottomHeathContainer = CreateUI<Image>(pos, size);
-		BottomHeathContainer->texture = LOADTEXTURE(L"UISprite1X2", L"Texture\\UISprite1X2.bmp");
+		BottomHeathContainer->texture = LOADTEXTURE(L"UISprite1X2", L"Texture\\UISprite1X2.png");
 
 		//AttackCountBar
 		{
@@ -123,7 +123,7 @@ GameCanvas::GameCanvas() :
 		Vec2 pos = { 400.f + offset + size.x + offset / 4, (SCREEN_HEIGHT - size.y / 2 - offset / 2) };
 
 		bottomDashCoolTimeContainer = CreateUI<Image>(pos, size);
-		bottomDashCoolTimeContainer->texture = LOADTEXTURE(L"UISprite1X2", L"Texture\\UISprite1X2.bmp");
+		bottomDashCoolTimeContainer->texture = LOADTEXTURE(L"UISprite1X2", L"Texture\\UISprite1X2.png");
 
 
 		//DashCoolTimeBar
@@ -151,7 +151,7 @@ GameCanvas::GameCanvas() :
 			Vec2 size = { 70, 70 };
 			Vec2 pos = { (float)SCREEN_WIDTH / 2, size.y / 2 + 15 };
 			Image* floorText = CreateUI<Image>(pos, size);
-			floorText->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.bmp");
+			floorText->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.png");
 		}
 
 		Vec2 size = { 50, 60 };

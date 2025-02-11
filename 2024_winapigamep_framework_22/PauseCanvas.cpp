@@ -13,7 +13,7 @@ PauseCanvas::PauseCanvas()
 		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
 		Vec2 pos = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20 };
 		Image* background = CreateUI<Image>(pos, size);
-		background->texture = LOADTEXTURE(L"OnePoint", L"Texture\\OnePoint.bmp");
+		background->texture = LOADTEXTURE(L"OnePoint", L"Texture\\OnePoint.png");
 	}
 
 	//TitleText

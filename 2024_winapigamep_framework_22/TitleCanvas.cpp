@@ -16,7 +16,7 @@ TitleCanvas::TitleCanvas()
 		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
 		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f };
 		Image* fill = CreateUI<Image>(pos, size);
-		fill->texture = LOADTEXTURE(L"OnePoint", L"Texture\\OnePoint.bmp");
+		fill->texture = LOADTEXTURE(L"OnePoint", L"Texture\\OnePoint.png");
 	}
 
 	//BackGround
@@ -24,7 +24,7 @@ TitleCanvas::TitleCanvas()
 		Vec2 size = { SCREEN_WIDTH/3, SCREEN_HEIGHT/3 };
 		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.55f };
 		Image* background = CreateUI<Image>(pos, size);
-		background->texture = LOADTEXTURE(L"Background", L"Texture\\Background.bmp");
+		background->texture = LOADTEXTURE(L"Background", L"Texture\\Background.png");
 	}
 
 	//TitleText
@@ -32,7 +32,7 @@ TitleCanvas::TitleCanvas()
 		Vec2 size = { 844, 153 };
 		Vec2 pos = {SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT* 0.26f };
 		Image* titleText = CreateUI<Image>(pos, size);
-		titleText->texture = LOADTEXTURE(L"Title", L"Texture\\Title.bmp");
+		titleText->texture = LOADTEXTURE(L"Title", L"Texture\\Title.png");
 	}
 
 	//StartButton
@@ -40,7 +40,7 @@ TitleCanvas::TitleCanvas()
 		Vec2 size = { 250, 32 };
 		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.47f };
 		_startButton = CreateUI<Button>(pos, size);
-		_startButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.bmp");
+		_startButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.png");
 		_startButton->onlyOneCountClick = true;
 		_startButton->OnClickEvent +=
 			[](int _)
@@ -75,7 +75,7 @@ TitleCanvas::TitleCanvas()
 		Vec2 size = { 250, 32 };
 		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.55f };
 		_helpButton = CreateUI<Button>(pos, size);
-		_helpButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.bmp");
+		_helpButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.png");
 		_helpButton->onlyOneCountClick = true;
 		_helpButton->OnClickEvent +=
 			[](int _)
@@ -111,7 +111,7 @@ TitleCanvas::TitleCanvas()
 		Vec2 size = { 250, 32 };
 		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.63f };
 		_quitButton = CreateUI<Button>(pos, size);
-		_quitButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.bmp");
+		_quitButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.png");
 		_quitButton->onlyOneCountClick = true;
 		_quitButton->OnClickEvent +=
 			[](int _)

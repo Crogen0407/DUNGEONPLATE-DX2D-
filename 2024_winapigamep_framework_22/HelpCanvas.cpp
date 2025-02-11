@@ -21,7 +21,7 @@ HelpCanvas::HelpCanvas()
 	for (int i = 0; i < slides.size(); i++)
 	{
 		std::wstring flieName = std::format(L"Slide{0:02}", (i + 1));
-		slides[i]->texture = LOADTEXTURE(flieName, L"Texture\\"+ flieName+ L".bmp");
+		slides[i]->texture = LOADTEXTURE(flieName, L"Texture\\"+ flieName+ L".png");
 	}
 
 	//Background
@@ -29,7 +29,7 @@ HelpCanvas::HelpCanvas()
 		Vec2 size = {SCREEN_WIDTH, SCREEN_HEIGHT};
 		Vec2 pos = { size.x / 2, size.y / 2 };
 		Image* background = CreateUI<Image>(pos, size);
-		background->texture = LOADTEXTURE(L"OnePoint", L"Texture\\OnePoint.bmp");
+		background->texture = LOADTEXTURE(L"OnePoint", L"Texture\\OnePoint.png");
 	}
 
 	//Slide

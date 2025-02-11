@@ -3,14 +3,17 @@
 #include "Object.h"
 #include "ResourceManager.h"
 #include "PoolManager.h"
+#include "Core.h"
 
 HealthCompo::HealthCompo() :
 	hp(100),
 	maxHp(100)
 {
-
 	GET_SINGLE(ResourceManager)->LoadSound(L"Hit", L"Sound\\Hit.wav", SOUND_CHANNEL::EFFECT2);
 	GET_SINGLE(ResourceManager)->LoadSound(L"Heal", L"Sound\\Heal.wav", SOUND_CHANNEL::EFFECT2);
+
+	GET_SINGLE(Core)->GetRenderTarget()->CreateSolidColorBrush(D2D1::ColorF(0x0f380f), _backBrush.GetAddressOf());
+	GET_SINGLE(Core)->GetRenderTarget()->CreateSolidColorBrush(D2D1::ColorF(0x8bac0f), _fillBrush.GetAddressOf());
 }
 
 HealthCompo::~HealthCompo()
@@ -51,26 +54,26 @@ void HealthCompo::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 	pos.y += offsetY;
 	Vec2 size = { GetOwner()->GetSize().x, 12.f};
 
-	// TODO
-	if (_fillBrush == nullptr)
-	{
-		renderTarget->CreateSolidColorBrush(D2D1::ColorF(48, 98, 48), _backBrush.GetAddressOf());
-		renderTarget->CreateSolidColorBrush(D2D1::ColorF(139, 172, 15), _fillBrush.GetAddressOf());
-	}
-
 	//Back
 	renderTarget->DrawRectangle(D2D1::RectF(
 		pos.x - size.x / 2, 
 		pos.y - size.y / 2, 
 		pos.x + size.x / 2, 
 		pos.y + size.y / 2), 
+		_backBrush.Get(), 3.f);
+
+	renderTarget->FillRectangle(D2D1::RectF(
+		pos.x - size.x / 2,
+		pos.y - size.y / 2,
+		pos.x + size.x / 2,
+		pos.y + size.y / 2),
 		_backBrush.Get());
 
 	//Fill
-	renderTarget->DrawRectangle(D2D1::RectF(
+	renderTarget->FillRectangle(D2D1::RectF(
 		pos.x - size.x / 2,
-		pos.y - size.y / 2, 
+		pos.y - size.y / 2,
 		pos.x + (size.x / 2) * (std::clamp(hp / maxHp, 0.f, 1.f)),
-		pos.y + size.y / 2), 
+		pos.y + size.y / 2),
 		_fillBrush.Get());
 }

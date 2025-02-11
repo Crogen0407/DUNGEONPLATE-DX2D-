@@ -11,7 +11,7 @@ ParrySparkEffect::ParrySparkEffect()
 {
 	AddComponent<Animator>();
 	SetSize({ 100,100 });
-	Texture* texture = LOADTEXTURE(L"ParrySparkEffect", L"Texture\\Effect\\ParrySparkEffect.bmp");
+	Texture* texture = LOADTEXTURE(L"ParrySparkEffect", L"Texture\\Effect\\ParrySparkEffect.png");
 	Vec2 texSize = { (float)texture->GetWidth() / 4, (float)texture->GetHeight() };
 	_lifeTime = 0.2f;
 	_animator = GetComponent<Animator>();
