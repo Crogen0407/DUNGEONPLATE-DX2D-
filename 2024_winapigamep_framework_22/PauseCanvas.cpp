@@ -11,7 +11,7 @@ PauseCanvas::PauseCanvas()
 	//Background
 	{
 		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
-		Vec2 pos = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20 };
+		Vec2 pos = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
 		Image* background = CreateUI<Image>(pos, size);
 		background->texture = LOADTEXTURE(L"OnePoint", L"Texture\\OnePoint.png");
 	}
