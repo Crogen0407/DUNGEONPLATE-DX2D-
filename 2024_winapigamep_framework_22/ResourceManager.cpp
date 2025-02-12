@@ -5,11 +5,17 @@
 
 void ResourceManager::Init()
 {
-	CoCreateInstance(
+	::CoCreateInstance(
 		CLSID_WICImagingFactory,
 		nullptr,
 		CLSCTX_INPROC_SERVER,
 		IID_PPV_ARGS(_wicFactory.GetAddressOf())
+	);
+
+	::DWriteCreateFactory(
+		DWRITE_FACTORY_TYPE_SHARED, 
+		__uuidof(IDWriteFactory), 
+		&_writeFactory
 	);
 
 	::GetCurrentDirectory(255, m_resourcePath);
@@ -186,6 +192,30 @@ void ResourceManager::Pause(SOUND_CHANNEL _channel, bool _ispause)
 	// bool값이 true면 일시정지. 단, 이 함수를 쓰려면 Createsound할때 
 // FMOD_MODE가 FMOD_LOOP_NORMAL 이어야 함.
 	m_pChannel[(UINT)_channel]->setPaused(_ispause);
+}
+
+bool ResourceManager::AddFont(wstring fileName)
+{
+	/*_writeFactory->CreateTextFormat(
+		fileName.c_str(),
+		nullptr,
+		DWRITE_FONT_WEIGHT_REGULAR,
+		DWRITE_FONT_STYLE_NORMAL,
+		DWRITE_FONT_STRETCH_NORMAL,
+		20.0f,
+		L"ko",
+		&_textFormat
+	);*/
+
+	if (fontNames.find(fileName) == fontNames.end())
+	{
+		std::wstring path;
+		path.append(L".ttf");
+		AddFontResource(path.c_str());
+		fontNames.insert(fileName);
+		return true;
+	}
+	return false;
 }
 
 tSoundInfo* ResourceManager::FindSound(const wstring& _key)

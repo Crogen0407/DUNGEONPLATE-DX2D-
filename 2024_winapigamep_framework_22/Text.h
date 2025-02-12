@@ -5,32 +5,38 @@ class Text : public UI
 public:
 	Text();
 	~Text() override;
+
 public:
 	void LateUpdate() override;
 	void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
+
 public:
 	void LoadFont(std::wstring fontName, int fontWidth, int fontHegith);
+
 public:
 	void SetPitchAndFamily(UINT iPitchAndFamily)
 	{
-		this->iPitchAndFamily = iPitchAndFamily;
+		_iPitchAndFamily = iPitchAndFamily;
 	}
 	void SetText(wstring str)
 	{
-		text = str;
+		_text = str;
 	}
 	const wstring& GetText()
 	{
-		return text;
+		return _text;
 	}
 	void SetColor(COLORREF color)
 	{
 		this->color = color;
 	}
+
 private:
-	UINT iPitchAndFamily;
+	UINT _iPitchAndFamily;
 	HFONT pfont;
-	wstring text;
+	wstring _text;
 	COLORREF color;
+
+	ComPtr<IDWriteTextFormat> _textFormat;
 };
 

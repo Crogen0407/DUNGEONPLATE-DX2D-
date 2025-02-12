@@ -2,16 +2,16 @@
 #include "Text.h"
 #include "ResourceManager.h"
 #include "Canvas.h"
+#include "Core.h"
 
 Text::Text()
 {
-	iPitchAndFamily = TA_TOP | TA_LEFT;
+	_iPitchAndFamily = TA_TOP | TA_LEFT;
 	color = RGB(15, 56, 15);
 }
 
 Text::~Text()
 {
-	DeleteObject(pfont);
 }
 
 void Text::LateUpdate()
@@ -20,22 +20,20 @@ void Text::LateUpdate()
 
 void Text::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
-	//if (_owner == nullptr) return;
-	//Vec2 pos = GetPos() + _owner->GetPos();
-	//if (_parent != nullptr)
-	//	pos += _parent->GetPos();
+	if (_owner == nullptr) return;
+	Vec2 pos = GetPos() + _owner->GetPos();
 
-	//Vec2 size = GetSize();
-	//::SetTextColor(_hdc, color);
-	//HFONT oldFont = static_cast<HFONT>(SelectObject(_hdc, pfont));
+	if (_parent != nullptr)
+		pos += _parent->GetPos();
 
-	//::SetBkMode(_hdc, 1);
-	//RECT rect = { pos.x - size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y + size.y / 2 };  // 출력할 영역
+	Vec2 size = GetSize();
+
+	RECT rect = { pos.x - size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y + size.y / 2 };  // 출력할 영역
+
+	//renderTarget->DrawTextW(_text.c_str(), _text.size(), _owner->GetTextFormat(), D2D1::RectF(rect.left, rect.top, rect.right, rect.bottom), _owner->GetBrush());
 
 	//::DrawText(_hdc, text.c_str(), -1, &rect, iPitchAndFamily);
 
-	//SetTextColor(_hdc, RGB(0, 0, 0));
-	//SelectObject(_hdc, oldFont);
 }
 
 void Text::LoadFont(std::wstring fontName, int fontWidth, int fontHegith)

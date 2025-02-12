@@ -30,17 +30,7 @@ public:
 	void Stop(SOUND_CHANNEL _channel);
 	void Volume(SOUND_CHANNEL _channel, float _vol);
 	void Pause(SOUND_CHANNEL _channel, bool _ispause);
-	bool AddFont(wstring fileName) {
-		if (fontNames.find(fileName) == fontNames.end())
-		{
-			std::wstring path;
-			path.append(L".ttf");
-			AddFontResource(path.c_str());
-			fontNames.insert(fileName);
-			return true;
-		}
-		return false;
-	}
+	bool AddFont(wstring fileName);
 private:
 	tSoundInfo* FindSound(const wstring& _key);
 
@@ -54,6 +44,7 @@ private:
 
 public:
 	ComPtr<IWICImagingFactory> _wicFactory = nullptr;
+	ComPtr<IDWriteFactory> _writeFactory = nullptr;
 	ComPtr<IWICFormatConverter> _converter = nullptr;
 };
 

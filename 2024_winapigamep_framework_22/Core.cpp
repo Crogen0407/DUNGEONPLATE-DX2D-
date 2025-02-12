@@ -30,8 +30,8 @@ bool Core::Init(HWND _hwnd)
 		D2D1_HWND_RENDER_TARGET_PROPERTIES hwndRTProps = D2D1::HwndRenderTargetProperties(
 			_hWnd, D2D1::SizeU(SCREEN_WIDTH, SCREEN_HEIGHT)
 		);
+
 		_factory->CreateHwndRenderTarget(&rtProps, &hwndRTProps, _renderTarget.GetAddressOf());
-		_renderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Red), &_brush);
 
 		// AA Àû¿ë
 		_renderTarget->SetAntialiasMode(D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
@@ -51,8 +51,6 @@ bool Core::Init(HWND _hwnd)
 }
 void Core::CleanUp()
 {
-	_backBuffer->Release();
-
 	for (int i = 0; i < (UINT)PEN_TYPE::END; ++i)
 	{
 		DeleteObject(m_colorPens[i]);
@@ -90,7 +88,7 @@ void Core::MainRender()
 	_renderTarget->CreateCompatibleRenderTarget(_backBuffer.GetAddressOf());
 	{
 		_backBuffer->BeginDraw();
-		_backBuffer->Clear(D2D1::ColorF(D2D1::ColorF::Blue));
+		_backBuffer->Clear(D2D1::ColorF(0x306230));
 		{
 			// Render
 			GET_SINGLE(SceneManager)->Render(_backBuffer);
@@ -98,12 +96,10 @@ void Core::MainRender()
 		}
 		_backBuffer->EndDraw();
 
-		ID2D1Bitmap* pBitmap = nullptr;
-		_backBuffer->GetBitmap(&pBitmap);
+		_backBuffer->GetBitmap(&_bitmap);
 		_renderTarget->BeginDraw();
-		_renderTarget->DrawBitmap(pBitmap);
+		_renderTarget->DrawBitmap(_bitmap.Get());
 		_renderTarget->EndDraw();
-		pBitmap->Release();
 	}
  }
 void Core::CreateGDI()

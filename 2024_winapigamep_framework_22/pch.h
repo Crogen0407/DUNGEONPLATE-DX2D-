@@ -21,7 +21,8 @@
 #include <wincodec.h>  
 
 // DX
-#include <d2d1.h>
+#include <d2d1.h>	
+#include <dwrite.h>
 #include <d2d1effects.h>
 #include <d2d1helper.h> 
 #include <wrl.h>
@@ -42,6 +43,7 @@ using namespace Microsoft::WRL;
 #pragma comment(lib, "fmodL_vc.lib")
 #pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "dxguid.lib")
+#pragma comment(lib, "dwrite.lib")
 
 // °¢Á¾ using
 using std::vector;

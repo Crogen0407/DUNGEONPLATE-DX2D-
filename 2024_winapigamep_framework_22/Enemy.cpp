@@ -31,6 +31,6 @@ void Enemy::OnDie()
 	ADDXP(_giveExp);
 	ExplosionEffect* explosion = new ExplosionEffect(L"ExplosionEffect02");
 	explosion->SetPos(GetPos());
-	ADDOBJECT(explosion, LAYER::SCREENEFFECT);
+	ADDOBJECT(explosion, LAYER::EFFECT);
 	GET_SINGLE(EventManager)->DeleteObject(this);
 }
