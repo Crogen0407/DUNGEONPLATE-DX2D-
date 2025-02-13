@@ -29,6 +29,7 @@ HelpCanvas::HelpCanvas()
 		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
 		Vec2 pos = { size.x / 2, size.y / 2 };
 		_slideImage = CreateUI<Image>(pos, size);
+		_slideImage->useNineSlice = false;
 		_slideImage->texture = slides[0]->texture;
 	}
 
