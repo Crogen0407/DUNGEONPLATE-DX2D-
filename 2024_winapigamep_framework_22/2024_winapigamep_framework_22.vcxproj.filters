@@ -443,9 +443,6 @@
     <ClInclude Include="BombPattern.h">
       <Filter>Engine\03. Object\Enemy\EnemyPattern</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyBomb.h">
-      <Filter>Engine\03. Object\Enemy\EnemyPattern</Filter>
-    </ClInclude>
     <ClInclude Include="HealItem.h">
       <Filter>Engine\09.Skill</Filter>
     </ClInclude>
@@ -454,6 +451,9 @@
     </ClInclude>
     <ClInclude Include="SimpleMath.h">
       <Filter>Engine\07. Module</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBomb.h">
+      <Filter>Engine\03. Object\Projectile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -813,9 +813,6 @@
     <ClCompile Include="BombPattern.cpp">
       <Filter>Engine\03. Object\Enemy\EnemyPattern</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyBomb.cpp">
-      <Filter>Engine\03. Object\Enemy\EnemyPattern</Filter>
-    </ClCompile>
     <ClCompile Include="HealItem.cpp">
       <Filter>Engine\09.Skill</Filter>
     </ClCompile>
@@ -824,6 +821,9 @@
     </ClCompile>
     <ClCompile Include="SimpleMath.cpp">
       <Filter>Engine\07. Module</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBomb.cpp">
+      <Filter>Engine\03. Object\Projectile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
