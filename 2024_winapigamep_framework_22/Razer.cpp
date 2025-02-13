@@ -47,22 +47,21 @@ void Razer::Update()
 
 void Razer::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
-	//ComponentRender(_hdc);
 	Vec2 vPos = GetPos();
 	Vec2 vSize = GetSize();
 
 	int width = _texture->GetWidth();
 	int height = _texture->GetHeight();
 
-	renderTarget->DrawBitmap(_texture->GetBitmap().Get(), D2D1::RectF(vPos.x - vSize.x / 2, vPos.y - vSize.y / 2, vPos.x + vSize.x / 2, vPos.y + vSize.y / 2));
-	/////////////////////////////////////////////
-	/*::TransparentBlt(_hdc
-		, (int)(vPos.x - vSize.x / 2)
-		, (int)(vPos.y - vSize.y / 2)
-		, vSize.x, vSize.y,
-		_texture->GetTexDC()
-		, 0, 0, width, height, RGB(255, 0, 255));*/
-	/////////////////////////////////////////////
+	renderTarget->DrawBitmap(
+		_texture->GetBitmap().Get(), 
+		D2D1::RectF(vPos.x - vSize.x / 2, 
+			vPos.y - vSize.y / 2, 
+			vPos.x + vSize.x / 2, 
+			vPos.y + vSize.y / 2), 
+		1.0f,
+		D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR
+	);
 }
 
 void Razer::EnterCollision(Collider* _other)

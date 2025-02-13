@@ -40,8 +40,6 @@ void EnemyBomb::Update()
 
 void EnemyBomb::Parry()
 {
-	Projectile::Parry();
-
 	_damage = 10.f;
 	SetSpeed(_speed * 6.f);
 	SetDir(GetDir() * -1);
