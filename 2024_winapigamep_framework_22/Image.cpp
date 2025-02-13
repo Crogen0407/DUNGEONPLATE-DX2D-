@@ -62,18 +62,20 @@ void Image::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 		{ textureSize.x - borderSize, textureSize.y - borderSize, textureSize.x, textureSize.y }, // BR
 	};
 
+	float destBorderSize = multiplier * borderSize;
+
 	D2D1_RECT_F destRects[9] = {
-		{ destRect.left, destRect.top, destRect.left + borderSize, destRect.top + borderSize },  // TL
-		{ destRect.left + borderSize-1, destRect.top, destRect.right - borderSize + 1, destRect.top + borderSize },  // T
-		{ destRect.right - borderSize, destRect.top, destRect.right, destRect.top + borderSize }, // TR
+		{ destRect.left, destRect.top, destRect.left + destBorderSize, destRect.top + destBorderSize },  // TL
+		{ destRect.left + destBorderSize -1, destRect.top, destRect.right - destBorderSize + 1, destRect.top + destBorderSize },  // T
+		{ destRect.right - destBorderSize, destRect.top, destRect.right, destRect.top + destBorderSize }, // TR
 
-		{ destRect.left, destRect.top + borderSize - 1, destRect.left + borderSize, destRect.bottom - borderSize + 1 }, // L
-		{ destRect.left + borderSize - 1, destRect.top + borderSize - 1, destRect.right - borderSize + 1, destRect.bottom - borderSize + 1}, // C (*�þ)
-		{ destRect.right - borderSize, destRect.top + borderSize - 1, destRect.right, destRect.bottom - borderSize + 1 }, // R
+		{ destRect.left, destRect.top + destBorderSize - 1, destRect.left + destBorderSize, destRect.bottom - destBorderSize + 1 }, // L
+		{ destRect.left + destBorderSize - 1, destRect.top + destBorderSize - 1, destRect.right - destBorderSize + 1, destRect.bottom - destBorderSize + 1}, // C (*�þ)
+		{ destRect.right - destBorderSize, destRect.top + destBorderSize - 1, destRect.right, destRect.bottom - destBorderSize + 1 }, // R
 
-		{ destRect.left, destRect.bottom - borderSize, destRect.left + borderSize, destRect.bottom },  // BL
-		{ destRect.left + borderSize - 1, destRect.bottom - borderSize, destRect.right - borderSize + 1, destRect.bottom },  // B
-		{ destRect.right - borderSize, destRect.bottom - borderSize, destRect.right, destRect.bottom } // BR
+		{ destRect.left, destRect.bottom - destBorderSize, destRect.left + destBorderSize, destRect.bottom },  // BL
+		{ destRect.left + destBorderSize - 1, destRect.bottom - destBorderSize, destRect.right - destBorderSize + 1, destRect.bottom },  // B
+		{ destRect.right - destBorderSize, destRect.bottom - destBorderSize, destRect.right, destRect.bottom } // BR
 	};
 
 	for (int i = 0; i < 9; i++){

@@ -50,7 +50,7 @@ GameClearCanvas::GameClearCanvas()
 		Vec2 size = { 400, 50 };
 		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.585f };
 		gotoTitleSceneButton = CreateUI<Button>(pos, size);
-		gotoTitleSceneButton->texture = LOADTEXTURE(L"UISprite8X1", L"Texture\\UISprite8X1.png");
+		gotoTitleSceneButton->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.png");
 		gotoTitleSceneButton->onlyOneCountClick = true;
 		gotoTitleSceneButton->OnClickEvent +=
 			[](int _)

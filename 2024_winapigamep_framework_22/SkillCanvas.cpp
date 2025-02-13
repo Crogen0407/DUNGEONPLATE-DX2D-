@@ -51,7 +51,7 @@ void SkillCanvas::CreateSlot(Vec2 slotPos)
 	skillSlot->level =			CreateUI<Text>(levelPos, levelSize);
 	skillSlot->description =	CreateUI<Text>(descriptionPos, descriptionSize);
 	skillSlot->level->SetText(L"New!");
-	skillSlot->texture = LOADTEXTURE(L"UISpriteSlot", L"Texture\\UISpriteSlot.png");
+	skillSlot->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.png");
 
 	skillSlot->name->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
 	skillSlot->name->LoadFont(L"PF스타더스트", 25);
