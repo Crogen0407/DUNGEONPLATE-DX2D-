@@ -49,7 +49,6 @@ void SkillCanvas::Update()
 	Canvas::Update();
 }
 
-
 void SkillCanvas::CreateSlot(Vec2 slotPos)
 {
 	SkillSlot* skillSlot = CreateUI<SkillSlot>(slotPos, Vec2(250, 320));
@@ -63,9 +62,10 @@ void SkillCanvas::CreateSlot(Vec2 slotPos)
 	Vec2 descriptionPos = Vec2(0, 110);
 	Vec2 descriptionSize = skillSlot->GetSize() - Vec2(30, 30);
 
-	skillSlot->name =			CreateUI<Text>(namePos, nameSize);
-	skillSlot->level =			CreateUI<Text>(levelPos, levelSize);
-	skillSlot->description =	CreateUI<Text>(descriptionPos, descriptionSize);
+	skillSlot->name			= CreateUI<Text>(namePos, nameSize);
+	skillSlot->level		= CreateUI<Text>(levelPos, levelSize);
+	skillSlot->description	= CreateUI<Text>(descriptionPos, descriptionSize);
+
 	skillSlot->level->SetText(L"New!");
 	skillSlot->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.png");
 

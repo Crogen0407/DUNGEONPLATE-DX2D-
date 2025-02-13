@@ -25,7 +25,6 @@ void Text::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 {
 	if (_owner == nullptr) return;
 	Vec2 pos = GetPos() + _owner->GetPos();
-
 	if (_parent != nullptr)
 		pos += _parent->GetPos();
 
