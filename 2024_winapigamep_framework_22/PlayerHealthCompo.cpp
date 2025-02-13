@@ -59,32 +59,63 @@ void PlayerHealthCompo::LateUpdate()
 	}
 }
 
-//void PlayerHealthCompo::Render(ComPtr<ID2D1RenderTarget> renderTarget)
-//{
-//	//////////////////////////////////////////////////
-//	//HealthCompo::Render(hdc);
-//
-//	//Vec2 pos = GetOwner()->GetPos();
-//	//Vec2 size = { GetOwner()->GetSize().x, 6.f };
-//	//pos.y += offsetY + size.y/2;
-//
-//	////Back
-//	//HBRUSH oldBrush = static_cast<HBRUSH>(::SelectObject(hdc, backBrush));
-//	//::Rectangle(hdc,
-//	//	pos.x - size.x / 2,
-//	//	pos.y - size.y / 2,
-//	//	pos.x + size.x / 2,
-//	//	pos.y + size.y / 2);
-//
-//	////Fill
-//	//static_cast<HBRUSH>(::SelectObject(hdc, fillBrush));
-//
-//	//::Rectangle(hdc,
-//	//	pos.x - size.x / 2,
-//	//	pos.y - size.y / 2,
-//	//	(pos.x + (size.x / 2) * (std::clamp(subHp / maxSubHp, 0.f, 1.f) * 2 - 1)),
-//	//	pos.y + size.y / 2);
-//
-//	//::SelectObject(hdc, oldBrush);
-//	//////////////////////////////////////////////////
-//}
+void PlayerHealthCompo::Render(ComPtr<ID2D1RenderTarget> renderTarget)
+{
+	if (hpBarActive == false) return;
+
+	Vec2 pos = GetOwner()->GetPos();
+	pos.y += offsetY;
+	Vec2 size = { GetOwner()->GetSize().x + 2.0f, 13.5f };
+
+	// Hp
+	{
+		//Back
+		renderTarget->DrawRectangle(D2D1::RectF(
+			pos.x - size.x / 2,
+			pos.y - size.y * 0.75f,
+			pos.x + size.x / 2,
+			pos.y),
+			_backBrush.Get(), 3.f);
+
+		renderTarget->FillRectangle(D2D1::RectF(
+			pos.x - size.x / 2,
+			pos.y - size.y * 0.75f,
+			pos.x + size.x / 2,
+			pos.y),
+			_backBrush.Get());
+
+		//Fill
+		renderTarget->FillRectangle(D2D1::RectF(
+			pos.x - size.x / 2,
+			pos.y - size.y * 0.75f,
+			pos.x + (size.x / 2) * ((std::clamp(hp / maxHp, 0.f, 1.f)) * 2 - 1),
+			pos.y),
+			_fillBrush.Get());
+	}
+
+	// SubHp
+	{
+		//Back
+		renderTarget->DrawRectangle(D2D1::RectF(
+			pos.x - size.x / 2,
+			pos.y,
+			pos.x + size.x / 2,
+			pos.y + size.y * 0.25f),
+			_backBrush.Get(), 3.f);
+
+		renderTarget->FillRectangle(D2D1::RectF(
+			pos.x - size.x / 2,
+			pos.y,
+			pos.x + size.x / 2,
+			pos.y + size.y * 0.25f),
+			_backBrush.Get());
+
+		//Fill
+		renderTarget->FillRectangle(D2D1::RectF(
+			pos.x - size.x / 2,
+			pos.y,
+			pos.x + (size.x / 2) * ((std::clamp(subHp / maxSubHp, 0.f, 1.f)) * 2 - 1),
+			pos.y + size.y * 0.25f),
+			_fillBrush.Get());
+	}
+}

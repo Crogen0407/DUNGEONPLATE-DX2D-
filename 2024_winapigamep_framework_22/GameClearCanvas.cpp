@@ -28,9 +28,10 @@ GameClearCanvas::GameClearCanvas()
 		Vec2 pos = { size.x * 0.5f, size.y * 0.3f };
 		titleText = CreateUI<Text>(pos, size);
 		titleText->SetText(L"CLEAR!");
-		titleText->LoadFont(L"PF스타더스트 Bold", 60, 72);
-		titleText->SetPitchAndFamily(DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-		titleText->SetColor(RGB(155, 188, 15));
+		titleText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+		titleText->LoadFont(L"PF스타더스트", 60);
+		titleText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
+		titleText->SetColor(0x9bbc0f);
 	}
 
 	//MentText
@@ -39,9 +40,9 @@ GameClearCanvas::GameClearCanvas()
 		Vec2 pos = { size.x * 0.5f, size.y * 0.4f };
 		mentText = CreateUI<Text>(pos, size);
 		mentText->SetText(L"축하드립니다!");
-		mentText->LoadFont(L"PF스타더스트", 20, 25);
-		mentText->SetPitchAndFamily(DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-		mentText->SetColor(RGB(155, 188, 15));
+		mentText->LoadFont(L"PF스타더스트", 20);
+		mentText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
+		mentText->SetColor(0x9bbc0f);
 	}
 
 	//GotoTitleSceneButton
@@ -60,9 +61,9 @@ GameClearCanvas::GameClearCanvas()
 		{
 			Text* retryButtonText = CreateUI<Text>(pos, size);
 			retryButtonText->SetText(L"GOTOTITLE");
-			retryButtonText->LoadFont(L"PF스타더스트 Bold", 18, 21);
-			retryButtonText->SetPitchAndFamily(DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-			retryButtonText->SetColor(RGB(15, 56, 15));
+			retryButtonText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+			retryButtonText->LoadFont(L"PF스타더스트", 18);
+			retryButtonText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
 		}
 	}
 
@@ -76,9 +77,10 @@ GameClearCanvas::GameClearCanvas()
 		//스테이지 정보 가지고 오기
 		str += L"TIME";
 		infoText->SetText(str);
-		infoText->LoadFont(L"PF스타더스트 Bold", 17, 19);
-		infoText->SetPitchAndFamily(DT_LEFT | DT_VCENTER);
-		infoText->SetColor(RGB(15, 56, 15));
+		infoText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+		infoText->LoadFont(L"PF스타더스트", 17);
+		infoText->SetPitchAndFamily();
+		infoText->SetColor(0x9bbc0f);
 	}
 
 	//InfoValueText
@@ -92,9 +94,10 @@ GameClearCanvas::GameClearCanvas()
 		//스테이지 정보 가지고 오기
 		str += std::format(L"{0:02} : {1:02}", (int)TIME/60, (int)TIME%60);
 		infoValueText->SetText(str);
-		infoValueText->LoadFont(L"PF스타더스트 Bold", 17, 19);
-		infoValueText->SetPitchAndFamily(DT_RIGHT | DT_VCENTER);
-		infoValueText->SetColor(RGB(15, 56, 15));
+		infoValueText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+		infoValueText->LoadFont(L"PF스타더스트", 17);
+		infoValueText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_TRAILING);
+		infoValueText->SetColor(0x9bbc0f);
 	}
 }
 

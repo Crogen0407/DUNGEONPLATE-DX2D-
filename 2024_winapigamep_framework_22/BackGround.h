@@ -28,6 +28,8 @@ protected:
     int _currentEnemyCount = 0;
     int _currentSpawnedEnemyCount = 0;
     int _maxEnemyCount = 10;
-    HFONT _font;
+
+    ComPtr<IDWriteTextFormat> _textFormat = nullptr;
+    ComPtr<ID2D1SolidColorBrush> _brush = nullptr;
 };
 

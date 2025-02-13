@@ -15,19 +15,6 @@ SkillCanvas::SkillCanvas()
 	_skillSlots.clear();
 
 	GET_SINGLE(ResourceManager)->LoadSound(L"LevelUp", L"Sound\\LevelUp.wav", false);
-	/*Vec2 center = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
-	int xDeltaPos = 300;
-
-	{
-		Vec2 size = { SCREEN_WIDTH * 2, 420};
-		Vec2 pos = center;
-		Image* backImage = CreateUI<Image>(pos, size);
-		backImage->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.png");
-	}
-
-	CreateSlot(center - Vec2(xDeltaPos, 0));
-	CreateSlot(center);
-	CreateSlot(center + Vec2(xDeltaPos, 0));*/
 
 	GET_SINGLE(XPManager)->LevelUpEvent +=
 		[ct = this](int level)
@@ -66,16 +53,17 @@ void SkillCanvas::CreateSlot(Vec2 slotPos)
 	skillSlot->level->SetText(L"New!");
 	skillSlot->texture = LOADTEXTURE(L"UISpriteSlot", L"Texture\\UISpriteSlot.png");
 
-	skillSlot->name->LoadFont(L"PF스타더스트 Bold", 25, 30);
-	skillSlot->name->SetPitchAndFamily(DT_VCENTER);
+	skillSlot->name->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+	skillSlot->name->LoadFont(L"PF스타더스트", 25);
+	skillSlot->name->SetPitchAndFamily();
 	skillSlot->name->SetParent(skillSlot);
 
-	skillSlot->level->LoadFont(L"PF스타더스트", 18, 24);
-	skillSlot->level->SetPitchAndFamily(DT_VCENTER);
+	skillSlot->level->LoadFont(L"PF스타더스트", 18);
+	skillSlot->level->SetPitchAndFamily();
 	skillSlot->level->SetParent(skillSlot);
 
-	skillSlot->description->LoadFont(L"PF스타더스트", 15, 18);
-	skillSlot->description->SetPitchAndFamily(DT_LEFT | DT_TOP);
+	skillSlot->description->LoadFont(L"PF스타더스트", 15);
+	skillSlot->description->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_LEADING, DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 	skillSlot->description->SetParent(skillSlot);
 
 	//Button Events

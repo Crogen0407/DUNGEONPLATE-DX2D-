@@ -122,7 +122,8 @@ void Player::Update()
 	if (GET_KEYDOWN(KEY_TYPE::CTRL))
 		healthCompo->ApplyDamage(55);
 
-	_spriteRenderer->LookAt(attackDir);
+	if (TIMESCALE > 0.1f)
+		_spriteRenderer->LookAt(attackDir);
 }
 
 void Player::Parry()

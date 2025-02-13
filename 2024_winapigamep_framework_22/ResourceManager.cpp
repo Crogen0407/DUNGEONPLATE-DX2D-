@@ -9,7 +9,7 @@ void ResourceManager::Init()
 		CLSID_WICImagingFactory,
 		nullptr,
 		CLSCTX_INPROC_SERVER,
-		IID_PPV_ARGS(_wicFactory.GetAddressOf())
+		IID_PPV_ARGS(&_wicFactory)
 	);
 
 	::DWriteCreateFactory(
@@ -20,7 +20,6 @@ void ResourceManager::Init()
 
 	::GetCurrentDirectory(255, m_resourcePath);
 	wcscat_s(m_resourcePath, 255, L"\\Resource\\");
-	//::SetWindowText(GET_SINGLE(Core)->GetHwnd(), m_resourcePath);
 
  	FMOD::System_Create(&m_pSoundSystem); // 시스템 생성 함수
 	// 채널수, 사운드 모드
@@ -35,7 +34,6 @@ Texture* ResourceManager::TextureLoad(const wstring& _key, const wstring& _path)
 	if (nullptr != pTex)
 		return pTex;
 
-	// 없어요 최초입니다. 만들어주세요.
 	// 1. 경로 설정
 	wstring texpath = m_resourcePath;
 	texpath += _path;
@@ -192,30 +190,6 @@ void ResourceManager::Pause(SOUND_CHANNEL _channel, bool _ispause)
 	// bool값이 true면 일시정지. 단, 이 함수를 쓰려면 Createsound할때 
 // FMOD_MODE가 FMOD_LOOP_NORMAL 이어야 함.
 	m_pChannel[(UINT)_channel]->setPaused(_ispause);
-}
-
-bool ResourceManager::AddFont(wstring fileName)
-{
-	/*_writeFactory->CreateTextFormat(
-		fileName.c_str(),
-		nullptr,
-		DWRITE_FONT_WEIGHT_REGULAR,
-		DWRITE_FONT_STYLE_NORMAL,
-		DWRITE_FONT_STRETCH_NORMAL,
-		20.0f,
-		L"ko",
-		&_textFormat
-	);*/
-
-	if (fontNames.find(fileName) == fontNames.end())
-	{
-		std::wstring path;
-		path.append(L".ttf");
-		AddFontResource(path.c_str());
-		fontNames.insert(fileName);
-		return true;
-	}
-	return false;
 }
 
 tSoundInfo* ResourceManager::FindSound(const wstring& _key)

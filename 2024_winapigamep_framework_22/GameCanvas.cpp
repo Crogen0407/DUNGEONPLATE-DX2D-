@@ -43,10 +43,10 @@ GameCanvas::GameCanvas() :
 			{
 				healthText = CreateUI<Text>({ pos.x, pos.y - offset / 2 }, { size.x - offset, 45.f});
 
-				healthText->LoadFont(L"PF스타더스트", 12, 15);
+				healthText->LoadFont(L"PF스타더스트", 12);
 				healthText->SetText(L"HP : 100%");
-				healthText->SetColor(RGB(15, 56, 15));
-				healthText->SetPitchAndFamily(DT_LEFT);
+				healthText->SetColor(0x0f380f);
+				healthText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_LEADING, DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 
 				playerHealthCompo->ChangeHpEvent +=
 					[ct = healthText](float value)
@@ -71,10 +71,10 @@ GameCanvas::GameCanvas() :
 			{
 				shieldText = CreateUI<Text>({ pos.x, pos.y + offset*0.9f }, { size.x - offset, 45.f });
 
-				shieldText->LoadFont(L"PF스타더스트", 12, 15);
+				shieldText->LoadFont(L"PF스타더스트", 12);
 				shieldText->SetText(L"SHIELD : 100%");
-				shieldText->SetColor(RGB(15, 56, 15));
-				shieldText->SetPitchAndFamily(DT_LEFT);
+				shieldText->SetColor(0x0f380f);
+				shieldText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_LEADING, DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 
 				playerHealthCompo->ChangeSubHpEvent +=
 					[ct = shieldText](float value)
@@ -147,22 +147,21 @@ GameCanvas::GameCanvas() :
 
 	//floorText
 	{
+		Vec2 size = { 70, 70 };
+		Vec2 pos = { (float)SCREEN_WIDTH / 2, size.y / 2 + 15 };
+
 		{
-			Vec2 size = { 70, 70 };
-			Vec2 pos = { (float)SCREEN_WIDTH / 2, size.y / 2 + 15 };
 			Image* floorText = CreateUI<Image>(pos, size);
 			floorText->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.png");
 		}
 
-		Vec2 size = { 50, 60 };
-		Vec2 pos = { SCREEN_WIDTH / 2.f, size.y/2 + 25 };
-
-		floorText = CreateUI<Text>(pos, size);
-		floorText->LoadFont(L"PF스타더스트 Bold", 40, 55);
-		floorText->SetText(L"1");
-
-		floorText->SetColor(RGB(15, 56, 15));
-		floorText->SetPitchAndFamily(DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+		{
+			floorText = CreateUI<Text>(pos + Vec2(0, 3), size);
+			floorText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+			floorText->LoadFont(L"PF스타더스트", 40);
+			floorText->SetText(L"1");
+			floorText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER, DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+		}
 
 		StageLoader::StageLoadEvent.Clear();
 
@@ -180,10 +179,10 @@ GameCanvas::GameCanvas() :
 		Vec2 pos = { SCREEN_WIDTH - size.x/2, offset };
 		timeText = CreateUI<Text>(pos, size);
 
-		timeText->LoadFont(L"PF스타더스트", 18, 24);
+		timeText->LoadFont(L"PF스타더스트", 18);
 		timeText->SetText(L"00:00");
-		timeText->SetColor(RGB(139, 172, 15));
-		timeText->SetPitchAndFamily(DT_LEFT);
+		timeText->SetColor(0x8bac0f);
+		timeText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_LEADING);
 	}
 
 	//XPBar

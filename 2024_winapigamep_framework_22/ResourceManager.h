@@ -14,6 +14,7 @@ class Texture;
 class ResourceManager
 {
 	DECLARE_SINGLE(ResourceManager);
+
 public:
 	void Init();
 	const wchar_t* GetResPath() const { return m_resourcePath; }
@@ -30,7 +31,10 @@ public:
 	void Stop(SOUND_CHANNEL _channel);
 	void Volume(SOUND_CHANNEL _channel, float _vol);
 	void Pause(SOUND_CHANNEL _channel, bool _ispause);
-	bool AddFont(wstring fileName);
+
+public:
+	const ComPtr<IDWriteFactory> GetWriteFactory() { return _writeFactory; }
+
 private:
 	tSoundInfo* FindSound(const wstring& _key);
 
@@ -40,11 +44,12 @@ private:
 	map<wstring, tSoundInfo*> m_mapSounds;
 	FMOD::System* m_pSoundSystem; // 사운드 시스템
 	FMOD::Channel* m_pChannel[(UINT)SOUND_CHANNEL::END]; // 오디오 채널
-	std::set<wstring> fontNames;
 
 public:
-	ComPtr<IWICImagingFactory> _wicFactory = nullptr;
+	IWICImagingFactory* _wicFactory = nullptr;
 	ComPtr<IDWriteFactory> _writeFactory = nullptr;
 	ComPtr<IWICFormatConverter> _converter = nullptr;
+
+	ComPtr<IDWriteFontCollection> _fontCollection = nullptr;
 };
 

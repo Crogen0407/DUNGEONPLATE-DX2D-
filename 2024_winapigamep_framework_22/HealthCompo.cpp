@@ -52,7 +52,7 @@ void HealthCompo::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 
 	Vec2 pos = GetOwner()->GetPos();
 	pos.y += offsetY;
-	Vec2 size = { GetOwner()->GetSize().x, 12.f};
+	Vec2 size = { GetOwner()->GetSize().x, 8.f};
 
 	//Back
 	renderTarget->DrawRectangle(D2D1::RectF(
@@ -73,7 +73,7 @@ void HealthCompo::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 	renderTarget->FillRectangle(D2D1::RectF(
 		pos.x - size.x / 2,
 		pos.y - size.y / 2,
-		pos.x + (size.x / 2) * (std::clamp(hp / maxHp, 0.f, 1.f)),
+		pos.x + (size.x / 2) * ((std::clamp(hp / maxHp, 0.f, 1.f)) * 2 - 1),
 		pos.y + size.y / 2),
 		_fillBrush.Get());
 }

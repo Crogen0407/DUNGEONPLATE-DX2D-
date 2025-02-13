@@ -49,6 +49,7 @@ bool Core::Init(HWND _hwnd)
 
 	return true;
 }
+
 void Core::CleanUp()
 {
 	for (int i = 0; i < (UINT)PEN_TYPE::END; ++i)
@@ -85,7 +86,7 @@ void Core::MainUpdate()
 
 void Core::MainRender()
 {
-	_renderTarget->CreateCompatibleRenderTarget(_backBuffer.GetAddressOf());
+	_renderTarget->CreateCompatibleRenderTarget(&_backBuffer);
 	{
 		_backBuffer->BeginDraw();
 		_backBuffer->Clear(D2D1::ColorF(0x306230));
@@ -100,7 +101,9 @@ void Core::MainRender()
 		_renderTarget->BeginDraw();
 		_renderTarget->DrawBitmap(_bitmap.Get());
 		_renderTarget->EndDraw();
+
 	}
+	_backBuffer->Release();
  }
 void Core::CreateGDI()
 {

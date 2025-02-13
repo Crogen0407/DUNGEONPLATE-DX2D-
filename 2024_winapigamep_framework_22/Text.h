@@ -11,12 +11,13 @@ public:
 	void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
 
 public:
-	void LoadFont(std::wstring fontName, int fontWidth, int fontHegith);
+	void LoadFont(std::wstring fontName, float fontSize);
 
 public:
-	void SetPitchAndFamily(UINT iPitchAndFamily)
+	void SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT alignment = DWRITE_TEXT_ALIGNMENT_LEADING, DWRITE_PARAGRAPH_ALIGNMENT paragraphAlignment = DWRITE_PARAGRAPH_ALIGNMENT_CENTER)
 	{
-		_iPitchAndFamily = iPitchAndFamily;
+		_textFormat->SetTextAlignment(alignment);
+		_textFormat->SetParagraphAlignment(paragraphAlignment);
 	}
 	void SetText(wstring str)
 	{
@@ -26,17 +27,28 @@ public:
 	{
 		return _text;
 	}
-	void SetColor(COLORREF color)
+	void SetColor(D2D1::ColorF color);
+	void SetStyle(DWRITE_FONT_STYLE style = DWRITE_FONT_STYLE_NORMAL)
 	{
-		this->color = color;
+		_style = style;
+	}
+	void SetWeight(DWRITE_FONT_WEIGHT weight = DWRITE_FONT_WEIGHT_NORMAL)
+	{
+		_weight = weight;
+	}
+	void SetStretch(DWRITE_FONT_STRETCH stretch = DWRITE_FONT_STRETCH_NORMAL)
+	{
+		_stretch = stretch;
 	}
 
 private:
-	UINT _iPitchAndFamily;
-	HFONT pfont;
 	wstring _text;
-	COLORREF color;
+	D2D1_COLOR_F _color;
+	DWRITE_FONT_STYLE _style;
+	DWRITE_FONT_WEIGHT _weight;
+	DWRITE_FONT_STRETCH _stretch;
 
 	ComPtr<IDWriteTextFormat> _textFormat;
+	ComPtr<ID2D1SolidColorBrush> _brush;
 };
 

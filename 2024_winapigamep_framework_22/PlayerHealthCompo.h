@@ -7,8 +7,10 @@ class PlayerHealthCompo :
 public:
     PlayerHealthCompo();
     ~PlayerHealthCompo() override;
+
 public:
     Action<float> ChangeSubHpEvent;
+
 public:
     void SetSubHp(float subHp)
     {
@@ -37,7 +39,8 @@ public:
 
 public:
     void LateUpdate() override;
-    //virtual void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
+    virtual void Render(ComPtr<ID2D1RenderTarget> renderTarget) override;
+
 private:
     bool _isDie = false;
     float curDelay = 0;

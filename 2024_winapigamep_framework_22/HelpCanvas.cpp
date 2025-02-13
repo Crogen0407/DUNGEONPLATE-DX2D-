@@ -24,14 +24,6 @@ HelpCanvas::HelpCanvas()
 		slides[i]->texture = LOADTEXTURE(flieName, L"Texture\\"+ flieName+ L".png");
 	}
 
-	//Background
-	{
-		Vec2 size = {SCREEN_WIDTH, SCREEN_HEIGHT};
-		Vec2 pos = { size.x / 2, size.y / 2 };
-		Image* background = CreateUI<Image>(pos, size);
-		background->texture = LOADTEXTURE(L"OnePoint", L"Texture\\OnePoint.png");
-	}
-
 	//Slide
 	{
 		Vec2 size = { SCREEN_WIDTH, SCREEN_HEIGHT };
@@ -45,9 +37,10 @@ HelpCanvas::HelpCanvas()
 		Vec2 size = { SCREEN_WIDTH , (SCREEN_HEIGHT / 8) * 2 };
 		Vec2 pos = { SCREEN_WIDTH/2.f, SCREEN_HEIGHT-(size.y/2)};
 		_descriptionText = CreateUI<Text>(pos, size);
-		_descriptionText->SetColor(RGB(155, 188, 15));
-		_descriptionText->LoadFont(L"PF스타더스트 Bold", 28, 37);
-		_descriptionText->SetPitchAndFamily(DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+		_descriptionText->SetColor(0x8bac0f);
+		_descriptionText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+		_descriptionText->LoadFont(L"PF스타더스트", 28);
+		_descriptionText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
 		_descriptionText->SetText(slides[0]->description);
 	}
 }

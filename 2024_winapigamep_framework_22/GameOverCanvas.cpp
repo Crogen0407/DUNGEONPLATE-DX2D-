@@ -25,9 +25,10 @@ GameOverCanvas::GameOverCanvas()
 		Vec2 pos = { size.x*0.5f, size.y * 0.3f };
 		titleText = CreateUI<Text>(pos, size);
 		titleText->SetText(L"FAIL...");
-		titleText->LoadFont(L"PF스타더스트 Bold", 60, 72);
-		titleText->SetPitchAndFamily(DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-		titleText->SetColor(RGB(155, 188, 15));
+		titleText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+		titleText->LoadFont(L"PF스타더스트", 60);
+		titleText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
+		titleText->SetColor(0x9bbc0f);
 	}
 
 	//MentText
@@ -36,9 +37,9 @@ GameOverCanvas::GameOverCanvas()
 		Vec2 pos = { size.x * 0.5f, size.y * 0.4f };
 		mentText = CreateUI<Text>(pos, size);
 		mentText->SetText(L"가끔은 실패할 수도 있는 겁니다");
-		mentText->LoadFont(L"PF스타더스트", 20, 25);
-		mentText->SetPitchAndFamily(DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-		mentText->SetColor(RGB(155, 188, 15));
+		mentText->LoadFont(L"PF스타더스트", 20);
+		mentText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
+		mentText->SetColor(0x9bbc0f);
 	}
 
 	//RetryButton
@@ -57,8 +58,9 @@ GameOverCanvas::GameOverCanvas()
 		{
 			Text* retryButtonText = CreateUI<Text>(pos, size);
 			retryButtonText->SetText(L"RETRY");
-			retryButtonText->LoadFont(L"PF스타더스트 Bold", 18, 21);
-			retryButtonText->SetPitchAndFamily(DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+			retryButtonText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+			retryButtonText->LoadFont(L"PF스타더스트", 18);
+			retryButtonText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
 			retryButtonText->SetColor(RGB(15, 56, 15));
 		}
 	}
@@ -77,11 +79,12 @@ GameOverCanvas::GameOverCanvas()
 			};
 		//GotoTitleButtonText
 		{
-			Text* retryButtonText = CreateUI<Text>(pos, size);
-			retryButtonText->SetText(L"GOTOTITLE");
-			retryButtonText->LoadFont(L"PF스타더스트 Bold", 18, 21);
-			retryButtonText->SetPitchAndFamily(DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-			retryButtonText->SetColor(RGB(15, 56, 15));
+			Text* gotoTitleButtonText = CreateUI<Text>(pos, size);
+			gotoTitleButtonText->SetText(L"GOTOTITLE");
+			gotoTitleButtonText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+			gotoTitleButtonText->LoadFont(L"PF스타더스트", 18);
+			gotoTitleButtonText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
+			gotoTitleButtonText->SetColor(RGB(15, 56, 15));
 		}
 	}
 }

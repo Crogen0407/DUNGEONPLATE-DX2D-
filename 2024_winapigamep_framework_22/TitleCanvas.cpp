@@ -24,6 +24,7 @@ TitleCanvas::TitleCanvas()
 		Vec2 size = { SCREEN_WIDTH/3, SCREEN_HEIGHT/3 };
 		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.55f };
 		Image* background = CreateUI<Image>(pos, size);
+		background->useNineSlice = false;
 		background->texture = LOADTEXTURE(L"Background", L"Texture\\Background.png");
 	}
 
@@ -32,6 +33,7 @@ TitleCanvas::TitleCanvas()
 		Vec2 size = { 844, 153 };
 		Vec2 pos = {SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT* 0.26f };
 		Image* titleText = CreateUI<Image>(pos, size);
+		titleText->useNineSlice = false;
 		titleText->texture = LOADTEXTURE(L"Title", L"Texture\\Title.png");
 	}
 
@@ -64,9 +66,9 @@ TitleCanvas::TitleCanvas()
 			Text* startButtonText = CreateUI<Text>({ 0, 0 }, size);
 			startButtonText->SetParent(_startButton);
 			startButtonText->SetText(L"START");
-			startButtonText->LoadFont(L"PF스타더스트 Bold", 18, 21);
-			startButtonText->SetPitchAndFamily(DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-			startButtonText->SetColor(RGB(15, 56, 15));
+			startButtonText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+			startButtonText->LoadFont(L"PF스타더스트", 18);
+			startButtonText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
 		}
 	}
 
@@ -100,9 +102,9 @@ TitleCanvas::TitleCanvas()
 			Text* helpButtonText = CreateUI<Text>({0, 0}, size);
 			helpButtonText->SetParent(_helpButton);
 			helpButtonText->SetText(L"HELP");
-			helpButtonText->LoadFont(L"PF스타더스트 Bold", 18, 21);
-			helpButtonText->SetPitchAndFamily(DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-			helpButtonText->SetColor(RGB(15, 56, 15));
+			helpButtonText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+			helpButtonText->LoadFont(L"PF스타더스트", 18);
+			helpButtonText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
 		}
 	}
 
@@ -135,9 +137,9 @@ TitleCanvas::TitleCanvas()
 			Text* quitButtonText = CreateUI<Text>({0, 0}, size);
 			quitButtonText->SetParent(_quitButton);
 			quitButtonText->SetText(L"QUIT");
-			quitButtonText->LoadFont(L"PF스타더스트 Bold", 18, 21);
-			quitButtonText->SetPitchAndFamily(DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-			quitButtonText->SetColor(RGB(15, 56, 15));
+			quitButtonText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+			quitButtonText->LoadFont(L"PF스타더스트", 18);
+			quitButtonText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
 		}
 	}
 
@@ -148,9 +150,9 @@ TitleCanvas::TitleCanvas()
 
 		Text* devText = CreateUI<Text>(pos, size);
 		devText->SetText(L"김진후, 정윤찬, 최영환");
-		devText->LoadFont(L"PF스타더스트 Bold", 18, 21);
-		devText->SetPitchAndFamily(DT_BOTTOM | DT_RIGHT | DT_SINGLELINE);
-		devText->SetColor(RGB(155, 188, 15));
+		devText->LoadFont(L"PF스타더스트", 18);
+		devText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_TRAILING, DWRITE_PARAGRAPH_ALIGNMENT_FAR);
+		devText->SetColor(0x9bbc0f);
 	}
 }
 
