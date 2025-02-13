@@ -86,9 +86,4 @@ void Image::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 			D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,
 			srcRects[i]);
 	}
-
-	/*if(_brush == nullptr)
-		renderTarget->CreateSolidColorBrush(D2D1::ColorF(0xff0000), _brush.GetAddressOf());
-
-	renderTarget->DrawRectangle(destRect, _brush.Get(), 1.f);*/
 }

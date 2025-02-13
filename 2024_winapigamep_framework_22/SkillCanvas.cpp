@@ -111,7 +111,7 @@ void SkillCanvas::ShowSlots()
 			Vec2 size = { SCREEN_WIDTH * 2, 420 };
 			Vec2 pos = center;
 			Image* backImage = CreateUI<Image>(pos, size);
-			backImage->texture = LOADTEXTURE(L"UISprite2X2", L"Texture\\UISprite2X2.png");
+			backImage->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.png");
 		}
 
 		CreateSlot(center - Vec2(xDeltaPos, 0));
