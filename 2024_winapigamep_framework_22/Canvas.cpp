@@ -12,6 +12,8 @@ Canvas::Canvas()
 
 Canvas::~Canvas()
 {
+	for (auto& child : children)
+		delete(child);
 }
 
 void Canvas::Update()

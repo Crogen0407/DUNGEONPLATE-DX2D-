@@ -6,7 +6,7 @@ class SkillCanvas : public Canvas
 {
 public:
 	SkillCanvas();
-	~SkillCanvas() override;
+	virtual ~SkillCanvas() override;
 public:
 	void Update() override;
 public:
