@@ -12,6 +12,7 @@
 SkillCanvas::SkillCanvas()
 {
 	SetName(L"SkillCanvas");
+	GET_SINGLE(XPManager)->LevelUpEvent.Clear();
 	_skillSlots.clear();
 
 	GET_SINGLE(ResourceManager)->LoadSound(L"LevelUp", L"Sound\\LevelUp.wav", false);
@@ -47,6 +48,10 @@ SkillCanvas::~SkillCanvas()
 void SkillCanvas::Update()
 {
 	Canvas::Update();
+	if (GET_KEYDOWN(KEY_TYPE::U))
+	{
+		ShowSlots();
+	}
 }
 
 void SkillCanvas::CreateSlot(Vec2 slotPos)
@@ -116,6 +121,8 @@ void SkillCanvas::ShowSlots()
 
 	vector<Skill*> selectedSkills = GET_SINGLE(SkillManager)->GetRandomSkills();
 	enable = true;
+
+	assert(selectedSkills.size() == _skillSlots.size());
 
 	int i = 0;
 	for (auto skillSlot : _skillSlots)

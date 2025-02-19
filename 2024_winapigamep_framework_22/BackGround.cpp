@@ -28,7 +28,7 @@ Background::Background()
 		DWRITE_FONT_STRETCH_NORMAL,
 		40.f,
 		L"ko-KR",
-		&_textFormat
+		_textFormat.GetAddressOf()
 	);
 
 	_textFormat->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);

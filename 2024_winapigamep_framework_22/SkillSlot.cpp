@@ -16,6 +16,7 @@ void SkillSlot::Init(Skill* skill)
 	this->skill = skill;
 	name->SetText(skill->GetNameText());
 	description->SetText(skill->GetDescriptionText());
+
 	if (skill->GetLevel() == 0)
 		level->SetText(L"NEW!");
 	else if (skill->GetLevel() == -1)
