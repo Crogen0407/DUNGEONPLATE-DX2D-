@@ -28,7 +28,7 @@ bool Core::Init(HWND _hwnd)
 
 		// 창 핸들을 가져와서 연결
 		D2D1_HWND_RENDER_TARGET_PROPERTIES hwndRTProps = D2D1::HwndRenderTargetProperties(
-			_hWnd, D2D1::SizeU(SCREEN_WIDTH, SCREEN_HEIGHT)
+			_hWnd, D2D1::SizeU(SCREEN_WIDTH, SCREEN_HEIGHT), D2D1_PRESENT_OPTIONS_IMMEDIATELY
 		);
 
 		_factory->CreateHwndRenderTarget(&rtProps, &hwndRTProps, _renderTarget.GetAddressOf());

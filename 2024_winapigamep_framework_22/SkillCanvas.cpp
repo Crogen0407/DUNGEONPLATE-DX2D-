@@ -48,10 +48,6 @@ SkillCanvas::~SkillCanvas()
 void SkillCanvas::Update()
 {
 	Canvas::Update();
-	if (GET_KEYDOWN(KEY_TYPE::U))
-	{
-		ShowSlots();
-	}
 }
 
 void SkillCanvas::CreateSlot(Vec2 slotPos)

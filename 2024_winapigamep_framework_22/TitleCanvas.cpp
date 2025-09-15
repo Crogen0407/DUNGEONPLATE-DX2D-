@@ -37,109 +37,112 @@ TitleCanvas::TitleCanvas()
 		titleText->texture = LOADTEXTURE(L"Title", L"Texture\\Title.png");
 	}
 
-	//StartButton
+	// Buttons
 	{
-		Vec2 size = { 250, 32 };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.47f };
-		_startButton = CreateUI<Button>(pos, size);
-		_startButton->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.png");
-		_startButton->onlyOneCountClick = true;
-		_startButton->OnClickEvent +=
-			[](int _)
-			{
-				GET_SINGLE(FadeManager)->LoadScene(L"GameScene");
-			};
-		_startButton->OnSelectEnterEvent +=
-			[ct = _startButton](int _)
-			{
-				ct->AddPos({ 0, -2 });
-				ct->SetSize({ 260, 36 });
-			};
-		_startButton->OnSelectExitEvent +=
-			[ct = _startButton](int _)
-			{
-				ct->AddPos({ 0, 2 });
-				ct->SetSize({ 250, 32 });
-			};
-		//StartButtonText
+		Vec2 size = { 250, 40 };
+		Vec2 selectedSize = { 255, 45 };
+
+		//StartButton
 		{
-			Text* startButtonText = CreateUI<Text>({ 0, 0 }, size);
-			startButtonText->SetParent(_startButton);
-			startButtonText->SetText(L"START");
-			startButtonText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
-			startButtonText->LoadFont(L"PF스타더스트", 18);
-			startButtonText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
+			Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.47f };
+			_startButton = CreateUI<Button>(pos, size);
+			_startButton->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.png");
+			_startButton->onlyOneCountClick = true;
+			_startButton->OnClickEvent +=
+				[](int _)
+				{
+					GET_SINGLE(FadeManager)->LoadScene(L"GameScene");
+				};
+			_startButton->OnSelectEnterEvent +=
+				[ct = _startButton, selectedSize = selectedSize](int _)
+				{
+					ct->AddPos({ 0, -2 });
+					ct->SetSize(selectedSize);
+				};
+			_startButton->OnSelectExitEvent +=
+				[ct = _startButton, size = size](int _)
+				{
+					ct->AddPos({ 0, 2 });
+					ct->SetSize(size);
+				};
+			//StartButtonText
+			{
+				Text* startButtonText = CreateUI<Text>({ 0, 0 }, size);
+				startButtonText->SetParent(_startButton);
+				startButtonText->SetText(L"START");
+				startButtonText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+				startButtonText->LoadFont(L"PF스타더스트", 18);
+				startButtonText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
+			}
 		}
-	}
 
-	//HelpButton
-	{
-		Vec2 size = { 250, 32 };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.55f };
-		_helpButton = CreateUI<Button>(pos, size);
-		_helpButton->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.png");
-		_helpButton->onlyOneCountClick = true;
-		_helpButton->OnClickEvent +=
-			[](int _)
-			{
-				GET_SINGLE(FadeManager)->LoadScene(L"HelpScene");
-			};
-		_helpButton->OnSelectEnterEvent +=
-			[ct = _helpButton](int _)
-			{
-				ct->AddPos({ 0, -2 });
-				ct->SetSize({ 260, 36 });
-			};
-		_helpButton->OnSelectExitEvent +=
-			[ct = _helpButton](int _)
-			{
-				ct->AddPos({ 0, 2 });
-				ct->SetSize({ 250, 32 });
-			};
-
-		//HelpButtonText
+		//HelpButton
 		{
-			Text* helpButtonText = CreateUI<Text>({0, 0}, size);
-			helpButtonText->SetParent(_helpButton);
-			helpButtonText->SetText(L"HELP");
-			helpButtonText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
-			helpButtonText->LoadFont(L"PF스타더스트", 18);
-			helpButtonText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
+			Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.55f };
+			_helpButton = CreateUI<Button>(pos, size);
+			_helpButton->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.png");
+			_helpButton->onlyOneCountClick = true;
+			_helpButton->OnClickEvent +=
+				[](int _)
+				{
+					GET_SINGLE(FadeManager)->LoadScene(L"HelpScene");
+				};
+			_helpButton->OnSelectEnterEvent +=
+				[ct = _helpButton, selectedSize = selectedSize](int _)
+				{
+					ct->AddPos({ 0, -2 });
+					ct->SetSize(selectedSize);
+				};
+			_helpButton->OnSelectExitEvent +=
+				[ct = _helpButton, size = size](int _)
+				{
+					ct->AddPos({ 0, 2 });
+					ct->SetSize(size);
+				};
+
+			//HelpButtonText
+			{
+				Text* helpButtonText = CreateUI<Text>({ 0, 0 }, size);
+				helpButtonText->SetParent(_helpButton);
+				helpButtonText->SetText(L"HELP");
+				helpButtonText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+				helpButtonText->LoadFont(L"PF스타더스트", 18);
+				helpButtonText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
+			}
 		}
-	}
 
-	//QuitButton
-	{
-		Vec2 size = { 250, 32 };
-		Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.63f };
-		_quitButton = CreateUI<Button>(pos, size);
-		_quitButton->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.png");
-		_quitButton->onlyOneCountClick = true;
-		_quitButton->OnClickEvent +=
-			[](int _)
-			{
-				PostQuitMessage(NULL);
-			};
-		_quitButton->OnSelectEnterEvent +=
-			[ct = _quitButton](int _)
-			{
-				ct->AddPos({ 0, -2 });
-				ct->SetSize({ 260, 36 });
-			};
-		_quitButton->OnSelectExitEvent +=
-			[ct = _quitButton](int _)
-			{
-				ct->AddPos({ 0, 2 });
-				ct->SetSize({ 250, 32 });
-			};
-		//QuitButtonText
+		//QuitButton
 		{
-			Text* quitButtonText = CreateUI<Text>({0, 0}, size);
-			quitButtonText->SetParent(_quitButton);
-			quitButtonText->SetText(L"QUIT");
-			quitButtonText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
-			quitButtonText->LoadFont(L"PF스타더스트", 18);
-			quitButtonText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
+			Vec2 pos = { SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.63f };
+			_quitButton = CreateUI<Button>(pos, size);
+			_quitButton->texture = LOADTEXTURE(L"UISprite1X1", L"Texture\\UISprite1X1.png");
+			_quitButton->onlyOneCountClick = true;
+			_quitButton->OnClickEvent +=
+				[](int _)
+				{
+					PostQuitMessage(NULL);
+				};
+			_quitButton->OnSelectEnterEvent +=
+				[ct = _quitButton, selectedSize = selectedSize](int _)
+				{
+					ct->AddPos({ 0, -2 });
+					ct->SetSize(selectedSize);
+				};
+			_quitButton->OnSelectExitEvent +=
+				[ct = _quitButton, size = size](int _)
+				{
+					ct->AddPos({ 0, 2 });
+					ct->SetSize(size);
+				};
+			//QuitButtonText
+			{
+				Text* quitButtonText = CreateUI<Text>({ 0, 0 }, size);
+				quitButtonText->SetParent(_quitButton);
+				quitButtonText->SetText(L"QUIT");
+				quitButtonText->SetWeight(DWRITE_FONT_WEIGHT_BOLD);
+				quitButtonText->LoadFont(L"PF스타더스트", 18);
+				quitButtonText->SetPitchAndFamily(DWRITE_TEXT_ALIGNMENT_CENTER);
+			}
 		}
 	}
 

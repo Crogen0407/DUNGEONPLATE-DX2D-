@@ -34,6 +34,7 @@ void Image::Render(ComPtr<ID2D1RenderTarget> renderTarget)
 			pos.y + size.y / 2
 		);
 
+	// 9-slice를 사용하지 않는다면 그냥 바로 렌더링을 한다.
 	if (useNineSlice == false)
 	{
 		renderTarget->DrawBitmap(
